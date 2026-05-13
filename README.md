@@ -47,7 +47,13 @@ To deploy:
 
 The workflow runs `npm ci`, builds the static site, and deploys the `out` folder.
 
-The production domain is currently configured as `https://www.passmyrentcheck.co.uk`. Update `src/lib/siteConfig.ts`, `public/CNAME`, sitemap, and DNS settings if the domain changes.
+The GitHub Pages workflow currently builds for the temporary project URL:
+
+```text
+https://aj002b.github.io/passmyrent
+```
+
+When the custom domain is ready, add `public/CNAME` with `www.passmyrentcheck.co.uk`, update the workflow `NEXT_PUBLIC_BASE_PATH` to an empty value, and set `NEXT_PUBLIC_SITE_URL` to `https://www.passmyrentcheck.co.uk`.
 
 ## Editing Calculator Thresholds
 

@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "PassMyRentCheck",
-  domain: "https://www.passmyrentcheck.co.uk",
+  domain:
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.passmyrentcheck.co.uk",
   contactEmail: "hello@passmyrentcheck.co.uk",
   lastUpdated: "May 2026",
   description:
