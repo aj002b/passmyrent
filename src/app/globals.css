@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7fbf8;
+  --foreground: #17312b;
+  --muted: #5f746f;
+  --card: #ffffff;
+  --border: #dbe8e2;
+  --primary: #116a5b;
+  --primary-dark: #0b4c43;
+  --accent: #d9654f;
+  --soft-blue: #eaf3f8;
+  --soft-green: #e8f5ef;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Aptos", "Helvetica Neue", "Segoe UI", "Noto Sans", sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Aptos", "Helvetica Neue", "Segoe UI", "Noto Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input,
+select,
+button {
+  font: inherit;
+}
+
+::selection {
+  background: #cce7dc;
+  color: #102722;
+}
+
+.prose h2 {
+  margin-top: 0;
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #17312b;
+}
+
+.prose p {
+  margin-top: 0.75rem;
+  line-height: 1.75;
+  color: #5f746f;
+}
+
+.prose a {
+  color: #116a5b;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
