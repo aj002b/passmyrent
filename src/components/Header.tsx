@@ -12,7 +12,7 @@ const navLinks = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-30 border-b border-[#d8e5df]/90 bg-white/90 backdrop-blur-xl">
+    <header className="relative z-30 border-b border-[#d8e5df]/90 bg-white/90 backdrop-blur-xl md:sticky md:top-0">
       <div className="site-container flex flex-col gap-3 py-3 md:flex-row md:items-center md:justify-between">
         <Link
           href="/"
