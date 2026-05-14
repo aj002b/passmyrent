@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { CookieNotice } from "@/components/CookieNotice";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -51,6 +52,7 @@ export default function RootLayout({
         </div>
         <Footer />
         <CookieNotice />
+        <Analytics />
       </body>
     </html>
   );
