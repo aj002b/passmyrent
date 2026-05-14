@@ -43,7 +43,7 @@ export function CalculatorCard({
           {description}
         </p>
         {bestFor ? (
-          <p className="mt-2.5 min-h-[52px] rounded-xl border border-[#e1ece7] bg-white/70 px-3 py-2 text-xs leading-5 text-[#5f746f]">
+          <p className="mt-5 min-h-[52px] rounded-xl border border-[#e1ece7] bg-white/70 px-3 py-2 text-xs leading-5 text-[#5f746f]">
             <span className="font-extrabold text-[#17312b]">Best for:</span>{" "}
             {bestFor}
           </p>

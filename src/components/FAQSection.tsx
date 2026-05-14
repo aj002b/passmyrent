@@ -21,10 +21,10 @@ export function FAQSection({ items }: { items: FAQItem[] }) {
               <span className="leading-6">{item.question}</span>
               <span
                 aria-hidden="true"
-                className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#c7ddd5] bg-[#e8f5ef] text-lg leading-none text-[#116a5b] transition group-hover:border-[#116a5b] group-open:rotate-180 group-open:bg-[#116a5b] group-open:text-white"
+                className="relative mt-0.5 h-8 w-8 shrink-0 rounded-full border border-[#c7ddd5] bg-[#e8f5ef] text-[#116a5b] transition group-hover:border-[#116a5b] group-open:rotate-180 group-open:bg-[#116a5b] group-open:text-white"
               >
-                <span className="group-open:hidden">+</span>
-                <span className="hidden group-open:inline">-</span>
+                <span className="absolute left-1/2 top-1/2 h-0.5 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-current" />
+                <span className="absolute left-1/2 top-1/2 h-3 w-0.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-current transition group-open:opacity-0" />
               </span>
             </summary>
             <div className="border-t border-[#e6f0ec] px-5 pb-5 pt-3">
