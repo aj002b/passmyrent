@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AdPlaceholder } from "@/components/AdPlaceholder";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { DisclaimerBox } from "@/components/DisclaimerBox";
 import { FAQJsonLd } from "@/components/FAQJsonLd";
 import { FAQSection } from "@/components/FAQSection";
@@ -10,6 +11,12 @@ import { estimateDisclaimer } from "@/lib/site";
 export function SEOLandingPageView({ page }: { page: SEOLandingPage }) {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", href: "/" },
+          { name: page.h1, href: `/${page.slug}` },
+        ]}
+      />
       <FAQJsonLd items={page.faqs} />
       <div className="site-container space-y-10 py-10">
         <section className="grid gap-6 rounded-3xl border border-[#d8e5df] bg-[linear-gradient(135deg,#f8fbf9_0%,#edf6f1_100%)] p-6 shadow-[0_20px_60px_rgba(23,49,43,0.08)] md:grid-cols-[1fr_0.72fr] md:items-center md:p-8">
@@ -79,6 +86,24 @@ export function SEOLandingPageView({ page }: { page: SEOLandingPage }) {
                 your browser.
               </p>
             </div>
+            {page.relatedLinks?.length ? (
+              <div className="mt-6 rounded-2xl border border-[#d7e5df] bg-white/75 p-5">
+                <h2 className="text-lg font-extrabold text-[#17312b]">
+                  Related guides
+                </h2>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {page.relatedLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="rounded-full border border-[#c7ddd5] bg-[#e8f5ef] px-3 py-1.5 text-sm font-bold text-[#116a5b] transition hover:border-[#116a5b] hover:bg-[#dcefe7]"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </article>
 
           <aside className="space-y-5">

@@ -30,10 +30,33 @@ import {
   type CountryCode,
   type RentFrequency,
 } from "@/lib/countries";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Stat({ label, value }: { label: string; value: string }) {
   return <AnimatedStatCard label={label} value={value} />;
+}
+
+function getCountryFromQuery(value: string | null): CountryCode | null {
+  const normalized = value?.trim().toLowerCase();
+
+  if (!normalized) {
+    return null;
+  }
+
+  const countryMap: Record<string, CountryCode> = {
+    uk: "UK",
+    gb: "UK",
+    "united-kingdom": "UK",
+    us: "US",
+    usa: "US",
+    "united-states": "US",
+    ca: "CA",
+    canada: "CA",
+    au: "AU",
+    australia: "AU",
+  };
+
+  return countryMap[normalized] ?? null;
 }
 
 export function RentReferencingCalculator() {
@@ -47,6 +70,30 @@ export function RentReferencingCalculator() {
   const [debtPayments, setDebtPayments] = useState("");
   const [hasSupportPerson, setHasSupportPerson] = useState("no");
   const [supportPersonIncome, setSupportPersonIncome] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const queryCountry = getCountryFromQuery(params.get("country"));
+    const queryRent = params.get("rent");
+    const queryFrequency = params.get("frequency");
+    const queryIncome = params.get("income");
+
+    if (queryCountry) {
+      setCountryCode(queryCountry);
+    }
+
+    if (queryRent && safeNumber(queryRent) >= 0) {
+      setRentAmount(queryRent);
+    }
+
+    if (queryFrequency === "weekly" || queryFrequency === "monthly") {
+      setRentFrequency(queryFrequency);
+    }
+
+    if (queryIncome && safeNumber(queryIncome) >= 0) {
+      setIncome1(queryIncome);
+    }
+  }, []);
 
   const country = getCountryConfig(countryCode);
   const effectiveFrequency = country.code === "AU" ? rentFrequency : "monthly";

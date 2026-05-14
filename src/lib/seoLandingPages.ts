@@ -18,10 +18,242 @@ export type SEOLandingPage = {
     heading: string;
     body: string;
   }>;
+  relatedLinks?: Array<{
+    href: string;
+    label: string;
+  }>;
   faqs: FAQItem[];
 };
 
 export const seoLandingPages: SEOLandingPage[] = [
+  {
+    slug: "uk-rent-affordability-calculator",
+    title: "UK Rent Affordability Calculator | RentReadyCheck",
+    description:
+      "Estimate UK rent affordability using example 30x and 36x monthly rent checks, with links to country-aware rent and guarantor calculators.",
+    h1: "UK rent affordability calculator",
+    intro:
+      "Use this guide to understand common UK-style rent affordability examples before you apply. The main calculator can preselect the United Kingdom and compare income with 30x and 36x monthly rent checks.",
+    primaryLink: {
+      href: "/rent-referencing-calculator?country=uk",
+      label: "Open UK calculator",
+    },
+    highlights: [
+      { label: "Common example", value: "30x monthly rent" },
+      { label: "Stronger example", value: "36x monthly rent" },
+      { label: "Support wording", value: "Guarantor" },
+    ],
+    sections: [
+      {
+        heading: "How UK rent affordability is often estimated",
+        body:
+          "UK affordability checks are often discussed as annual income compared with monthly rent. For example, 1,200 monthly rent would be 36,000 annual income at 30x rent and 43,200 annual income at 36x rent.",
+      },
+      {
+        heading: "When a guarantor may be requested",
+        body:
+          "A landlord or letting agent may ask for a guarantor if applicant income is below an example threshold, employment is new or irregular, or the referencing provider wants extra reassurance.",
+      },
+      {
+        heading: "What else can affect UK referencing",
+        body:
+          "Income is only one part of referencing. Credit history, employment status, landlord requirements, savings, previous references, right-to-rent checks, and individual circumstances may also matter.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/what-is-30-times-rent", label: "What is 30x rent?" },
+      { href: "/what-is-36-times-rent", label: "What is 36x rent?" },
+      { href: "/guarantor-income-calculator?country=uk", label: "Guarantor calculator" },
+    ],
+    faqs: [
+      {
+        question: "How much do I need to earn to rent in the UK?",
+        answer:
+          "As a rough example, some UK-style checks compare annual income with 30x to 36x monthly rent. Requirements vary by landlord, letting agent, referencing provider, and circumstances.",
+      },
+      {
+        question: "Do all UK landlords use 30x or 36x rent?",
+        answer:
+          "No. These are common examples, not universal rules. Some landlords or referencing companies may use different checks or consider other evidence.",
+      },
+      {
+        question: "Does the UK calculator guarantee approval?",
+        answer:
+          "No. It is only an estimate. Actual rental decisions can depend on credit history, employment status, landlord requirements, savings, guarantors, and other factors.",
+      },
+    ],
+  },
+  {
+    slug: "us-rent-affordability-calculator",
+    title: "US Rent Affordability Calculator | RentReadyCheck",
+    description:
+      "Estimate US rent affordability using example monthly income multiples such as 2.5x to 3x rent.",
+    h1: "US rent affordability calculator",
+    intro:
+      "US rental applications often discuss affordability as gross monthly income compared with monthly rent. This guide explains common 2.5x to 3x rent examples and links to the country-aware calculator.",
+    primaryLink: {
+      href: "/rent-referencing-calculator?country=us",
+      label: "Open US calculator",
+    },
+    highlights: [
+      { label: "Possible example", value: "2.5x monthly rent" },
+      { label: "Common example", value: "3x monthly rent" },
+      { label: "Support wording", value: "Co-signer" },
+    ],
+    sections: [
+      {
+        heading: "How US rent affordability is often estimated",
+        body:
+          "Many US landlords use monthly income examples, such as gross monthly income being 2.5x or 3x the monthly rent. For 1,500 monthly rent, a 3x example would suggest 4,500 gross monthly income.",
+      },
+      {
+        heading: "When a co-signer may help",
+        body:
+          "A co-signer may be requested if applicant income, credit history, rental history, or employment profile does not meet a landlord or property manager's requirements.",
+      },
+      {
+        heading: "Why local rules still matter",
+        body:
+          "US rental practices can vary by state, city, landlord, and property manager. Fees, screening rules, credit requirements, and income checks are not identical everywhere.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/how-much-income-to-rent-1500", label: "Income for 1,500 rent" },
+      { href: "/guarantor-income-calculator?country=us", label: "Co-signer calculator" },
+      { href: "/move-in-cost-calculator?country=us", label: "Move-in cost calculator" },
+    ],
+    faqs: [
+      {
+        question: "What does 3x rent mean in the US?",
+        answer:
+          "A 3x rent example means gross monthly income is three times the monthly rent. For 1,200 rent, that would be about 3,600 gross monthly income.",
+      },
+      {
+        question: "Do all US landlords require 3x rent?",
+        answer:
+          "No. Some may use 2.5x, 3x, another rule, or a broader screening process that includes credit history and rental history.",
+      },
+      {
+        question: "Is a US co-signer always accepted?",
+        answer:
+          "No. Co-signer rules vary by landlord and property manager, and the co-signer may need to meet separate income, credit, or residency requirements.",
+      },
+    ],
+  },
+  {
+    slug: "canada-rent-affordability-calculator",
+    title: "Canada Rent Affordability Calculator | RentReadyCheck",
+    description:
+      "Estimate Canadian rent affordability using rent-to-income examples such as 30%, 35%, and 40% of gross income.",
+    h1: "Canada rent affordability calculator",
+    intro:
+      "Canadian rent affordability is often discussed as rent compared with gross income. This guide explains common rent-to-income examples and links to the country-aware calculator.",
+    primaryLink: {
+      href: "/rent-referencing-calculator?country=ca",
+      label: "Open Canada calculator",
+    },
+    highlights: [
+      { label: "Strong example", value: "Rent at or below 30%" },
+      { label: "Possible example", value: "Rent at or below 35%" },
+      { label: "Borderline example", value: "Rent at or below 40%" },
+    ],
+    sections: [
+      {
+        heading: "How Canadian affordability is often discussed",
+        body:
+          "A common way to sense-check rent in Canada is to compare monthly rent with gross monthly income. Lower rent-to-income percentages generally leave more room for other costs.",
+      },
+      {
+        heading: "Guarantor or co-signer wording",
+        body:
+          "Depending on the province, landlord, and application, support may be described as a guarantor, co-signer, or another form of additional assurance.",
+      },
+      {
+        heading: "What else may affect a Canadian rental application",
+        body:
+          "Income, credit history, employment, references, savings, local rules, and landlord requirements can all influence rental decisions.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/guarantor-income-calculator?country=ca", label: "Guarantor/co-signer calculator" },
+      { href: "/can-flatmates-combine-income-for-rent", label: "Combining tenant income" },
+      { href: "/rent-split-calculator?country=ca", label: "Rent split calculator" },
+    ],
+    faqs: [
+      {
+        question: "What percentage of income should rent be in Canada?",
+        answer:
+          "Rent affordability is often discussed with examples such as 30%, 35%, or 40% of gross income, but actual decisions vary by landlord and province.",
+      },
+      {
+        question: "Can Canadian renters combine income?",
+        answer:
+          "Often, joint applicants may combine income, but the exact approach depends on the landlord, property manager, and rental agreement.",
+      },
+      {
+        question: "Does this calculator replace professional advice?",
+        answer:
+          "No. It is a general estimate only and is not financial, legal, tax, housing, or rental approval advice.",
+      },
+    ],
+  },
+  {
+    slug: "australia-rent-affordability-calculator",
+    title: "Australia Rent Affordability Calculator | RentReadyCheck",
+    description:
+      "Estimate Australian rent affordability using weekly or monthly rent and rent-to-income examples such as 25%, 30%, and 35%.",
+    h1: "Australia rent affordability calculator",
+    intro:
+      "Australian rent is often advertised weekly, so RentReadyCheck supports weekly or monthly rent and converts it into a monthly estimate for rent-to-income calculations.",
+    primaryLink: {
+      href: "/rent-referencing-calculator?country=au&frequency=weekly",
+      label: "Open Australia calculator",
+    },
+    highlights: [
+      { label: "Strong example", value: "Rent at or below 25%" },
+      { label: "Possible example", value: "Rent at or below 30%" },
+      { label: "Frequency", value: "Weekly or monthly rent" },
+    ],
+    sections: [
+      {
+        heading: "How Australian rent affordability is estimated here",
+        body:
+          "This calculator compares rent with gross income using examples such as 25%, 30%, and 35%. If rent is entered weekly, it is converted to a monthly estimate using weekly rent multiplied by 52 and divided by 12.",
+      },
+      {
+        heading: "Bond and move-in costs",
+        body:
+          "In Australia, upfront costs may include bond, rent in advance, moving costs, furniture, utilities, and other setup costs. These can affect whether a move feels realistic even if rent looks affordable.",
+      },
+      {
+        heading: "Why state and property rules matter",
+        body:
+          "Rental applications and upfront cost rules can vary by state, territory, property manager, and individual circumstances. Always confirm requirements before applying.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/move-in-cost-calculator?country=au", label: "Bond and move-in costs" },
+      { href: "/rent-split-calculator?country=au", label: "Split rent with housemates" },
+      { href: "/how-much-should-i-save-before-moving-out", label: "Savings before moving out" },
+    ],
+    faqs: [
+      {
+        question: "Can I enter weekly rent for Australia?",
+        answer:
+          "Yes. The Australia setting supports weekly or monthly rent. Weekly rent is converted to a monthly estimate for affordability calculations.",
+      },
+      {
+        question: "What rent-to-income percentage is used for Australia?",
+        answer:
+          "RentReadyCheck uses example signals such as 25%, 30%, and 35% of gross income. These are rough examples only, not approval rules.",
+      },
+      {
+        question: "Does Australian rent affordability vary by state?",
+        answer:
+          "Yes. Rental practices, upfront costs, and application requirements can vary by state, territory, property manager, and individual situation.",
+      },
+    ],
+  },
   {
     slug: "how-much-income-to-rent-1000",
     title: "How Much Income Do You Need to Rent 1,000? | RentReadyCheck",
