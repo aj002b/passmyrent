@@ -9,8 +9,8 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.domain),
   title: {
-    default: "PassMyRentCheck | UK Rent Affordability & Guarantor Calculators",
-    template: "%s | PassMyRentCheck",
+    default: "Rent Affordability Calculator | RentReadyCheck",
+    template: "%s | RentReadyCheck",
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
@@ -22,12 +22,12 @@ export const metadata: Metadata = {
     locale: "en_GB",
     url: siteConfig.domain,
     siteName: siteConfig.name,
-    title: "PassMyRentCheck | UK Rent Affordability & Guarantor Calculators",
+    title: "Rent Affordability Calculator | RentReadyCheck",
     description: siteConfig.description,
   },
   twitter: {
     card: "summary",
-    title: "PassMyRentCheck | UK Rent Affordability & Guarantor Calculators",
+    title: "Rent Affordability Calculator | RentReadyCheck",
     description: siteConfig.description,
   },
   robots: {

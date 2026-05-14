@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/siteConfig";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Read the PassMyRentCheck privacy policy, including how calculator inputs are handled and future analytics or advertising cookie use.",
+    "Read the RentReadyCheck privacy policy, including how calculator inputs are handled and future analytics or advertising cookie use.",
 };
 
 export default function PrivacyPolicyPage() {
@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
           Privacy Policy
         </h1>
         <p className="mt-4 text-lg leading-8 text-[#5f746f]">
-          PassMyRentCheck is an informational calculator website for UK renters.
+          RentReadyCheck is an informational calculator website for renters.
           This page explains how the site is intended to handle calculator inputs
           and privacy-related questions.
         </p>
@@ -32,14 +32,14 @@ export default function PrivacyPolicyPage() {
           <h2>No account required</h2>
           <p>
             Users do not need to create an account, log in, or provide a profile to
-            use PassMyRentCheck. The calculators are designed to be simple estimate
+            use RentReadyCheck. The calculators are designed to be simple estimate
             tools that work directly in the browser.
           </p>
         </div>
         <div>
           <h2>Calculator inputs</h2>
           <p>
-            Calculator inputs are processed in the browser. PassMyRentCheck does not
+            Calculator inputs are processed in the browser. RentReadyCheck does not
             intentionally store calculator inputs, and the site does not use a
             database for calculator results.
           </p>

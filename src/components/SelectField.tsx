@@ -19,14 +19,14 @@ export function SelectField({
 }: SelectFieldProps) {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-semibold text-[#17312b]">
+      <label htmlFor={id} className="block text-sm font-bold text-[#17312b]">
         {label}
       </label>
       <select
         id={id}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-2 w-full rounded-md border border-[#c9d9d3] bg-white px-3 py-3 text-[#17312b] outline-none transition focus:border-[#116a5b] focus:ring-2 focus:ring-[#b8dccc]"
+        className="field-control mt-2 appearance-none bg-[linear-gradient(45deg,transparent_50%,#5f746f_50%),linear-gradient(135deg,#5f746f_50%,transparent_50%)] bg-[length:6px_6px,6px_6px] bg-[position:calc(100%-18px)_calc(50%-3px),calc(100%-12px)_calc(50%-3px)] bg-no-repeat pr-10"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
@@ -34,7 +34,7 @@ export function SelectField({
           </option>
         ))}
       </select>
-      {helpText ? <p className="mt-1 text-sm text-[#5f746f]">{helpText}</p> : null}
+      {helpText ? <p className="mt-1.5 text-xs leading-5 text-[#748882]">{helpText}</p> : null}
     </div>
   );
 }

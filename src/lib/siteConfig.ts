@@ -1,11 +1,11 @@
 export const siteConfig = {
-  name: "PassMyRentCheck",
+  name: "RentReadyCheck",
   domain:
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.passmyrentcheck.co.uk",
-  contactEmail: "hello@passmyrentcheck.co.uk",
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://rentreadycheck.com",
+  contactEmail: "hello@rentreadycheck.com",
   lastUpdated: "May 2026",
   description:
-    "Free UK rent affordability, guarantor income, move-in cost, and rent split calculators for renters.",
+    "Check if you're ready to rent before you apply.",
 };
 
 export const publicRoutes = [

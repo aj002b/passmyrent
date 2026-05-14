@@ -9,17 +9,17 @@ import { JointTenantCalculator } from "@/components/calculators/JointTenantCalcu
 import type { FAQItem } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Joint Tenant Affordability Calculator UK",
+  title: "Joint Tenant Affordability Calculator",
   description:
-    "Combine incomes for couples, friends, and flatmates to estimate whether joint tenants may meet common rent affordability checks.",
+    "Combine incomes for couples, friends, and flatmates to estimate joint tenant rent affordability by country.",
 };
 
 const faqs: FAQItem[] = [
-  { question: "Can joint tenants combine income?", answer: "Many landlords and referencing companies look at combined income for joint tenants, but the exact approach can vary." },
+  { question: "Can joint tenants combine income?", answer: "Many landlords, agents, and property managers look at combined income for joint tenants, but the exact approach can vary." },
   { question: "What if one tenant earns much more?", answer: "The combined total may still help, although some landlords may look more closely at individual stability and guarantors." },
-  { question: "Do all tenants need guarantors?", answer: "Not always. A landlord may ask for one guarantor, multiple guarantors, or none depending on the application." },
+  { question: "Do all tenants need guarantors or co-signers?", answer: "Not always. A landlord may ask for one support person, multiple support people, or none depending on the application." },
   { question: "What if one tenant leaves?", answer: "Joint tenants can sometimes be jointly responsible for rent. You should understand the tenancy agreement before signing." },
-  { question: "Does this calculator guarantee approval?", answer: "No. It is a rough estimate and does not replace landlord, letting agent, or referencing checks." },
+  { question: "Does this calculator guarantee approval?", answer: "No. It is a rough estimate and does not replace checks by a landlord, agent, or property manager." },
 ];
 
 export default function JointTenantPage() {
@@ -34,7 +34,7 @@ export default function JointTenantPage() {
           </h1>
           <p className="mt-4 text-lg leading-8 text-[#5f746f]">
             Combine annual incomes for couples, friends, or flatmates and compare
-            them with an example rent affordability multiplier.
+            them with example rent affordability checks for your selected country.
           </p>
         </section>
         <JointTenantCalculator />
@@ -43,9 +43,9 @@ export default function JointTenantPage() {
             <h2>Can joint tenants combine income?</h2>
             <p>
               In many joint tenancy applications, combined income is used as a rough
-              affordability check. This can help couples and flatmates apply for a
-              property together, but the landlord may still consider each applicant&apos;s
-              wider circumstances.
+              affordability check. This can help couples and flatmates apply
+              together, but the landlord or property manager may still consider
+              each applicant&apos;s wider circumstances.
             </p>
           </div>
           <div>
@@ -66,12 +66,12 @@ export default function JointTenantPage() {
             </p>
           </div>
           <div>
-            <h2>Do all tenants need guarantors?</h2>
+            <h2>Do all tenants need guarantors or co-signers?</h2>
             <p>
-              Some landlords ask for guarantors when combined income is low or one
+              Some landlords ask for extra support when combined income is low or one
               applicant has a more complex situation. The{" "}
-              <Link href="/guarantor-income-calculator">guarantor calculator</Link>{" "}
-              can estimate an example guarantor income threshold.
+              <Link href="/guarantor-income-calculator">guarantor and co-signer calculator</Link>{" "}
+              can estimate an example support-person income threshold.
             </p>
           </div>
         </section>

@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/siteConfig";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact PassMyRentCheck for website questions. The site cannot provide individual financial, legal, or referencing advice.",
+    "Contact RentReadyCheck for website questions. The site cannot provide individual financial, legal, tax, housing, or referencing advice.",
 };
 
 export default function ContactPage() {
@@ -21,7 +21,7 @@ export default function ContactPage() {
           Contact
         </h1>
         <p className="mt-4 text-lg leading-8 text-[#5f746f]">
-          Have a question about PassMyRentCheck or spotted something on the site
+          Have a question about RentReadyCheck or spotted something on the site
           that needs attention? You can use the placeholder contact email below.
         </p>
       </section>
@@ -32,17 +32,17 @@ export default function ContactPage() {
           <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
         </p>
         <p className="mt-4 max-w-3xl leading-7 text-[#5f746f]">
-          PassMyRentCheck cannot provide individual financial, legal, or
-          referencing advice. For questions about a specific rental application,
-          please speak directly with the landlord, letting agent, referencing
-          company, or a qualified adviser.
+          RentReadyCheck cannot provide individual financial, legal, tax,
+          housing, or referencing advice. For questions about a specific rental
+          application, please speak directly with the landlord, agent, property
+          manager, referencing provider, or a qualified adviser.
         </p>
       </section>
 
       <DisclaimerBox>
         The calculators on this site are rough estimate tools only. They do not
-        guarantee approval and should not be treated as financial, legal, or
-        referencing advice.
+        guarantee approval and should not be treated as financial, legal, tax,
+        housing, or referencing advice.
       </DisclaimerBox>
 
       <section className="prose prose-slate max-w-none">

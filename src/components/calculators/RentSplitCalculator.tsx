@@ -1,15 +1,32 @@
 "use client";
 
 import { AdPlaceholder } from "@/components/AdPlaceholder";
+import {
+  CalculatorLayout,
+  FormSection,
+  HowEstimateWorks,
+} from "@/components/CalculatorLayout";
+import { CountrySelector } from "@/components/CountrySelector";
 import { InputField } from "@/components/InputField";
 import { ResultCard } from "@/components/ResultCard";
 import { SelectField } from "@/components/SelectField";
-import { formatCurrency, formatPercentage, hasNegativeValue, safeNumber } from "@/lib/calculations";
+import {
+  formatCurrencyByCountry,
+  formatPercentage,
+  hasNegativeValue,
+  safeNumber,
+} from "@/lib/calculations";
+import {
+  defaultCountryCode,
+  getCountryConfig,
+  type CountryCode,
+} from "@/lib/countries";
 import { useState } from "react";
 
 type SplitMethod = "equal" | "income" | "room";
 
 export function RentSplitCalculator() {
+  const [countryCode, setCountryCode] = useState<CountryCode>(defaultCountryCode);
   const [monthlyRent, setMonthlyRent] = useState("");
   const [splitMethod, setSplitMethod] = useState<SplitMethod>("equal");
   const [tenantCount, setTenantCount] = useState("2");
@@ -17,11 +34,13 @@ export function RentSplitCalculator() {
   const [incomes, setIncomes] = useState(["", "", "", ""]);
   const [roomScores, setRoomScores] = useState(["1", "1", "1", "1"]);
 
+  const country = getCountryConfig(countryCode);
   const rent = safeNumber(monthlyRent);
   const count = safeNumber(tenantCount);
   const activeNames = names.slice(0, count);
   const activeIncomes = incomes.slice(0, count).map(safeNumber);
   const activeScores = roomScores.slice(0, count).map(safeNumber);
+  const currency = (value: number) => formatCurrencyByCountry(value, country.code);
   const negativeInput = hasNegativeValue([monthlyRent, ...activeIncomes, ...activeScores]);
   const totalWeight =
     splitMethod === "income"
@@ -89,57 +108,95 @@ export function RentSplitCalculator() {
   }
 
   return (
-    <div className="space-y-6">
-      <section className="rounded-xl border border-[#d7e5df] bg-white p-5 shadow-[0_10px_28px_rgba(23,49,43,0.05)]">
-        <div className="grid gap-4 md:grid-cols-3">
-          <InputField id="monthly-rent" label="Monthly rent" value={monthlyRent} onChange={setMonthlyRent} prefix="£" required />
-          <SelectField id="split-method" label="Split method" value={splitMethod} onChange={(value) => setSplitMethod(value as SplitMethod)} options={[{ label: "Equal split", value: "equal" }, { label: "Income-based split", value: "income" }, { label: "Room-size split", value: "room" }]} />
-          <SelectField id="tenant-count" label="Number of tenants" value={tenantCount} onChange={setTenantCount} options={[{ label: "2 tenants", value: "2" }, { label: "3 tenants", value: "3" }, { label: "4 tenants", value: "4" }]} />
-        </div>
-        <div className="mt-5 grid gap-4 md:grid-cols-2">
-          {Array.from({ length: count }, (_, index) => (
-            <div key={index} className="rounded-xl border border-[#d7e5df] bg-[#f7fbf8] p-4">
-              <InputField id={`tenant-name-${index}`} label={`Tenant ${index + 1} name`} value={names[index]} onChange={(value) => updateList(setNames, names, index, value)} placeholder={`Tenant ${index + 1}`} type="text" />
-              {splitMethod === "income" ? (
-                <div className="mt-4">
-                  <InputField id={`tenant-income-${index}`} label="Annual income" value={incomes[index]} onChange={(value) => updateList(setIncomes, incomes, index, value)} prefix="£" required />
-                </div>
-              ) : null}
-              {splitMethod === "room" ? (
-                <div className="mt-4">
-                  <InputField id={`room-score-${index}`} label="Room size score" value={roomScores[index]} onChange={(value) => updateList(setRoomScores, roomScores, index, value)} helpText="Example: small 1, medium 1.25, large 1.5" required />
-                </div>
-              ) : null}
-            </div>
-          ))}
-        </div>
-      </section>
+    <CalculatorLayout
+      form={
+        <section className="form-card space-y-4 p-4 sm:p-5">
+          <FormSection
+            step="Step 1"
+            title="Where are you renting?"
+            description="This changes the currency used in the split table."
+            columns="grid-cols-1"
+          >
+            <CountrySelector country={country} onChange={setCountryCode} />
+          </FormSection>
 
-      <ResultCard title={title} description={description} tone={tone}>
-        {rent > 0 && !negativeInput && !missingRequiredWeights ? (
-          <div className="overflow-x-auto rounded-lg border border-white/80 bg-white/80">
-            <table className="w-full min-w-[420px] text-left text-sm">
-              <thead className="border-b border-[#dbe8e2] text-[#5f746f]">
-                <tr>
-                  <th className="px-4 py-3">Tenant</th>
-                  <th className="px-4 py-3">Monthly share</th>
-                  <th className="px-4 py-3">Percentage</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((row) => (
-                  <tr key={row.name} className="border-b border-[#edf4f1] last:border-0">
-                    <td className="px-4 py-3 font-bold text-[#17312b]">{row.name}</td>
-                    <td className="px-4 py-3">{formatCurrency(row.share)}</td>
-                    <td className="px-4 py-3">{formatPercentage(row.percentage)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : null}
-      </ResultCard>
+          <FormSection
+            step="Step 2"
+            title="Rent details"
+            description="Add the monthly rent and choose how many people are sharing."
+          >
+            <InputField id="monthly-rent" label="Monthly rent" value={monthlyRent} onChange={setMonthlyRent} prefix={country.currencySymbol} required />
+            <SelectField id="tenant-count" label="Number of tenants" value={tenantCount} onChange={setTenantCount} options={[{ label: "2 tenants", value: "2" }, { label: "3 tenants", value: "3" }, { label: "4 tenants", value: "4" }]} />
+          </FormSection>
+
+          <FormSection
+            step="Step 3"
+            title="Split method"
+            description="Choose whether to split equally, by income, or by room size."
+            columns="grid-cols-1"
+          >
+            <SelectField id="split-method" label="Split method" value={splitMethod} onChange={(value) => setSplitMethod(value as SplitMethod)} options={[{ label: "Equal split", value: "equal" }, { label: "Income-based split", value: "income" }, { label: "Room-size split", value: "room" }]} />
+          </FormSection>
+
+          <FormSection
+            step="Step 4"
+            title="Tenant details"
+            description="Names are optional. Income or room scores are only needed for those split methods."
+            columns="md:grid-cols-2"
+          >
+            {Array.from({ length: count }, (_, index) => (
+              <div key={index} className="rounded-2xl border border-[#d7e5df] bg-white p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]">
+                <InputField id={`tenant-name-${index}`} label={`Tenant ${index + 1} name`} value={names[index]} onChange={(value) => updateList(setNames, names, index, value)} placeholder={`Tenant ${index + 1}`} type="text" />
+                {splitMethod === "income" ? (
+                  <div className="mt-4">
+                    <InputField id={`tenant-income-${index}`} label="Annual income" value={incomes[index]} onChange={(value) => updateList(setIncomes, incomes, index, value)} prefix={country.currencySymbol} required />
+                  </div>
+                ) : null}
+                {splitMethod === "room" ? (
+                  <div className="mt-4">
+                    <InputField id={`room-score-${index}`} label="Room size score" value={roomScores[index]} onChange={(value) => updateList(setRoomScores, roomScores, index, value)} helpText="Example: small 1, medium 1.25, large 1.5" required />
+                  </div>
+                ) : null}
+              </div>
+            ))}
+          </FormSection>
+        </section>
+      }
+      result={
+        <>
+          <ResultCard title={title} description={description} tone={tone} badgeLabel={rent > 0 && !negativeInput && !missingRequiredWeights ? "Estimated split" : "Add details"}>
+            {rent > 0 && !negativeInput && !missingRequiredWeights ? (
+              <div className="overflow-x-auto rounded-2xl border border-[#dbe8e2] bg-white/82 shadow-[0_8px_18px_rgba(23,49,43,0.035)]">
+                <table className="w-full min-w-[420px] text-left text-sm">
+                  <thead className="border-b border-[#dbe8e2] text-[#5f746f]">
+                    <tr>
+                      <th className="px-4 py-3">Tenant</th>
+                      <th className="px-4 py-3">Monthly share</th>
+                      <th className="px-4 py-3">Percentage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {rows.map((row) => (
+                      <tr key={row.name} className="border-b border-[#edf4f1] last:border-0">
+                        <td className="px-4 py-3 font-bold text-[#17312b]">{row.name}</td>
+                        <td className="px-4 py-3">{currency(row.share)}</td>
+                        <td className="px-4 py-3">{formatPercentage(row.percentage)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : null}
+          </ResultCard>
+          <HowEstimateWorks>
+            The selected country changes the currency display. The split method
+            controls whether shares are equal, income-weighted, or based on room
+            size scores.
+          </HowEstimateWorks>
+        </>
+      }
+    >
       <AdPlaceholder />
-    </div>
+    </CalculatorLayout>
   );
 }

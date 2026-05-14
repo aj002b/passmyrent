@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const storageKey = "passmyrentcheck-cookie-notice";
+const storageKey = "rentreadycheck-cookie-notice";
 
 export function CookieNotice() {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,7 +29,7 @@ export function CookieNotice() {
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-[#d7e5df] bg-white/95 shadow-[0_-12px_32px_rgba(23,49,43,0.12)] backdrop-blur">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
         <p className="max-w-3xl text-sm leading-6 text-[#35534c]">
-          PassMyRentCheck does not intentionally store calculator inputs. We may
+          RentReadyCheck does not intentionally store calculator inputs. We may
           add analytics or advertising cookies in the future; read the{" "}
           <Link href="/privacy-policy" className="font-semibold text-[#116a5b] underline underline-offset-2">
             Privacy Policy

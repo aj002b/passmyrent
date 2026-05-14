@@ -5,41 +5,44 @@ import { CalculatorCard } from "@/components/CalculatorCard";
 import { DisclaimerBox } from "@/components/DisclaimerBox";
 import { FAQJsonLd } from "@/components/FAQJsonLd";
 import { FAQSection } from "@/components/FAQSection";
+import { HeroRentCheckPreview } from "@/components/HeroRentCheckPreview";
+import { FadeUp, Stagger, StaggerItem } from "@/components/Motion";
+import { countries } from "@/lib/countries";
 import { tools, type FAQItem } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "PassMyRentCheck | UK Rent Affordability & Guarantor Calculators",
+    absolute: "Rent Affordability Calculator | RentReadyCheck",
   },
   description:
-    "Estimate UK rent affordability, guarantor income, joint tenant affordability, move-in costs, and fair rent splits with free client-side calculators.",
+    "Use RentReadyCheck to estimate rent affordability, guarantor or co-signer income, joint tenant affordability, move-in costs, and rent splits by country.",
 };
 
 const faqs: FAQItem[] = [
   {
-    question: "Can this website tell me if I will definitely pass referencing?",
+    question: "Can this website tell me if I will be approved?",
     answer:
-      "No. PassMyRentCheck gives rough estimates only. Referencing decisions can also depend on credit history, employment status, landlord rules, letting agent policies, savings, and individual circumstances.",
+      "No. RentReadyCheck gives rough estimates only. Rental decisions can also depend on credit history, employment status, landlord requirements, property manager rules, savings, guarantors or co-signers, and local rules.",
   },
   {
-    question: "What income multiple do UK letting agents use?",
+    question: "Which countries does RentReadyCheck support?",
     answer:
-      "Some checks use examples such as 30 times or 36 times the monthly rent, but there is no single rule used by every landlord or letting agent.",
+      "The calculators currently support the United Kingdom, United States, Canada, and Australia, with country-specific example affordability methods.",
   },
   {
-    question: "Can flatmates combine income for a rental property?",
+    question: "Can joint tenants combine income?",
     answer:
-      "Many joint tenant checks look at combined income, but some landlords may also review each person's situation separately.",
+      "Often, joint tenant applications are considered using combined income, but the exact approach can vary by country, landlord, agent, and property manager.",
   },
   {
-    question: "When might I need a guarantor?",
+    question: "When might I need a guarantor or co-signer?",
     answer:
-      "A guarantor may be requested if income is below the example threshold, your employment is new or irregular, you are a student, or the landlord wants extra reassurance.",
+      "A guarantor or co-signer may be requested if income is below an example threshold, employment is new or irregular, or the landlord wants extra reassurance.",
   },
   {
     question: "Are these calculators financial or legal advice?",
     answer:
-      "No. They are general estimate tools for renters. You should confirm requirements directly with the landlord, letting agent, referencing company, or a qualified adviser.",
+      "No. They are general estimate tools for renters. You should confirm requirements directly with the landlord, agent, property manager, or a qualified adviser.",
   },
 ];
 
@@ -47,117 +50,76 @@ export default function Home() {
   return (
     <>
       <FAQJsonLd items={faqs} />
-      <section className="relative overflow-hidden bg-[linear-gradient(135deg,#f7fbf8_0%,#e8f5ef_56%,#f4faf7_100%)]">
-        <div className="relative mx-auto grid max-w-6xl gap-7 px-4 py-8 sm:px-6 md:grid-cols-[1fr_0.86fr] md:items-center md:py-10 lg:px-8">
-          <div>
+      <section className="relative overflow-hidden border-b border-[#d8e5df] bg-[radial-gradient(circle_at_18%_0%,rgba(204,231,220,0.9),transparent_32rem),linear-gradient(135deg,#f8fbf9_0%,#edf6f1_54%,#f7fbf8_100%)]">
+        <div className="pointer-events-none absolute right-[-8rem] top-[-10rem] h-80 w-80 rounded-full bg-[#cce7dc]/55 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-[-12rem] left-[42%] h-72 w-72 rounded-full bg-[#eaf3f8]/80 blur-3xl" />
+        <div className="site-container relative grid gap-8 py-8 md:grid-cols-[1fr_0.86fr] md:items-center md:py-10">
+          <FadeUp>
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#b6533f]">
-              UK RENT AFFORDABILITY TOOLS
+              GLOBAL RENT AFFORDABILITY TOOLS
             </p>
-            <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-[1.1] text-[#17312b] md:text-[2.8rem] md:leading-[1.08]">
-              Check if you might pass a UK rent affordability check
+            <h1 className="mt-4 max-w-3xl text-4xl font-extrabold leading-[1.08] tracking-[-0.045em] text-[#17312b] md:text-[2.65rem] md:leading-[1.05]">
+              Check if you can afford the rent before you apply
             </h1>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-[#35534c] sm:text-lg">
-              Estimate whether your income, joint income, or guarantor income may
-              meet common UK rental affordability rules before you apply.
+            <p className="mt-4 max-w-2xl text-base leading-7 text-[#35534c] sm:text-lg sm:leading-8">
+              Estimate rent affordability, joint tenant income, guarantor or
+              co-signer support, move-in costs, and rent splits for your country.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/rent-referencing-calculator"
-                className="rounded-md bg-[#116a5b] px-5 py-3 text-center font-semibold text-white shadow-[0_10px_22px_rgba(17,106,91,0.18)] hover:bg-[#0b4c43] focus:outline-none focus:ring-2 focus:ring-[#116a5b] focus:ring-offset-4"
+                className="btn-primary"
               >
                 Start rent check
               </Link>
               <Link
                 href="/guarantor-income-calculator"
-                className="rounded-md border border-[#9bc7ba] bg-white px-5 py-3 text-center font-semibold text-[#116a5b] hover:bg-[#f7fbf8] focus:outline-none focus:ring-2 focus:ring-[#116a5b] focus:ring-offset-4"
+                className="btn-secondary"
               >
-                Try guarantor calculator
+                Try guarantor / co-signer calculator
               </Link>
             </div>
             <div className="mt-5 flex flex-wrap gap-2">
-              {["No sign-up", "Free estimate", "UK-focused"].map((pill) => (
+              {["No sign-up", "Free estimate", "Choose your country"].map((pill) => (
                 <span
                   key={pill}
-                  className="rounded-md border border-[#c7ddd5] bg-white/85 px-3 py-1.5 text-sm font-semibold text-[#35534c]"
+                  className="trust-pill"
                 >
                   {pill}
                 </span>
               ))}
             </div>
             <p className="mt-3 max-w-xl text-sm leading-6 text-[#5f746f]">
-              Uses common example checks such as 30x and 36x monthly rent.
-              Results are estimates only.
+              Uses country-specific example checks. Results are estimates only.
             </p>
-          </div>
+          </FadeUp>
 
-          <div className="rounded-xl border border-white/80 bg-white/85 p-3 shadow-[0_22px_55px_rgba(23,49,43,0.12)] backdrop-blur">
-            <div className="rounded-xl border border-[#d7e5df] bg-[#fbfdfc] p-5">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-sm font-bold text-[#17312b]">
-                    Example rent check
-                  </p>
-                  <p className="mt-1 text-sm text-[#5f746f]">
-                    A quick preview of the calculator result.
-                  </p>
-                </div>
-                <span className="rounded-md bg-[#e8f5ef] px-3 py-1 text-xs font-semibold text-[#116a5b]">
-                  36x
-                </span>
-              </div>
-
-              <div className="mt-5 space-y-3">
-                {[
-                  ["Monthly rent", "£1,200"],
-                  ["Combined income", "£42,000"],
-                  ["Common check", "36x rent"],
-                ].map(([label, value]) => (
-                  <div
-                    key={label}
-                    className="flex items-center justify-between rounded-lg border border-[#e3eee9] bg-white px-4 py-3"
-                  >
-                    <span className="text-sm font-semibold text-[#5f746f]">
-                      {label}
-                    </span>
-                    <span className="text-sm font-bold text-[#17312b]">
-                      {value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-5 rounded-xl border border-[#e9c4ad] bg-[#fff7ee] p-4">
-                <span className="inline-flex rounded-md bg-white px-3 py-1 text-xs font-semibold text-[#b6533f]">
-                  May pass some checks
-                </span>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#7f6d60]">
-                      Required income
-                    </p>
-                    <p className="mt-1 text-xl font-bold text-[#17312b]">
-                      £43,200
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#7f6d60]">
-                      Difference
-                    </p>
-                    <p className="mt-1 text-xl font-bold text-[#17312b]">
-                      £1,200 below
-                    </p>
-                  </div>
-                </div>
-                <p className="mt-4 text-sm leading-6 text-[#6a5148]">
-                  Some landlords may ask for a guarantor.
-                </p>
-              </div>
-            </div>
-          </div>
+          <HeroRentCheckPreview />
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl space-y-12 px-4 py-9 sm:px-6 lg:px-8">
+      <div className="site-container space-y-12 py-9">
+        <section className="space-y-4">
+          <div>
+            <h2 className="text-2xl font-bold text-[#17312b]">
+              Choose your country
+            </h2>
+            <p className="mt-2 max-w-2xl leading-7 text-[#5f746f]">
+              Each country uses its own example affordability method.
+            </p>
+          </div>
+          <Stagger className="grid gap-4 md:grid-cols-4" delayChildren={0.04}>
+            {countries.map((country) => (
+              <StaggerItem key={country.code} className="premium-card p-4">
+                <h3 className="font-bold text-[#17312b]">{country.name}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#5f746f]">
+                  {country.disclaimer}
+                </p>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </section>
+
         <section className="space-y-4">
           <div>
             <h2 className="text-2xl font-bold text-[#17312b]">
@@ -173,7 +135,7 @@ export default function Home() {
                 marker: "1",
                 title: "Applicant income",
                 description:
-                  "Compare your income with common 30x and 36x rent checks.",
+                  "Compare income with the selected country's example rent checks.",
               },
               {
                 marker: "2",
@@ -183,16 +145,16 @@ export default function Home() {
               },
               {
                 marker: "3",
-                title: "Guarantor income",
+                title: "Guarantor or co-signer income",
                 description:
-                  "Estimate whether a guarantor may meet an example income threshold.",
+                  "Estimate whether extra support may meet an example income threshold.",
               },
             ].map((item) => (
               <div
                 key={item.title}
-                className="flex gap-4 rounded-xl border border-[#d7e5df] bg-white p-4 shadow-[0_10px_28px_rgba(23,49,43,0.05)]"
+                className="premium-card flex gap-4 p-4"
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[#e8f5ef] text-sm font-semibold text-[#116a5b]">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#c7ddd5] bg-[#e8f5ef] text-sm font-extrabold text-[#116a5b]">
                   {item.marker}
                 </span>
                 <div>
@@ -206,56 +168,33 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="grid gap-8 md:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <h2 className="text-3xl font-bold text-[#17312b]">
-              A calm first check before you apply
-            </h2>
-            <p className="mt-4 leading-7 text-[#5f746f]">
-              Renting can feel opaque. PassMyRentCheck helps you estimate common
-              affordability questions before you speak to an agent, such as
-              whether your income may be enough, whether a guarantor could help,
-              and what your first moving costs might look like.
-            </p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-[#d7e5df] bg-white p-5 shadow-[0_10px_28px_rgba(23,49,43,0.05)]">
-              <h3 className="font-bold text-[#17312b]">No sign-up</h3>
-              <p className="mt-2 text-sm leading-6 text-[#5f746f]">
-                No account, login, database, or payment screen.
-              </p>
-            </div>
-            <div className="rounded-xl border border-[#d7e5df] bg-white p-5 shadow-[0_10px_28px_rgba(23,49,43,0.05)]">
-              <h3 className="font-bold text-[#17312b]">Private by design</h3>
-              <p className="mt-2 text-sm leading-6 text-[#5f746f]">
-                Calculations run in your browser and are not sent to a backend.
-              </p>
-            </div>
-          </div>
-        </section>
-
         <AdPlaceholder />
 
         <section className="space-y-4">
           <h2 className="text-3xl font-bold text-[#17312b]">Choose a calculator</h2>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="grid gap-4 md:grid-cols-2" delayChildren={0.04}>
             {tools.map((tool, index) => (
-              <CalculatorCard key={tool.href} badge={`${index + 1}`} {...tool} />
+              <StaggerItem
+                key={tool.href}
+                className={index === tools.length - 1 ? "md:col-span-2 md:mx-auto md:w-[calc(50%-0.5rem)]" : undefined}
+              >
+                <CalculatorCard badge={`${index + 1}`} {...tool} />
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </section>
 
-        <section className="rounded-xl border border-[#d5e6ee] bg-[#eaf3f8] p-6 shadow-[0_10px_28px_rgba(23,49,43,0.05)]">
-          <h2 className="text-3xl font-bold text-[#17312b]">
+        <section className="rounded-2xl border border-[#d5e6ee] bg-[linear-gradient(180deg,#eaf3f8_0%,#f8fbfd_100%)] p-6 shadow-[0_14px_34px_rgba(23,49,43,0.06)]">
+          <h2 className="text-3xl font-extrabold tracking-[-0.025em] text-[#17312b]">
             Common checks renters worry about
           </h2>
           <div className="mt-5 grid gap-4 md:grid-cols-3">
             {[
-              "Whether one income is enough for the rent",
+              "Whether income is enough for the rent",
               "Whether joint tenants can combine earnings",
-              "How much a guarantor may need to earn",
+              "How much a guarantor or co-signer may need to earn",
               "How much cash is needed before move-in",
-              "How to split rent fairly with flatmates",
+              "How to split rent fairly with housemates",
               "Whether savings or self-employment may change the conversation",
             ].map((item) => (
               <p key={item} className="rounded-lg border border-[#dbe8e2] bg-white p-4 text-sm font-semibold text-[#35534c]">
@@ -267,9 +206,8 @@ export default function Home() {
 
         <FAQSection items={faqs} />
         <DisclaimerBox>
-          PassMyRentCheck is a rough guide only. It does not provide financial,
-          legal, or referencing advice, and it cannot guarantee approval for any
-          property.
+          RentReadyCheck is a rough guide only. It does not provide financial,
+          legal, tax, housing, or rental approval advice.
         </DisclaimerBox>
       </div>
     </>

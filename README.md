@@ -1,13 +1,13 @@
-# PassMyRentCheck
+# RentReadyCheck
 
-PassMyRentCheck is a beginner-friendly UK rental affordability calculator site built with Next.js, TypeScript, React, and Tailwind CSS.
+RentReadyCheck is a beginner-friendly rent affordability calculator site built with Next.js, TypeScript, React, and Tailwind CSS.
 
 The site is fully client-side. There is no database, login, payment flow, external API, or backend.
 
 ## Features
 
-- Rent referencing calculator
-- Guarantor income calculator
+- Country-aware rent affordability calculator for the United Kingdom, United States, Canada, and Australia
+- Guarantor / co-signer income calculator
 - Joint tenant affordability calculator
 - Move-in cost calculator
 - Rent split calculator
@@ -47,23 +47,24 @@ To deploy:
 
 The workflow runs `npm ci`, builds the static site, and deploys the `out` folder.
 
-The GitHub Pages workflow currently builds for the temporary project URL:
+The GitHub Pages workflow is configured for the production domain:
 
 ```text
-https://aj002b.github.io/passmyrent
+https://rentreadycheck.com
 ```
 
-When the custom domain is ready, add `public/CNAME` with `www.passmyrentcheck.co.uk`, update the workflow `NEXT_PUBLIC_BASE_PATH` to an empty value, and set `NEXT_PUBLIC_SITE_URL` to `https://www.passmyrentcheck.co.uk`.
+The custom domain is stored in `public/CNAME`. If you deploy to a different domain later, update `public/CNAME`, `NEXT_PUBLIC_SITE_URL` in `.github/workflows/deploy.yml`, and the domain fallback in `src/lib/siteConfig.ts`.
 
 ## Editing Calculator Thresholds
 
-Affordability multipliers and shared formatting helpers live in:
+Country settings, affordability thresholds, and shared formatting helpers live in:
 
 ```text
+src/lib/countries.ts
 src/lib/calculations.ts
 ```
 
-The common example thresholds are `30x`, `36x`, and `40x` monthly rent.
+Update `src/lib/countries.ts` when you want to change country wording, currencies, or common example thresholds. Update `src/lib/calculations.ts` when you want to change formulas.
 
 ## Adding A New Calculator
 
@@ -75,4 +76,4 @@ The common example thresholds are `30x`, `36x`, and `40x` monthly rent.
 
 ## Important Disclaimer
 
-The calculators give rough estimates only. Actual referencing decisions can depend on credit history, employment status, landlord requirements, letting agent rules, savings, guarantors, and other factors.
+The calculators give rough estimates only. Actual rental decisions can depend on credit history, employment status, landlord requirements, property manager rules, savings, guarantors or co-signers, and other factors.

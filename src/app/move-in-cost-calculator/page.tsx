@@ -9,16 +9,16 @@ import { MoveInCostCalculator } from "@/components/calculators/MoveInCostCalcula
 import type { FAQItem } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Move-In Cost Calculator UK | Deposit & First Month Rent",
+  title: "Move-In Cost Calculator",
   description:
-    "Estimate UK rental move-in costs including deposit, first month's rent, holding deposit, moving costs, furniture, and setup costs.",
+    "Estimate rental move-in costs by country, including deposit, first rent payment, fees, moving costs, furniture, and setup costs.",
 };
 
 const faqs: FAQItem[] = [
-  { question: "What costs do renters usually pay before moving in?", answer: "Common upfront costs include a tenancy deposit, first month's rent, a holding deposit, moving costs, furniture, and utility or broadband setup." },
-  { question: "How is a rental deposit calculated?", answer: "Deposits are often based on weekly rent. This calculator estimates weekly rent as monthly rent multiplied by 12 and divided by 52." },
-  { question: "Is first month's rent always paid upfront?", answer: "Often yes, but timing can vary. Confirm with the letting agent or landlord before budgeting." },
-  { question: "Can holding deposits be deducted from move-in costs?", answer: "Sometimes a holding deposit is put toward rent or deposit, but treatment can vary. Ask the agent how it will be handled." },
+  { question: "What costs do renters usually pay before moving in?", answer: "Common upfront costs include a deposit or bond, first rent payment, application or holding fees, moving costs, furniture, and utility or broadband setup." },
+  { question: "How is a rental deposit calculated?", answer: "Deposits may be a fixed amount, a number of weeks of rent, or a number of months of rent depending on the country and property." },
+  { question: "Is first rent always paid upfront?", answer: "Often yes, but timing can vary. Confirm with the landlord, agent, or property manager before budgeting." },
+  { question: "Can holding or application fees be deducted from move-in costs?", answer: "Sometimes a fee or holding payment is put toward rent or deposit, but treatment can vary. Ask how it will be handled." },
   { question: "Does this include every moving cost?", answer: "No. It is a planning estimate, so you may still need to add storage, cleaning, insurance, travel, or other personal costs." },
 ];
 
@@ -30,7 +30,7 @@ export default function MoveInCostPage() {
         <section className="max-w-3xl">
           <p className="text-sm font-bold text-[#d9654f]">Last updated: May 2026</p>
           <h1 className="mt-3 text-4xl font-bold leading-tight text-[#17312b]">
-            Move-in cost calculator UK
+            Move-In Cost Calculator
           </h1>
           <p className="mt-4 text-lg leading-8 text-[#5f746f]">
             Estimate the deposit, first month&apos;s rent, and other upfront costs you
@@ -43,17 +43,17 @@ export default function MoveInCostPage() {
             <h2>What costs do renters pay before moving in?</h2>
             <p>
               Before move-in, renters often need enough cash for the tenancy deposit,
-              first month&apos;s rent, a possible holding deposit, and practical moving
+              first rent payment, possible fees or holding payments, and practical moving
               costs. If affordability is your first question, start with the{" "}
-              <Link href="/rent-referencing-calculator">rent referencing calculator</Link>.
+              <Link href="/rent-referencing-calculator">rent affordability calculator</Link>.
             </p>
           </div>
           <div>
-            <h2>How rental deposits are usually calculated</h2>
+            <h2>How rental deposits, bonds, or security deposits are calculated</h2>
             <p>
-              Deposits are commonly described in weeks of rent. This calculator turns
-              monthly rent into an estimated weekly rent, then multiplies by your
-              selected number of deposit weeks.
+              Depending on where you rent, upfront deposits may be described as
+              fixed amounts, weeks of rent, or months of rent. This calculator lets
+              you choose the deposit type so the estimate better matches your area.
             </p>
           </div>
           <AdPlaceholder />

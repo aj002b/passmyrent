@@ -1,16 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7fbf8;
+  --background: #f5f8f6;
   --foreground: #17312b;
   --muted: #5f746f;
   --card: #ffffff;
-  --border: #dbe8e2;
+  --border: #d8e5df;
   --primary: #116a5b;
   --primary-dark: #0b4c43;
   --accent: #d9654f;
   --soft-blue: #eaf3f8;
   --soft-green: #e8f5ef;
+  --ring: #9fd0c2;
+  --shadow-card: 0 18px 45px rgba(23, 49, 43, 0.08);
+  --shadow-soft: 0 10px 28px rgba(23, 49, 43, 0.06);
 }
 
 @theme inline {
@@ -60,4 +63,95 @@ button {
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+@layer components {
+  .site-container {
+    @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .premium-card {
+    border: 1px solid color-mix(in srgb, var(--border) 86%, white);
+    background: linear-gradient(180deg, #ffffff 0%, #fbfdfc 100%);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .premium-card-strong {
+    border: 1px solid color-mix(in srgb, var(--border) 92%, white);
+    background:
+      radial-gradient(circle at top left, rgba(232, 245, 239, 0.9), transparent 34rem),
+      linear-gradient(180deg, #ffffff 0%, #fbfdfc 100%);
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-card);
+  }
+
+  .form-card {
+    border: 1px solid color-mix(in srgb, var(--border) 90%, white);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(251, 253, 252, 0.98)),
+      #ffffff;
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-card);
+  }
+
+  .field-control {
+    width: 100%;
+    border: 1px solid #c9d9d3;
+    background: #ffffff;
+    color: var(--foreground);
+    border-radius: 0.9rem;
+    padding: 0.875rem 0.95rem;
+    outline: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+    transition:
+      border-color 160ms ease,
+      box-shadow 160ms ease,
+      background-color 160ms ease;
+  }
+
+  .field-control:hover {
+    border-color: #9bc7ba;
+    background: #fdfefe;
+  }
+
+  .field-control:focus {
+    border-color: var(--primary);
+    box-shadow:
+      0 0 0 4px rgba(159, 208, 194, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl px-5 py-3 text-center font-bold text-white transition focus:outline-none focus:ring-2 focus:ring-offset-4;
+    background: linear-gradient(180deg, #147867 0%, #0f5f53 100%);
+    box-shadow: 0 14px 28px rgba(17, 106, 91, 0.22);
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(180deg, #116a5b 0%, #0a4c43 100%);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl border px-5 py-3 text-center font-bold transition focus:outline-none focus:ring-2 focus:ring-offset-4;
+    border-color: #b7d4ca;
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--primary);
+    box-shadow: 0 10px 24px rgba(23, 49, 43, 0.06);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--primary);
+    background: #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .trust-pill {
+    @apply inline-flex items-center rounded-full border px-3 py-1.5 text-sm font-bold;
+    border-color: #c7ddd5;
+    background: rgba(255, 255, 255, 0.78);
+    color: #35534c;
+    box-shadow: 0 8px 18px rgba(23, 49, 43, 0.04);
+  }
 }

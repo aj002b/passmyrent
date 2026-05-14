@@ -6,7 +6,7 @@ import { RelatedTools } from "@/components/RelatedTools";
 export const metadata: Metadata = {
   title: "Disclaimer",
   description:
-    "Read the PassMyRentCheck disclaimer covering estimates, affordability calculators, financial advice, legal advice, and referencing decisions.",
+    "Read the RentReadyCheck disclaimer covering estimates, rental affordability calculators, and advice limitations.",
 };
 
 export default function DisclaimerPage() {
@@ -18,9 +18,9 @@ export default function DisclaimerPage() {
           Disclaimer
         </h1>
         <p className="mt-4 text-lg leading-8 text-[#5f746f]">
-          PassMyRentCheck provides rough calculator estimates only. The website
+          RentReadyCheck provides rough calculator estimates only. The website
           does not guarantee rental approval and does not provide financial, legal,
-          or referencing advice.
+          tax, housing, or referencing advice.
         </p>
       </section>
       <section className="prose prose-slate max-w-none space-y-8">
@@ -28,34 +28,37 @@ export default function DisclaimerPage() {
           <h2>Calculators are estimates only</h2>
           <p>
             The tools use simple example rules such as income multiples of monthly
-            rent. They are designed to help renters understand possible affordability
-            questions, not to make decisions for a landlord or letting agent.
+            rent and rent-to-income percentages. They are designed to help renters
+            understand possible affordability questions, not to make decisions for
+            a landlord, agent, or property manager.
           </p>
         </div>
         <div>
           <h2>No guarantee of approval</h2>
           <p>
-            Passing a calculator result does not mean you will pass referencing.
-            Actual decisions can depend on credit history, employment status,
-            savings, guarantors, landlord preferences, letting agent rules, and
-            referencing company policies.
+            Passing a calculator result does not mean you will be approved. Rental
+            rules and affordability checks vary by country, state, province,
+            landlord, agent, property manager, and individual circumstances.
+            Actual decisions can also depend on credit history, employment status,
+            savings, guarantors or co-signers, and local requirements.
           </p>
         </div>
         <AdPlaceholder />
         <div>
           <h2>Not financial or legal advice</h2>
           <p>
-            Nothing on this site is financial advice, legal advice, or professional
-            referencing advice. You should speak to relevant professionals or
-            agencies if you need advice for your circumstances.
+            Nothing on this site is financial advice, legal advice, tax advice,
+            housing advice, or professional referencing advice. You should speak to
+            relevant professionals or agencies if you need advice for your
+            circumstances.
           </p>
         </div>
         <div>
           <h2>Check directly before applying</h2>
           <p>
-            Always check the exact requirements with the landlord, letting agent, or
-            referencing company. You can use the{" "}
-            <Link href="/rent-referencing-calculator">rent referencing calculator</Link>{" "}
+            Always check the exact requirements with the landlord, letting agent,
+            property manager, or referencing provider. You can use the{" "}
+            <Link href="/rent-referencing-calculator">rent affordability calculator</Link>{" "}
             as a starting point, but the final decision belongs to the people
             assessing the application.
           </p>

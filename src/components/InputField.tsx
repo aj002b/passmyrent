@@ -27,7 +27,7 @@ export function InputField({
 }: InputFieldProps) {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-semibold text-[#17312b]">
+      <label htmlFor={id} className="block text-sm font-bold text-[#17312b]">
         {label}
         {required ? <span className="text-[#b84735]"> *</span> : null}
       </label>
@@ -46,17 +46,17 @@ export function InputField({
           onChange={(event) => onChange(event.target.value)}
           placeholder={placeholder}
           aria-describedby={helpText ? `${id}-help` : undefined}
-          className={`w-full rounded-md border bg-white px-3 py-3 text-[#17312b] outline-none transition focus:border-[#116a5b] focus:ring-2 focus:ring-[#b8dccc] ${
+          className={`field-control ${
             prefix ? "pl-8" : ""
-          } ${error ? "border-[#b84735]" : "border-[#c9d9d3]"}`}
+          } ${error ? "!border-[#b84735] !ring-[#f1c0b6]" : ""}`}
         />
       </div>
       {helpText ? (
-        <p id={`${id}-help`} className="mt-1 text-sm text-[#5f746f]">
+        <p id={`${id}-help`} className="mt-1.5 text-xs leading-5 text-[#748882]">
           {helpText}
         </p>
       ) : null}
-      {error ? <p className="mt-1 text-sm text-[#b84735]">{error}</p> : null}
+      {error ? <p className="mt-1.5 text-xs font-semibold text-[#b84735]">{error}</p> : null}
     </div>
   );
 }

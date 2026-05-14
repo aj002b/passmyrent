@@ -9,17 +9,17 @@ import { GuarantorIncomeCalculator } from "@/components/calculators/GuarantorInc
 import type { FAQItem } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Guarantor Income Calculator UK | Estimate Required Income",
+  title: "Guarantor & Co-signer Income Calculator",
   description:
-    "Estimate how much a UK rent guarantor may need to earn using 30x, 36x, or 40x monthly rent examples.",
+    "Estimate how much a guarantor or co-signer may need to earn using country-specific rent affordability examples.",
 };
 
 const faqs: FAQItem[] = [
-  { question: "What is a rent guarantor?", answer: "A guarantor is someone who agrees to support the tenancy if the tenant cannot meet certain obligations, depending on the agreement." },
-  { question: "Why do letting agents ask for guarantors?", answer: "A guarantor can give the landlord extra reassurance if the tenant has low income, irregular income, limited rental history, or student status." },
-  { question: "Do guarantors need to earn more than tenants?", answer: "Often they may be assessed against a higher example threshold, but requirements vary widely." },
-  { question: "Is 36x monthly rent always enough?", answer: "No. Some checks may use 30x, 36x, 40x, or another rule, and may review other circumstances too." },
-  { question: "Can a guarantor live outside the UK?", answer: "Some landlords require a UK-based guarantor. You should ask the letting agent what they accept." },
+  { question: "What is a guarantor or co-signer?", answer: "A guarantor or co-signer is someone who may agree to support the rental agreement if the renter cannot meet certain obligations, depending on the agreement." },
+  { question: "Why do landlords ask for extra support?", answer: "They may ask when income is low, income is irregular, rental history is limited, or the application needs extra reassurance." },
+  { question: "Do guarantors or co-signers need to earn more than renters?", answer: "Sometimes they may be assessed against a higher or stricter example threshold, but requirements vary widely." },
+  { question: "Is one threshold always enough?", answer: "No. This calculator uses examples only. Actual requirements can vary by country, landlord, agent, property manager, and individual circumstances." },
+  { question: "Can a support person live in another country?", answer: "Some landlords or property managers require a local guarantor or co-signer. You should ask what they accept before applying." },
 ];
 
 export default function GuarantorPage() {
@@ -30,47 +30,48 @@ export default function GuarantorPage() {
         <section className="max-w-3xl">
           <p className="text-sm font-bold text-[#d9654f]">Last updated: May 2026</p>
           <h1 className="mt-3 text-4xl font-bold leading-tight text-[#17312b]">
-            Guarantor income calculator UK
+            Guarantor / Co-signer Income Calculator
           </h1>
           <p className="mt-4 text-lg leading-8 text-[#5f746f]">
-            Estimate whether a guarantor&apos;s annual income may meet an example
-            affordability threshold for a rental property.
+            Estimate whether a guarantor or co-signer&apos;s annual income may meet
+            an example affordability threshold for your selected country.
           </p>
         </section>
         <GuarantorIncomeCalculator />
         <section className="prose prose-slate max-w-none space-y-8">
           <div>
-            <h2>What a guarantor is</h2>
+            <h2>What a guarantor or co-signer is</h2>
             <p>
-              A guarantor is usually a person who agrees to be responsible if the
-              tenant cannot meet certain rental obligations. The exact commitment
-              depends on the tenancy and guarantor paperwork.
+              A guarantor or co-signer is usually a person who agrees to support
+              the rental agreement if the renter cannot meet certain obligations.
+              The exact commitment depends on the country and the paperwork.
             </p>
           </div>
           <div>
-            <h2>Why letting agents ask for guarantors</h2>
+            <h2>Why landlords ask for extra support</h2>
             <p>
-              Guarantors are often requested where the tenant&apos;s income is below an
-              example benchmark, where income is irregular, or where the applicant is
-              a student. You can compare tenant income first with the{" "}
-              <Link href="/rent-referencing-calculator">rent referencing calculator</Link>.
+              Extra support is often requested where the renter&apos;s income is below
+              an example benchmark, where income is irregular, or where the
+              applicant has limited rental history. You can compare renter income
+              first with the{" "}
+              <Link href="/rent-referencing-calculator">rent affordability calculator</Link>.
             </p>
           </div>
           <AdPlaceholder />
           <div>
-            <h2>Why guarantor income requirements may be higher</h2>
+            <h2>Why support-person income requirements may be higher</h2>
             <p>
-              A guarantor is not living in the property but may be expected to cover
-              rent if needed. That is why some landlords use a higher example income
-              multiple for guarantors than for tenants.
+              A support person may not be living in the property but may still be
+              expected to help if needed. That is why some checks use a stricter
+              example income threshold.
             </p>
           </div>
           <div>
-            <h2>Common situations where a guarantor may be needed</h2>
+            <h2>Common situations where support may be needed</h2>
             <p>
-              Guarantors are common for students, renters with a new job, renters
-              with self-employed income, and people moving without a long UK rental
-              history. If you are applying with flatmates, the{" "}
+              Support is common for students, renters with a new job, renters
+              with self-employed income, and people moving without much local
+              rental history. If you are applying with flatmates, the{" "}
               <Link href="/joint-tenant-affordability-calculator">joint tenant calculator</Link>{" "}
               may also help.
             </p>
