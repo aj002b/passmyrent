@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/lib/siteConfig";
 
 export const dynamic = "force-static";
+
+const baseUrl = "https://rentreadycheck.com";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -9,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${siteConfig.domain}/sitemap.xml`,
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }
