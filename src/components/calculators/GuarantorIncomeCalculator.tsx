@@ -24,7 +24,8 @@ import {
   type CountryCode,
   type RentFrequency,
 } from "@/lib/countries";
-import { useState } from "react";
+import { getCountryFromQueryParam, getDetectedCountry } from "@/lib/detectCountry";
+import { useEffect, useState } from "react";
 
 export function GuarantorIncomeCalculator() {
   const [countryCode, setCountryCode] = useState<CountryCode>(defaultCountryCode);
@@ -43,6 +44,14 @@ export function GuarantorIncomeCalculator() {
   const currency = (value: number) => formatCurrencyByCountry(value, country.code);
   const negativeInput = hasNegativeValue([rentAmount, supportPersonIncome, applicantIncome]);
   const supportPersonLabel = country.supportPersonLabel;
+
+  useEffect(() => {
+    const queryCountry = getCountryFromQueryParam(
+      new URLSearchParams(window.location.search).get("country"),
+    );
+
+    handleCountryChange(queryCountry ?? getDetectedCountry());
+  }, []);
 
   function handleCountryChange(nextCountryCode: CountryCode) {
     setCountryCode(nextCountryCode);

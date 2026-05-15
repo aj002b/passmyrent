@@ -2,22 +2,81 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { getDetectedCountry } from "@/lib/detectCountry";
+import type { CountryCode } from "@/lib/countries";
 
-const rows = [
-  ["Country", "United Kingdom"],
-  ["Monthly rent", "£1,200"],
-  ["Combined income", "£42,000"],
-  ["Check", "36x monthly rent"],
-] as const;
+const examples: Record<
+  CountryCode,
+  {
+    badge: string;
+    rows: Array<readonly [string, string]>;
+    result: string;
+  }
+> = {
+  UK: {
+    badge: "UK",
+    rows: [
+      ["Country", "United Kingdom"],
+      ["Monthly rent", "£1,200"],
+      ["Combined income", "£42,000"],
+      ["Check", "36x monthly rent"],
+    ],
+    result: "Possible signal",
+  },
+  US: {
+    badge: "US",
+    rows: [
+      ["Country", "United States"],
+      ["Monthly rent", "$1,500"],
+      ["Combined income", "$60,000"],
+      ["Check", "3x monthly rent"],
+    ],
+    result: "Strong signal",
+  },
+  CA: {
+    badge: "CA",
+    rows: [
+      ["Country", "Canada"],
+      ["Monthly rent", "$1,800"],
+      ["Combined income", "$72,000"],
+      ["Check", "30% rent-to-income"],
+    ],
+    result: "Possible signal",
+  },
+  AU: {
+    badge: "AU",
+    rows: [
+      ["Country", "Australia"],
+      ["Weekly rent", "$550"],
+      ["Combined income", "$95,000"],
+      ["Check", "30% rent-to-income"],
+    ],
+    result: "Possible signal",
+  },
+  ROW: {
+    badge: "Other",
+    rows: [
+      ["Country", "Other / Rest of world"],
+      ["Monthly rent", "$1,200"],
+      ["Combined income", "$48,000"],
+      ["Check", "generic 30% rent-to-income"],
+    ],
+    result: "Possible signal",
+  },
+};
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
 export function HeroRentCheckPreview() {
   const reduceMotion = useReducedMotion();
   const [isReady, setIsReady] = useState(false);
+  const [countryCode, setCountryCode] = useState<CountryCode>("ROW");
   const showFinalState = reduceMotion || isReady;
+  const example = examples[countryCode];
 
   useEffect(() => {
+    setCountryCode(getDetectedCountry());
+
     if (reduceMotion) {
       setIsReady(true);
       return;
@@ -45,7 +104,7 @@ export function HeroRentCheckPreview() {
             </p>
           </div>
           <span className="rounded-full border border-[#c7ddd5] bg-[#e8f5ef] px-3 py-1 text-xs font-extrabold text-[#116a5b]">
-            UK
+            {example.badge}
           </span>
         </div>
 
@@ -78,7 +137,7 @@ export function HeroRentCheckPreview() {
         </div>
 
         <div className="mt-5 space-y-3">
-          {rows.map(([label, value], index) => (
+          {example.rows.map(([label, value], index) => (
             <motion.div
               key={label}
               className="flex items-center justify-between rounded-xl border border-[#e3eee9] bg-white px-4 py-3 shadow-[0_8px_18px_rgba(23,49,43,0.035)]"
@@ -121,7 +180,7 @@ export function HeroRentCheckPreview() {
               transition={{ duration: reduceMotion ? 0 : 0.24, ease: easeOut }}
             >
               <span className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-extrabold text-[#b6533f] shadow-sm">
-                Possible signal
+                {example.result}
               </span>
               <p className="mt-4 text-sm leading-6 text-[#6a5148]">
                 Results are estimates only. Some landlords may ask for a

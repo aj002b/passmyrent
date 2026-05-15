@@ -15,8 +15,9 @@ import {
   getCountryConfig,
   type CountryCode,
 } from "@/lib/countries";
+import { getDetectedCountry } from "@/lib/detectCountry";
 import { estimateDisclaimer } from "@/lib/site";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 function getSignalStyle(signal: string) {
   const normalized = signal.toLowerCase();
@@ -40,6 +41,13 @@ export function HomepageAffordabilityPreview() {
   const [countryCode, setCountryCode] = useState<CountryCode>(defaultCountryCode);
   const [rentAmount, setRentAmount] = useState("");
   const [annualIncome, setAnnualIncome] = useState("");
+  const [userChangedCountry, setUserChangedCountry] = useState(false);
+
+  useEffect(() => {
+    if (!userChangedCountry) {
+      setCountryCode(getDetectedCountry());
+    }
+  }, [userChangedCountry]);
 
   const country = getCountryConfig(countryCode);
   const rent = safeNumber(rentAmount);
@@ -88,7 +96,10 @@ export function HomepageAffordabilityPreview() {
             id="home-country"
             label="Country"
             value={country.code}
-            onChange={(value) => setCountryCode(value as CountryCode)}
+            onChange={(value) => {
+              setUserChangedCountry(true);
+              setCountryCode(value as CountryCode);
+            }}
             options={countries.map((option) => ({
               label: option.name,
               value: option.code,
@@ -111,6 +122,10 @@ export function HomepageAffordabilityPreview() {
             placeholder="42000"
           />
         </div>
+        <p className="mt-3 text-xs leading-5 text-[#748882]">
+          Default country is estimated from your browser settings. You can change
+          it anytime.
+        </p>
       </div>
 
       <div className="rounded-2xl border border-[#d7e5df] bg-white/82 p-5 shadow-[0_12px_28px_rgba(23,49,43,0.06)]">

@@ -21,7 +21,8 @@ import {
   getCountryConfig,
   type CountryCode,
 } from "@/lib/countries";
-import { useState } from "react";
+import { getCountryFromQueryParam, getDetectedCountry } from "@/lib/detectCountry";
+import { useEffect, useState } from "react";
 
 type SplitMethod = "equal" | "income" | "room";
 
@@ -33,6 +34,14 @@ export function RentSplitCalculator() {
   const [names, setNames] = useState(["", "", "", ""]);
   const [incomes, setIncomes] = useState(["", "", "", ""]);
   const [roomScores, setRoomScores] = useState(["1", "1", "1", "1"]);
+
+  useEffect(() => {
+    const queryCountry = getCountryFromQueryParam(
+      new URLSearchParams(window.location.search).get("country"),
+    );
+
+    setCountryCode(queryCountry ?? getDetectedCountry());
+  }, []);
 
   const country = getCountryConfig(countryCode);
   const rent = safeNumber(monthlyRent);

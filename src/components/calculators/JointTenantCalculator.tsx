@@ -28,7 +28,8 @@ import {
   type CountryCode,
   type RentFrequency,
 } from "@/lib/countries";
-import { useState } from "react";
+import { getCountryFromQueryParam, getDetectedCountry } from "@/lib/detectCountry";
+import { useEffect, useState } from "react";
 
 export function JointTenantCalculator() {
   const [countryCode, setCountryCode] = useState<CountryCode>(defaultCountryCode);
@@ -50,6 +51,14 @@ export function JointTenantCalculator() {
   const currency = (value: number) => formatCurrencyByCountry(value, country.code);
   const rentPercentage = calculateRentToIncomePercentage(monthlyRent, combinedIncome);
   const negativeInput = hasNegativeValue([rentAmount, tenant1, tenant2, tenant3, tenant4]);
+
+  useEffect(() => {
+    const queryCountry = getCountryFromQueryParam(
+      new URLSearchParams(window.location.search).get("country"),
+    );
+
+    handleCountryChange(queryCountry ?? getDetectedCountry());
+  }, []);
 
   function handleCountryChange(nextCountryCode: CountryCode) {
     setCountryCode(nextCountryCode);

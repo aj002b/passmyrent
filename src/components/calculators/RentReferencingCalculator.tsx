@@ -30,38 +30,11 @@ import {
   type CountryCode,
   type RentFrequency,
 } from "@/lib/countries";
+import { getCountryFromQueryParam, getDetectedCountry } from "@/lib/detectCountry";
 import { useEffect, useState } from "react";
 
 function Stat({ label, value }: { label: string; value: string }) {
   return <AnimatedStatCard label={label} value={value} />;
-}
-
-function getCountryFromQuery(value: string | null): CountryCode | null {
-  const normalized = value?.trim().toLowerCase();
-
-  if (!normalized) {
-    return null;
-  }
-
-  const countryMap: Record<string, CountryCode> = {
-    uk: "UK",
-    gb: "UK",
-    "united-kingdom": "UK",
-    us: "US",
-    usa: "US",
-    "united-states": "US",
-    ca: "CA",
-    canada: "CA",
-    au: "AU",
-    australia: "AU",
-    other: "ROW",
-    row: "ROW",
-    rest: "ROW",
-    world: "ROW",
-    "rest-of-world": "ROW",
-  };
-
-  return countryMap[normalized] ?? "ROW";
 }
 
 export function RentReferencingCalculator() {
@@ -78,13 +51,16 @@ export function RentReferencingCalculator() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const queryCountry = getCountryFromQuery(params.get("country"));
+    const countryParam = params.get("country");
+    const queryCountry = getCountryFromQueryParam(countryParam);
     const queryRent = params.get("rent");
     const queryFrequency = params.get("frequency");
     const queryIncome = params.get("income");
 
     if (queryCountry) {
       setCountryCode(queryCountry);
+    } else {
+      setCountryCode(getDetectedCountry());
     }
 
     if (queryRent && safeNumber(queryRent) >= 0) {

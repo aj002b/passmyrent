@@ -23,7 +23,8 @@ import {
   type CountryCode,
   type RentFrequency,
 } from "@/lib/countries";
-import { useState } from "react";
+import { getCountryFromQueryParam, getDetectedCountry } from "@/lib/detectCountry";
+import { useEffect, useState } from "react";
 
 type DepositType = "fixed" | "weeks" | "months";
 
@@ -39,6 +40,14 @@ export function MoveInCostCalculator() {
   const [furniture, setFurniture] = useState("");
   const [utilities, setUtilities] = useState("");
   const [otherCosts, setOtherCosts] = useState("");
+
+  useEffect(() => {
+    const queryCountry = getCountryFromQueryParam(
+      new URLSearchParams(window.location.search).get("country"),
+    );
+
+    setCountryCode(queryCountry ?? getDetectedCountry());
+  }, []);
 
   const country = getCountryConfig(countryCode);
   const effectiveFrequency = country.code === "AU" ? rentFrequency : "monthly";
