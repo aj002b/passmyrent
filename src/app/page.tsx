@@ -71,13 +71,13 @@ export default function Home() {
                 href="/rent-referencing-calculator"
                 className="btn-primary"
               >
-                Start rent check
+                Check my rent affordability
               </Link>
               <Link
                 href="/guarantor-income-calculator"
                 className="btn-secondary"
               >
-                Try guarantor / co-signer calculator
+                Estimate guarantor / co-signer income
               </Link>
             </div>
             <div className="mt-5 flex flex-wrap gap-2">
