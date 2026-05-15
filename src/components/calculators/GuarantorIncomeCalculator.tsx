@@ -44,6 +44,19 @@ export function GuarantorIncomeCalculator() {
   const negativeInput = hasNegativeValue([rentAmount, supportPersonIncome, applicantIncome]);
   const supportPersonLabel = country.supportPersonLabel;
 
+  function handleCountryChange(nextCountryCode: CountryCode) {
+    setCountryCode(nextCountryCode);
+    setThreshold(
+      nextCountryCode === "UK"
+        ? "36"
+        : nextCountryCode === "US"
+          ? "3"
+          : nextCountryCode === "AU"
+            ? "30"
+            : "30",
+    );
+  }
+
   const thresholdOptions =
     country.code === "UK"
       ? [
@@ -57,7 +70,7 @@ export function GuarantorIncomeCalculator() {
             { label: "3x monthly rent", value: "3" },
             { label: "3.5x monthly rent", value: "3.5" },
           ]
-        : country.code === "CA"
+        : country.code === "CA" || country.code === "ROW"
           ? [
               { label: "30% rent-to-income", value: "30" },
               { label: "35% rent-to-income", value: "35" },
@@ -120,7 +133,7 @@ export function GuarantorIncomeCalculator() {
             description="This changes the support-person wording, currency, and example thresholds."
             columns="grid-cols-1"
           >
-            <CountrySelector country={country} onChange={setCountryCode} />
+            <CountrySelector country={country} onChange={handleCountryChange} />
           </FormSection>
 
           <FormSection
@@ -169,6 +182,7 @@ export function GuarantorIncomeCalculator() {
           <HowEstimateWorks>
             {country.note} The selected country changes the currency and whether
             this tool uses income multiples or rent-to-income examples.
+            {country.code === "ROW" ? ` ${country.disclaimer}` : ""}
           </HowEstimateWorks>
         </>
       }

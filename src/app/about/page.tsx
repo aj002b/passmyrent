@@ -33,7 +33,8 @@ export default function AboutPage() {
             A good place to begin is the{" "}
             <Link href="/rent-referencing-calculator">rent affordability calculator</Link>.
             The site currently supports the United Kingdom, United States, Canada,
-            and Australia.
+            and Australia, plus an Other / Rest of world option for a generic
+            rent-to-income budgeting estimate.
           </p>
         </div>
         <div>

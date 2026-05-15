@@ -51,6 +51,19 @@ export function JointTenantCalculator() {
   const rentPercentage = calculateRentToIncomePercentage(monthlyRent, combinedIncome);
   const negativeInput = hasNegativeValue([rentAmount, tenant1, tenant2, tenant3, tenant4]);
 
+  function handleCountryChange(nextCountryCode: CountryCode) {
+    setCountryCode(nextCountryCode);
+    setThreshold(
+      nextCountryCode === "UK"
+        ? "36"
+        : nextCountryCode === "US"
+          ? "3"
+          : nextCountryCode === "AU"
+            ? "30"
+            : "30",
+    );
+  }
+
   const thresholdOptions =
     country.code === "UK"
       ? [
@@ -64,7 +77,7 @@ export function JointTenantCalculator() {
             { label: "3x monthly rent", value: "3" },
             { label: "3.5x monthly rent", value: "3.5" },
           ]
-        : country.code === "CA"
+        : country.code === "CA" || country.code === "ROW"
           ? [
               { label: "30% rent-to-income", value: "30" },
               { label: "35% rent-to-income", value: "35" },
@@ -122,7 +135,7 @@ export function JointTenantCalculator() {
             description="This changes the example method and currency shown in the estimate."
             columns="grid-cols-1"
           >
-            <CountrySelector country={country} onChange={setCountryCode} />
+            <CountrySelector country={country} onChange={handleCountryChange} />
           </FormSection>
 
           <FormSection
@@ -165,6 +178,7 @@ export function JointTenantCalculator() {
           <HowEstimateWorks>
             {country.note} The selected country changes the threshold options,
             currency formatting, and how rent is compared with combined income.
+            {country.code === "ROW" ? ` ${country.disclaimer}` : ""}
           </HowEstimateWorks>
         </>
       }

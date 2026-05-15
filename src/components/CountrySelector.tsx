@@ -39,6 +39,11 @@ export function CountrySelector({ country, onChange }: CountrySelectorProps) {
             transition={{ duration: reduceMotion ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
             {country.note}
+            {country.code === "ROW" ? (
+              <span className="mt-2 block text-xs leading-5 text-[#748882]">
+                {country.disclaimer}
+              </span>
+            ) : null}
           </motion.p>
         </AnimatePresence>
       </div>

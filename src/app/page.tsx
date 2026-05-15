@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     absolute: "Rent Affordability Calculator | RentReadyCheck",
   },
   description:
-    "Use RentReadyCheck to estimate rent affordability, guarantor or co-signer income, joint tenant affordability, move-in costs, and rent splits by country.",
+    "Use RentReadyCheck to estimate rent affordability, guarantor or co-signer income, joint tenant affordability, move-in costs, and rent splits by country, or use a generic rent-to-income estimate if your country is not listed.",
 };
 
 const faqs: FAQItem[] = [
@@ -28,7 +28,7 @@ const faqs: FAQItem[] = [
   {
     question: "Which countries does RentReadyCheck support?",
     answer:
-      "The calculators currently support the United Kingdom, United States, Canada, and Australia, with country-specific example affordability methods.",
+      "The calculators currently support the United Kingdom, United States, Canada, and Australia, plus an Other / Rest of world option for a generic rent-to-income estimate.",
   },
   {
     question: "Can joint tenants combine income?",
@@ -111,7 +111,7 @@ export default function Home() {
               Each country uses its own example affordability method.
             </p>
           </div>
-          <Stagger className="grid gap-4 md:grid-cols-4" delayChildren={0.04}>
+          <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5" delayChildren={0.04}>
             {countries.map((country) => (
               <StaggerItem key={country.code} className="premium-card p-4">
                 <h3 className="font-bold text-[#17312b]">{country.name}</h3>

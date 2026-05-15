@@ -188,6 +188,35 @@ export function getCountryAffordabilityResult(
     }
   }
 
+  if (country.code === "ROW") {
+    if (rentPercentage <= 30) {
+      return {
+        title: "Strong signal",
+        description:
+          "Rent is at or below 30% of gross monthly income in this generic estimate.",
+        tone: "positive" as const,
+      };
+    }
+
+    if (rentPercentage <= 35) {
+      return {
+        title: "Possible signal",
+        description:
+          "Rent is above 30% but at or below 35% of gross monthly income in this generic estimate.",
+        tone: "neutral" as const,
+      };
+    }
+
+    if (rentPercentage <= 40) {
+      return {
+        title: "Borderline signal",
+        description:
+          "Rent is above 35% but at or below 40% of gross monthly income in this generic estimate.",
+        tone: "warning" as const,
+      };
+    }
+  }
+
   if (country.code === "AU") {
     if (rentPercentage <= 25) {
       return {

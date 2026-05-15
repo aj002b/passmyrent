@@ -54,9 +54,14 @@ function getCountryFromQuery(value: string | null): CountryCode | null {
     canada: "CA",
     au: "AU",
     australia: "AU",
+    other: "ROW",
+    row: "ROW",
+    rest: "ROW",
+    world: "ROW",
+    "rest-of-world": "ROW",
   };
 
-  return countryMap[normalized] ?? null;
+  return countryMap[normalized] ?? "ROW";
 }
 
 export function RentReferencingCalculator() {
@@ -268,6 +273,7 @@ export function RentReferencingCalculator() {
             {country.note} Changing the country changes the currency, example
             thresholds, rent-frequency handling, and whether the tool says
             guarantor or co-signer.
+            {country.code === "ROW" ? ` ${country.disclaimer}` : ""}
           </HowEstimateWorks>
         </>
       }

@@ -11,7 +11,7 @@ import type { FAQItem } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Rent Affordability Calculator by Country",
   description:
-    "Estimate rent affordability by country using example checks for the United Kingdom, United States, Canada, and Australia.",
+    "Estimate rent affordability by country using example checks for the United Kingdom, United States, Canada, Australia, or a generic rent-to-income estimate.",
 };
 
 const faqs: FAQItem[] = [
@@ -37,7 +37,9 @@ export default function RentReferencingPage() {
           <p className="mt-4 text-lg leading-8 text-[#5f746f]">
             Estimate whether your income may meet example rent affordability
             checks in the United Kingdom, United States, Canada, or Australia,
-            and whether a guarantor or co-signer may help.
+            or use Other / Rest of world as a rough budgeting estimate if your
+            country is not listed. You can also estimate whether a guarantor or
+            co-signer may help.
           </p>
         </section>
 
@@ -60,7 +62,9 @@ export default function RentReferencingPage() {
               Some checks compare annual income with monthly rent, such as 30x
               or 36x monthly rent. Others compare rent with gross monthly income,
               such as 30% or 35%. Choose your country in the calculator to see
-              the example method used for that region.
+              the example method used for that region. Country-specific checks
+              vary. If your country is not listed, use Other / Rest of world as
+              a rough budgeting estimate only.
             </p>
           </div>
           <AdPlaceholder />

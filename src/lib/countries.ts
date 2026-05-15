@@ -1,4 +1,4 @@
-export type CountryCode = "UK" | "US" | "CA" | "AU";
+export type CountryCode = "UK" | "US" | "CA" | "AU" | "ROW";
 export type RentFrequency = "monthly" | "weekly";
 
 export type CountryConfig = {
@@ -71,6 +71,20 @@ export const countries: CountryConfig[] = [
     note: "Uses rent-to-income examples and supports weekly rent.",
     disclaimer:
       "Australian rent is often advertised weekly, so this tool supports weekly or monthly rent input.",
+  },
+  {
+    code: "ROW",
+    name: "Other / Rest of world",
+    currencyCode: "USD",
+    currencySymbol: "$",
+    rentFrequencyLabel: "monthly",
+    affordabilityMethod: "Generic rent-to-income estimate",
+    applicantThresholds: [30, 35, 40],
+    guarantorThreshold: 30,
+    supportPersonLabel: "guarantor or co-signer",
+    note: "Uses a generic rent-to-income estimate when your country is not listed.",
+    disclaimer:
+      "This is a generic estimate only. It may not reflect rental rules, affordability checks, deposit rules, or application requirements in your country.",
   },
 ];
 

@@ -52,6 +52,8 @@ export function MoveInCostCalculator() {
       : country.code === "AU"
         ? "Bond/holding deposit"
         : "Application/admin fee";
+  const setupCostLabel =
+    country.code === "ROW" ? "Setup costs" : "Utilities/broadband setup";
   const deposit =
     depositType === "fixed"
       ? safeNumber(depositValue)
@@ -131,7 +133,7 @@ export function MoveInCostCalculator() {
             <InputField id="fee-amount" label={`${feeLabel} amount`} value={feeAmount} onChange={setFeeAmount} prefix={country.currencySymbol} />
             <InputField id="moving-cost" label="Moving cost" value={movingCost} onChange={setMovingCost} prefix={country.currencySymbol} />
             <InputField id="furniture" label="Furniture cost" value={furniture} onChange={setFurniture} prefix={country.currencySymbol} />
-            <InputField id="utilities" label="Utilities/broadband setup" value={utilities} onChange={setUtilities} prefix={country.currencySymbol} />
+            <InputField id="utilities" label={setupCostLabel} value={utilities} onChange={setUtilities} prefix={country.currencySymbol} />
             <InputField id="other-costs" label="Other costs" value={otherCosts} onChange={setOtherCosts} prefix={country.currencySymbol} />
           </FormSection>
         </section>
@@ -148,15 +150,15 @@ export function MoveInCostCalculator() {
                 <Metric label={feeLabel} value={currency(safeNumber(feeAmount))} />
                 <Metric label="Moving cost" value={currency(safeNumber(movingCost))} />
                 <Metric label="Furniture" value={currency(safeNumber(furniture))} />
-                <Metric label="Utilities/broadband setup" value={currency(safeNumber(utilities))} />
+                <Metric label={setupCostLabel} value={currency(safeNumber(utilities))} />
                 <Metric label="Other costs" value={currency(safeNumber(otherCosts))} />
               </div>
             ) : null}
           </ResultCard>
           <HowEstimateWorks>
-            The selected country changes the currency, rent frequency support,
-            and wording for fees such as holding deposits, bonds, or application
-            fees. The total is still a rough planning estimate.
+            {country.code === "ROW"
+              ? "Move-in costs vary widely by country, city, landlord, and property manager. This is a generic planning estimate only."
+              : "The selected country changes the currency, rent frequency support, and wording for fees such as holding deposits, bonds, or application fees. The total is still a rough planning estimate."}
           </HowEstimateWorks>
         </>
       }
