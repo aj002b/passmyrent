@@ -5,6 +5,7 @@ import { CalculatorCard } from "@/components/CalculatorCard";
 import { DisclaimerBox } from "@/components/DisclaimerBox";
 import { FAQJsonLd } from "@/components/FAQJsonLd";
 import { FAQSection } from "@/components/FAQSection";
+import { HomepageAffordabilityPreview } from "@/components/HomepageAffordabilityPreview";
 import { HeroRentCheckPreview } from "@/components/HeroRentCheckPreview";
 import { FadeUp, Stagger, StaggerItem } from "@/components/Motion";
 import { countries } from "@/lib/countries";
@@ -99,6 +100,8 @@ export default function Home() {
       </section>
 
       <div className="site-container space-y-12 py-9">
+        <HomepageAffordabilityPreview />
+
         <section className="space-y-4">
           <div>
             <h2 className="text-2xl font-bold text-[#17312b]">
