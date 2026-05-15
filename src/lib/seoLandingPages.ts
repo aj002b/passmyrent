@@ -14,6 +14,11 @@ export type SEOLandingPage = {
     label: string;
     value: string;
   }>;
+  comparisonRows?: Array<{
+    label: string;
+    value: string;
+    note: string;
+  }>;
   sections: Array<{
     heading: string;
     body: string;
@@ -25,13 +30,136 @@ export type SEOLandingPage = {
   faqs: FAQItem[];
 };
 
+function formatWholeNumber(value: number): string {
+  return new Intl.NumberFormat("en", {
+    maximumFractionDigits: 0,
+  }).format(Math.round(value));
+}
+
+function createRentAmountPage(amount: number): SEOLandingPage {
+  const formattedAmount = formatWholeNumber(amount);
+  const canadaMonthlyAt30 = amount / 0.3;
+  const canadaAnnualAt30 = canadaMonthlyAt30 * 12;
+  const annualAt35 = (amount / 0.35) * 12;
+
+  return {
+    slug: `how-much-income-to-rent-${amount}`,
+    title: `How Much Income Do You Need to Rent ${formattedAmount}? | RentReadyCheck`,
+    description: `Estimate how much income may be needed for ${formattedAmount} monthly rent using UK, US, Canada, Australia, and generic rent-to-income examples.`,
+    h1: `How Much Income Do You Need to Rent ${formattedAmount}?`,
+    intro: `A ${formattedAmount} monthly rent can point to different income estimates depending on the country and affordability method. These examples give a quick rough guide, then the calculator can check your own numbers.`,
+    primaryLink: {
+      href: `/rent-referencing-calculator?rent=${amount}`,
+      label: "Check affordability",
+    },
+    highlights: [
+      {
+        label: "UK-style 30x rent",
+        value: `${formatWholeNumber(amount * 30)} annual income`,
+      },
+      {
+        label: "UK-style 36x rent",
+        value: `${formatWholeNumber(amount * 36)} annual income`,
+      },
+      {
+        label: "US-style 3x rent",
+        value: `${formatWholeNumber(amount * 3 * 12)} annual income`,
+      },
+    ],
+    comparisonRows: [
+      {
+        label: "UK 30x monthly rent",
+        value: `${formattedAmount} x 30 = ${formatWholeNumber(amount * 30)} annual income`,
+        note: "A common UK-style example threshold.",
+      },
+      {
+        label: "UK 36x monthly rent",
+        value: `${formattedAmount} x 36 = ${formatWholeNumber(amount * 36)} annual income`,
+        note: "A stricter UK-style example threshold.",
+      },
+      {
+        label: "US 2.5x monthly rent",
+        value: `${formattedAmount} x 2.5 x 12 = ${formatWholeNumber(amount * 2.5 * 12)} annual income`,
+        note: "A possible monthly income multiple example.",
+      },
+      {
+        label: "US 3x monthly rent",
+        value: `${formattedAmount} x 3 x 12 = ${formatWholeNumber(amount * 3 * 12)} annual income`,
+        note: "A common US-style example threshold.",
+      },
+      {
+        label: "Canada 30% rent-to-income",
+        value: `${formatWholeNumber(canadaMonthlyAt30)} monthly income, about ${formatWholeNumber(canadaAnnualAt30)} annually`,
+        note: "Uses rent as 30% of gross monthly income.",
+      },
+      {
+        label: "Canada / generic 35%",
+        value: `About ${formatWholeNumber(annualAt35)} annual income`,
+        note: "A rough possible signal, not an approval rule.",
+      },
+      {
+        label: "Australia 30% estimate",
+        value: `About ${formatWholeNumber(canadaAnnualAt30)} annual income`,
+        note: "For weekly Australian rent, use the calculator's weekly option.",
+      },
+      {
+        label: "Other / Rest of world",
+        value: `About ${formatWholeNumber(canadaAnnualAt30)} annually at 30%`,
+        note: "Generic budgeting estimate only.",
+      },
+    ],
+    sections: [
+      {
+        heading: `Quick answer for ${formattedAmount} monthly rent`,
+        body: `As a rough guide, ${formattedAmount} monthly rent equals ${formatWholeNumber(amount * 30)} annual income at a 30x monthly rent example and ${formatWholeNumber(amount * 36)} at a 36x example. With a US-style 3x monthly rent check, the annual income example is also ${formatWholeNumber(amount * 3 * 12)}.`,
+      },
+      {
+        heading: "Why the estimate changes by country",
+        body:
+          "The UK often uses annual income compared with monthly rent, the United States often uses monthly income multiples, and Canada, Australia, and the Rest of World option use rent-to-income percentages.",
+      },
+      {
+        heading: "What to check before applying",
+        body:
+          "Income is only part of a rental application. Savings, employment status, credit history, landlord or property manager requirements, and guarantor or co-signer support can all affect the conversation.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/rent-to-income-ratio-explained", label: "Rent-to-income ratio explained" },
+      { href: "/guarantor-income-calculator", label: "Guarantor/co-signer calculator" },
+      { href: "/move-in-cost-calculator", label: "Move-in cost calculator" },
+    ],
+    faqs: [
+      {
+        question: `Is ${formattedAmount} rent affordable?`,
+        answer:
+          "It depends on income, country, debts, savings, and the landlord or property manager's rules. These examples are rough affordability signals only.",
+      },
+      {
+        question: `How much annual income is 30x ${formattedAmount} rent?`,
+        answer: `A 30x monthly rent example is ${formatWholeNumber(amount * 30)} annual income because ${formattedAmount} multiplied by 30 equals ${formatWholeNumber(amount * 30)}.`,
+      },
+      {
+        question: "Can joint tenants combine income?",
+        answer:
+          "Often they may be able to, but requirements vary by country, tenancy setup, landlord, letting agent, and property manager.",
+      },
+      {
+        question: "Does this guarantee rental approval?",
+        answer:
+          "No. This is only an estimate. Actual rental decisions can depend on credit history, employment status, landlord requirements, property manager rules, savings, guarantors or co-signers, and other factors.",
+      },
+    ],
+  };
+}
+
 export const seoLandingPages: SEOLandingPage[] = [
   {
     slug: "uk-rent-affordability-calculator",
     title: "UK Rent Affordability Calculator | RentReadyCheck",
     description:
-      "Estimate UK rent affordability using example 30x and 36x monthly rent checks, with links to country-aware rent and guarantor calculators.",
-    h1: "UK rent affordability calculator",
+      "Estimate UK rent affordability using example 30x and 36x monthly rent checks, guarantor support, and joint tenant income.",
+    h1: "UK Rent Affordability Calculator",
     intro:
       "Use this guide to understand common UK-style rent affordability examples before you apply. The main calculator can preselect the United Kingdom and compare income with 30x and 36x monthly rent checks.",
     primaryLink: {
@@ -42,6 +170,23 @@ export const seoLandingPages: SEOLandingPage[] = [
       { label: "Common example", value: "30x monthly rent" },
       { label: "Stronger example", value: "36x monthly rent" },
       { label: "Support wording", value: "Guarantor" },
+    ],
+    comparisonRows: [
+      {
+        label: "1,200 monthly rent at 30x",
+        value: "36,000 annual income",
+        note: "1,200 x 30.",
+      },
+      {
+        label: "1,200 monthly rent at 36x",
+        value: "43,200 annual income",
+        note: "1,200 x 36.",
+      },
+      {
+        label: "Joint tenant example",
+        value: "Two incomes can be compared together in the calculator",
+        note: "Actual referencing rules vary by landlord and agent.",
+      },
     ],
     sections: [
       {
@@ -55,6 +200,11 @@ export const seoLandingPages: SEOLandingPage[] = [
           "A landlord or letting agent may ask for a guarantor if applicant income is below an example threshold, employment is new or irregular, or the referencing provider wants extra reassurance.",
       },
       {
+        heading: "How joint tenant income may be combined",
+        body:
+          "Couples, friends, or flatmates may be able to combine income when applying together. The joint tenant calculator can estimate the combined signal before you apply.",
+      },
+      {
         heading: "What else can affect UK referencing",
         body:
           "Income is only one part of referencing. Credit history, employment status, landlord requirements, savings, previous references, right-to-rent checks, and individual circumstances may also matter.",
@@ -64,6 +214,7 @@ export const seoLandingPages: SEOLandingPage[] = [
       { href: "/what-is-30-times-rent", label: "What is 30x rent?" },
       { href: "/what-is-36-times-rent", label: "What is 36x rent?" },
       { href: "/guarantor-income-calculator?country=uk", label: "Guarantor calculator" },
+      { href: "/move-in-cost-calculator?country=uk", label: "Move-in cost calculator" },
     ],
     faqs: [
       {
@@ -88,7 +239,7 @@ export const seoLandingPages: SEOLandingPage[] = [
     title: "US Rent Affordability Calculator | RentReadyCheck",
     description:
       "Estimate US rent affordability using example monthly income multiples such as 2.5x to 3x rent.",
-    h1: "US rent affordability calculator",
+    h1: "US Rent Affordability Calculator",
     intro:
       "US rental applications often discuss affordability as gross monthly income compared with monthly rent. This guide explains common 2.5x to 3x rent examples and links to the country-aware calculator.",
     primaryLink: {
@@ -99,6 +250,23 @@ export const seoLandingPages: SEOLandingPage[] = [
       { label: "Possible example", value: "2.5x monthly rent" },
       { label: "Common example", value: "3x monthly rent" },
       { label: "Support wording", value: "Co-signer" },
+    ],
+    comparisonRows: [
+      {
+        label: "1,500 rent at 2.5x",
+        value: "3,750 monthly income, or 45,000 annually",
+        note: "A possible US-style income multiple example.",
+      },
+      {
+        label: "1,500 rent at 3x",
+        value: "4,500 monthly income, or 54,000 annually",
+        note: "A common US-style income multiple example.",
+      },
+      {
+        label: "Co-signer support",
+        value: "May be assessed separately",
+        note: "Rules vary by landlord and property manager.",
+      },
     ],
     sections: [
       {
@@ -145,7 +313,7 @@ export const seoLandingPages: SEOLandingPage[] = [
     title: "Canada Rent Affordability Calculator | RentReadyCheck",
     description:
       "Estimate Canadian rent affordability using rent-to-income examples such as 30%, 35%, and 40% of gross income.",
-    h1: "Canada rent affordability calculator",
+    h1: "Canada Rent Affordability Calculator",
     intro:
       "Canadian rent affordability is often discussed as rent compared with gross income. This guide explains common rent-to-income examples and links to the country-aware calculator.",
     primaryLink: {
@@ -156,6 +324,23 @@ export const seoLandingPages: SEOLandingPage[] = [
       { label: "Strong example", value: "Rent at or below 30%" },
       { label: "Possible example", value: "Rent at or below 35%" },
       { label: "Borderline example", value: "Rent at or below 40%" },
+    ],
+    comparisonRows: [
+      {
+        label: "1,800 rent at 30%",
+        value: "6,000 monthly income, or 72,000 annually",
+        note: "A stronger rent-to-income example.",
+      },
+      {
+        label: "1,800 rent at 35%",
+        value: "About 5,143 monthly income, or about 61,714 annually",
+        note: "A possible rent-to-income example.",
+      },
+      {
+        label: "1,800 rent at 40%",
+        value: "4,500 monthly income, or 54,000 annually",
+        note: "A rough borderline example.",
+      },
     ],
     sections: [
       {
@@ -202,7 +387,7 @@ export const seoLandingPages: SEOLandingPage[] = [
     title: "Australia Rent Affordability Calculator | RentReadyCheck",
     description:
       "Estimate Australian rent affordability using weekly or monthly rent and rent-to-income examples such as 25%, 30%, and 35%.",
-    h1: "Australia rent affordability calculator",
+    h1: "Australia Rent Affordability Calculator",
     intro:
       "Australian rent is often advertised weekly, so RentReadyCheck supports weekly or monthly rent and converts it into a monthly estimate for rent-to-income calculations.",
     primaryLink: {
@@ -213,6 +398,23 @@ export const seoLandingPages: SEOLandingPage[] = [
       { label: "Strong example", value: "Rent at or below 25%" },
       { label: "Possible example", value: "Rent at or below 30%" },
       { label: "Frequency", value: "Weekly or monthly rent" },
+    ],
+    comparisonRows: [
+      {
+        label: "550 weekly rent",
+        value: "About 2,383 monthly rent",
+        note: "Weekly rent x 52 / 12.",
+      },
+      {
+        label: "At 30% rent-to-income",
+        value: "About 7,944 monthly income",
+        note: "Roughly 95,333 annual income.",
+      },
+      {
+        label: "Move-in wording",
+        value: "Bond and rent in advance",
+        note: "Rules can vary by state, territory, and property manager.",
+      },
     ],
     sections: [
       {
@@ -255,158 +457,155 @@ export const seoLandingPages: SEOLandingPage[] = [
     ],
   },
   {
-    slug: "how-much-income-to-rent-1000",
-    title: "How Much Income Do You Need to Rent 1,000? | RentReadyCheck",
+    slug: "rent-affordability-calculator-rest-of-world",
+    title: "Rent Affordability Calculator for Other Countries | RentReadyCheck",
     description:
-      "Estimate how much income may be needed to rent a 1,000 per month property, with notes for UK, US, Canada, and Australia affordability checks.",
-    h1: "How much income do you need to rent 1,000 a month?",
+      "Use a generic rent-to-income estimate when your country is not listed, with clear limitations and disclaimers.",
+    h1: "Rent Affordability Calculator for Other Countries",
     intro:
-      "A 1,000 monthly rent can mean different income targets depending on where you are renting. This guide explains common example checks and links to the calculator for a country-aware estimate.",
+      "If your country is not listed yet, the Other / Rest of world setting gives a generic rent-to-income estimate. It is useful for budgeting, but it does not reflect local rental laws or official application rules.",
     primaryLink: {
-      href: "/rent-referencing-calculator",
-      label: "Check affordability",
+      href: "/rent-referencing-calculator?country=row",
+      label: "Open Rest of world calculator",
     },
     highlights: [
-      { label: "UK-style 30x rent", value: "30,000 annual income" },
-      { label: "UK-style 36x rent", value: "36,000 annual income" },
-      { label: "US-style 3x rent", value: "3,000 gross monthly income" },
+      { label: "Generic strong signal", value: "Rent at or below 30%" },
+      { label: "Generic possible signal", value: "Rent at or below 35%" },
+      { label: "Generic borderline signal", value: "Rent at or below 40%" },
+    ],
+    comparisonRows: [
+      {
+        label: "1,200 monthly rent at 30%",
+        value: "About 4,000 gross monthly income",
+        note: "Generic budgeting estimate only.",
+      },
+      {
+        label: "1,200 monthly rent at 35%",
+        value: "About 3,429 gross monthly income",
+        note: "May feel tighter after other costs.",
+      },
+      {
+        label: "1,200 monthly rent at 40%",
+        value: "About 3,000 gross monthly income",
+        note: "A borderline rough guide, not an application rule.",
+      },
     ],
     sections: [
       {
-        heading: "Quick estimate for 1,000 monthly rent",
+        heading: "How the Rest of world estimate works",
         body:
-          "In a UK-style annual multiplier check, 30x monthly rent would suggest about 30,000 annual income, while 36x monthly rent would suggest about 36,000 annual income. In a US-style monthly income check, a 3x rent example would suggest about 3,000 gross monthly income.",
+          "RentReadyCheck compares rent with gross monthly income using generic 30%, 35%, and 40% rent-to-income examples. This can help you sense-check a budget when your country is not listed.",
       },
       {
-        heading: "Why the answer changes by country",
+        heading: "What this page cannot tell you",
         body:
-          "Different countries often describe affordability in different ways. The UK often uses annual income compared with monthly rent, the United States often uses monthly income multiples, while Canada and Australia often discuss rent as a percentage of gross income.",
+          "This page does not describe local laws, official rental rules, deposit limits, tenant protections, or application requirements in your country. Always check local guidance and the landlord or property manager's requirements.",
       },
       {
-        heading: "Use the calculator before you apply",
+        heading: "Useful next checks",
         body:
-          "If you are comparing properties, use the rent affordability calculator to choose your country, enter your income, and see a rough signal. If income is close to the example threshold, you may also want to check the guarantor or co-signer calculator.",
+          "After checking rent-to-income, it can help to estimate upfront move-in costs and whether a guarantor or co-signer might be part of the application conversation.",
       },
+    ],
+    relatedLinks: [
+      { href: "/rent-to-income-ratio-explained", label: "Rent-to-income ratio explained" },
+      { href: "/guarantor-income-calculator?country=row", label: "Guarantor/co-signer calculator" },
+      { href: "/move-in-cost-calculator?country=row", label: "Move-in cost calculator" },
     ],
     faqs: [
       {
-        question: "Is 1,000 rent affordable?",
+        question: "Is the Rest of world estimate country-specific?",
         answer:
-          "It depends on income, country, debts, savings, and the landlord or property manager's rules. As a rough example, some checks may expect rent to be around 25% to 40% of gross income, or income to be a multiple of rent.",
+          "No. It is a generic budgeting estimate only. It may not reflect rental rules, affordability checks, deposit rules, or application requirements in your country.",
       },
       {
-        question: "How much annual income is 30x 1,000 rent?",
+        question: "What percentage does the generic estimate use?",
         answer:
-          "A 30x monthly rent example is 30,000 annual income because 1,000 multiplied by 30 equals 30,000.",
+          "It uses rough rent-to-income examples such as 30%, 35%, and 40% of gross monthly income.",
       },
       {
-        question: "Does this guarantee rental approval?",
+        question: "Should I rely on this before applying?",
         answer:
-          "No. This is only an estimate. Actual decisions can depend on credit history, employment status, landlord requirements, property manager rules, savings, guarantors or co-signers, and other factors.",
+          "Use it as a starting point only. Confirm requirements with the landlord, property manager, agent, or a relevant local professional before making decisions.",
       },
     ],
   },
+  createRentAmountPage(800),
+  createRentAmountPage(1000),
+  createRentAmountPage(1200),
+  createRentAmountPage(1500),
+  createRentAmountPage(2000),
   {
-    slug: "how-much-income-to-rent-1200",
-    title: "How Much Income Do You Need to Rent 1,200? | RentReadyCheck",
+    slug: "rent-to-income-ratio-explained",
+    title: "Rent-to-Income Ratio Explained | RentReadyCheck",
     description:
-      "Estimate income for a 1,200 per month rental using common affordability examples, including 30x rent, 36x rent, and monthly income multiples.",
-    h1: "How much income do you need to rent 1,200 a month?",
+      "Understand rent-to-income ratio, how to calculate it, and how different countries use rent affordability examples.",
+    h1: "Rent-to-Income Ratio Explained",
     intro:
-      "For a 1,200 monthly rent, affordability estimates depend on the country and the type of check being used. Here are common examples to help you sense-check a property before applying.",
+      "Rent-to-income ratio compares rent with gross income. It is a simple way to sense-check whether a rent amount may leave enough room for other costs before you apply.",
     primaryLink: {
       href: "/rent-referencing-calculator",
-      label: "Check affordability",
+      label: "Check rent-to-income",
     },
     highlights: [
-      { label: "UK-style 30x rent", value: "36,000 annual income" },
-      { label: "UK-style 36x rent", value: "43,200 annual income" },
-      { label: "US-style 3x rent", value: "3,600 gross monthly income" },
+      { label: "Formula", value: "Monthly rent ÷ gross monthly income" },
+      { label: "Common example", value: "30% of gross income" },
+      { label: "Useful for", value: "Budgeting and comparison" },
+    ],
+    comparisonRows: [
+      {
+        label: "1,200 rent and 4,000 income",
+        value: "30.0% rent-to-income",
+        note: "Often treated as a stronger budgeting signal.",
+      },
+      {
+        label: "1,200 rent and 3,429 income",
+        value: "35.0% rent-to-income",
+        note: "May still be possible, but leaves less headroom.",
+      },
+      {
+        label: "1,200 rent and 3,000 income",
+        value: "40.0% rent-to-income",
+        note: "A rough borderline example in many budgeting conversations.",
+      },
     ],
     sections: [
       {
-        heading: "Quick estimate for 1,200 monthly rent",
+        heading: "How to calculate rent-to-income ratio",
         body:
-          "Using UK-style examples, 30x monthly rent equals 36,000 annual income and 36x monthly rent equals 43,200 annual income. Using a US-style 3x monthly income example, gross monthly income would be around 3,600.",
+          "Divide monthly rent by gross monthly income, then multiply by 100. For example, 1,200 rent divided by 4,000 gross monthly income equals 30%.",
       },
       {
-        heading: "What if you are close to the threshold?",
+        heading: "How countries describe affordability differently",
         body:
-          "Being close to an example threshold does not automatically mean an application will be accepted or refused. A landlord or property manager may also look at employment, credit history, savings, references, and whether a guarantor or co-signer is available.",
+          "Canada, Australia, and the Rest of world setting often work naturally as rent-to-income percentages. UK-style checks may use 30x or 36x monthly rent, while US-style checks may use 2.5x to 3x monthly rent income multiples.",
       },
       {
-        heading: "Check your own situation",
+        heading: "Why ratio is not the whole picture",
         body:
-          "The rent affordability calculator can combine up to four applicant incomes and show country-specific notes. For shared homes, the joint tenant affordability calculator may be a better fit.",
+          "A rent-to-income ratio does not include every detail. Debts, transport, childcare, utility costs, savings, employment type, credit history, and local application rules can all affect whether a rental feels realistic.",
       },
+    ],
+    relatedLinks: [
+      { href: "/canada-rent-affordability-calculator", label: "Canada rent affordability" },
+      { href: "/australia-rent-affordability-calculator", label: "Australia rent affordability" },
+      { href: "/rent-affordability-calculator-rest-of-world", label: "Other countries" },
     ],
     faqs: [
       {
-        question: "What salary do I need for 1,200 rent?",
+        question: "What is a good rent-to-income ratio?",
         answer:
-          "As a rough UK-style example, 30x monthly rent is 36,000 annual income and 36x monthly rent is 43,200 annual income. Other countries may use monthly income ratios or rent-to-income percentages.",
+          "A lower percentage usually leaves more room for other costs. Examples such as 30%, 35%, and 40% are useful rough guides, but they are not universal approval rules.",
       },
       {
-        question: "Can two people combine income for 1,200 rent?",
+        question: "Is rent-to-income ratio based on gross or take-home income?",
         answer:
-          "Often, joint applicants can combine income, but requirements vary by country, landlord, agent, and property manager.",
+          "RentReadyCheck uses gross income for consistency with many example affordability checks. Your personal budget should also consider take-home pay and regular expenses.",
       },
       {
-        question: "Should I include debt payments?",
+        question: "Does rent-to-income ratio guarantee approval?",
         answer:
-          "Debt payments can matter for budgeting, but example rent multipliers may not always adjust for them. RentReadyCheck shows debt as a budgeting note rather than changing the example threshold result.",
-      },
-    ],
-  },
-  {
-    slug: "how-much-income-to-rent-1500",
-    title: "How Much Income Do You Need to Rent 1,500? | RentReadyCheck",
-    description:
-      "Estimate how much income may be needed for a 1,500 monthly rent using country-aware affordability examples.",
-    h1: "How much income do you need to rent 1,500 a month?",
-    intro:
-      "A 1,500 monthly rent is a useful benchmark for checking whether income, joint income, or guarantor support may be enough before applying.",
-    primaryLink: {
-      href: "/rent-referencing-calculator",
-      label: "Check affordability",
-    },
-    highlights: [
-      { label: "UK-style 30x rent", value: "45,000 annual income" },
-      { label: "UK-style 36x rent", value: "54,000 annual income" },
-      { label: "US-style 3x rent", value: "4,500 gross monthly income" },
-    ],
-    sections: [
-      {
-        heading: "Quick estimate for 1,500 monthly rent",
-        body:
-          "In a UK-style multiplier check, 30x monthly rent would be 45,000 annual income and 36x monthly rent would be 54,000 annual income. In a US-style 3x monthly income example, gross monthly income would be around 4,500.",
-      },
-      {
-        heading: "Joint tenants and higher rent",
-        body:
-          "For higher rents, joint income can make a big difference. Some landlords and property managers assess the household income together, while others may want each tenant to show income or provide extra support.",
-      },
-      {
-        heading: "Plan beyond the monthly rent",
-        body:
-          "Affordability is not only about monthly rent. Deposits, bond, application fees, first rent payments, moving costs, and furniture can all affect whether a move is comfortable.",
-      },
-    ],
-    faqs: [
-      {
-        question: "What is 30 times 1,500 rent?",
-        answer:
-          "30 times 1,500 monthly rent is 45,000 annual income in a UK-style annual multiplier example.",
-      },
-      {
-        question: "What is 36 times 1,500 rent?",
-        answer:
-          "36 times 1,500 monthly rent is 54,000 annual income in a UK-style annual multiplier example.",
-      },
-      {
-        question: "What if my income is lower than the example?",
-        answer:
-          "You may want to consider a lower rent, joint tenant income, savings, or a guarantor or co-signer. The exact options depend on the landlord, property manager, and local rules.",
+          "No. It is only an estimate. Actual rental decisions can depend on credit history, employment status, landlord requirements, property manager rules, savings, guarantors or co-signers, and other factors.",
       },
     ],
   },

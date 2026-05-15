@@ -61,6 +61,51 @@ export function SEOLandingPageView({ page }: { page: SEOLandingPage }) {
         <section className="grid gap-5 lg:grid-cols-[1fr_18rem]">
           <article className="premium-card p-6 md:p-8">
             <div className="prose prose-slate max-w-none">
+              {page.comparisonRows?.length ? (
+                <section className="not-prose mb-8 overflow-hidden rounded-2xl border border-[#d7e5df] bg-[#fbfdfc]">
+                  <div className="border-b border-[#d7e5df] px-4 py-3 md:px-5">
+                    <h2 className="text-xl font-extrabold tracking-[-0.02em] text-[#17312b]">
+                      Example comparison
+                    </h2>
+                    <p className="mt-1 text-sm leading-6 text-[#5f746f]">
+                      These figures are rough examples only. Use the full
+                      calculator for your country, rent, and income.
+                    </p>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full min-w-[42rem] text-left text-sm">
+                      <thead className="bg-white text-[#35534c]">
+                        <tr>
+                          <th className="px-4 py-3 font-extrabold md:px-5">
+                            Example
+                          </th>
+                          <th className="px-4 py-3 font-extrabold md:px-5">
+                            Estimate
+                          </th>
+                          <th className="px-4 py-3 font-extrabold md:px-5">
+                            Note
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-[#e1ece7]">
+                        {page.comparisonRows.map((row) => (
+                          <tr key={row.label}>
+                            <td className="px-4 py-3 font-bold text-[#17312b] md:px-5">
+                              {row.label}
+                            </td>
+                            <td className="px-4 py-3 text-[#35534c] md:px-5">
+                              {row.value}
+                            </td>
+                            <td className="px-4 py-3 text-[#5f746f] md:px-5">
+                              {row.note}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              ) : null}
               {page.sections.map((section) => (
                 <section key={section.heading} className="not-prose mb-8 last:mb-0">
                   <h2 className="text-2xl font-extrabold tracking-[-0.02em] text-[#17312b]">
