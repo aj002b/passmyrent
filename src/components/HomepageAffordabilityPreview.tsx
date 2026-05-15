@@ -50,7 +50,7 @@ export function HomepageAffordabilityPreview() {
   const result = hasEnoughInput
     ? getCountryAffordabilityResult(country, rent, "monthly", income)
     : {
-        title: "Add rent and income",
+        title: "Enter your details",
         description:
           "Enter a rent amount and annual income to see a quick affordability signal.",
       };
@@ -74,10 +74,10 @@ export function HomepageAffordabilityPreview() {
     <section className="premium-card-strong grid gap-5 p-5 md:grid-cols-[1fr_0.82fr] md:items-center md:p-6">
       <div>
         <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#b6533f]">
-          Quick rent check
+          Quick affordability check
         </p>
         <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-[#17312b]">
-          Try a quick affordability estimate
+          Get a quick rent affordability estimate
         </h2>
         <p className="mt-2 max-w-2xl text-sm leading-6 text-[#5f746f]">
           Enter the basics here, then open the full calculator for the detailed
@@ -115,7 +115,7 @@ export function HomepageAffordabilityPreview() {
 
       <div className="rounded-2xl border border-[#d7e5df] bg-white/82 p-5 shadow-[0_12px_28px_rgba(23,49,43,0.06)]">
         <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#5f746f]">
-          Simple signal
+          Affordability signal
         </p>
         <span
           className={`mt-3 inline-flex rounded-full border px-3 py-1 text-sm font-extrabold ${getSignalStyle(result.title)}`}
