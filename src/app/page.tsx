@@ -77,7 +77,7 @@ export default function Home() {
                 href="/guarantor-income-calculator"
                 className="btn-secondary"
               >
-                Estimate guarantor / co-signer income
+                Estimate guarantor income
               </Link>
             </div>
             <div className="mt-5 flex flex-wrap gap-2">
