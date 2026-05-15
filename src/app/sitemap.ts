@@ -11,6 +11,7 @@ const routes = [
   { path: "/joint-tenant-affordability-calculator", priority: 0.8 },
   { path: "/move-in-cost-calculator", priority: 0.8 },
   { path: "/rent-split-calculator", priority: 0.8 },
+  { path: "/guides", priority: 0.75 },
   { path: "/uk-rent-affordability-calculator", priority: 0.75 },
   { path: "/us-rent-affordability-calculator", priority: 0.75 },
   { path: "/canada-rent-affordability-calculator", priority: 0.75 },

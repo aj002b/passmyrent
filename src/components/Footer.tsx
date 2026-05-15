@@ -14,6 +14,9 @@ export function Footer() {
           </p>
         </div>
         <div className="flex flex-wrap gap-3 text-sm font-bold text-[#c8ddd6] md:justify-end">
+          <Link href="/guides" className="rounded-full px-2 py-1 hover:bg-white/10 hover:text-white">
+            Guides
+          </Link>
           <Link href="/about" className="rounded-full px-2 py-1 hover:bg-white/10 hover:text-white">
             About
           </Link>
