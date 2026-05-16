@@ -11,6 +11,7 @@ import { InputField } from "@/components/InputField";
 import { AnimatedStatCard } from "@/components/Motion";
 import { ResultCard } from "@/components/ResultCard";
 import { SelectField } from "@/components/SelectField";
+import { useCalculatorResultTracking } from "@/lib/analytics";
 import {
   calculateDifference,
   formatCurrencyByCountry,
@@ -132,6 +133,15 @@ export function GuarantorIncomeCalculator() {
     badgeLabel = "May need support";
   }
 
+  const hasResult = monthlyRent > 0 && supportIncome > 0 && !negativeInput;
+
+  useCalculatorResultTracking({
+    calculatorName: "Guarantor / Co-signer Calculator",
+    selectedCountry: country.code,
+    resultSignal: badgeLabel,
+    enabled: hasResult,
+  });
+
   return (
     <CalculatorLayout
       form={
@@ -142,7 +152,11 @@ export function GuarantorIncomeCalculator() {
             description="This changes the support-person wording, currency, and example thresholds."
             columns="grid-cols-1"
           >
-            <CountrySelector country={country} onChange={handleCountryChange} />
+            <CountrySelector
+              country={country}
+              onChange={handleCountryChange}
+              calculatorName="Guarantor / Co-signer Calculator"
+            />
           </FormSection>
 
           <FormSection
@@ -178,7 +192,7 @@ export function GuarantorIncomeCalculator() {
       result={
         <>
           <ResultCard title={title} description={description} tone={tone} badgeLabel={badgeLabel}>
-            {monthlyRent > 0 && supportIncome > 0 && !negativeInput ? (
+            {hasResult ? (
               <div className="grid gap-3 sm:grid-cols-2">
                 <Metric label="Monthly rent estimate" value={currency(monthlyRent)} />
                 <Metric label={`Required ${supportPersonLabel} income`} value={currency(required)} />

@@ -10,6 +10,7 @@ import { CountrySelector } from "@/components/CountrySelector";
 import { InputField } from "@/components/InputField";
 import { ResultCard } from "@/components/ResultCard";
 import { SelectField } from "@/components/SelectField";
+import { useCalculatorResultTracking } from "@/lib/analytics";
 import {
   formatCurrencyByCountry,
   formatPercentage,
@@ -105,6 +106,15 @@ export function RentSplitCalculator() {
     tone = "positive";
   }
 
+  const hasResult = rent > 0 && !negativeInput && !missingRequiredWeights;
+
+  useCalculatorResultTracking({
+    calculatorName: "Rent Split Calculator",
+    selectedCountry: country.code,
+    resultSignal: hasResult ? "Estimated split" : title,
+    enabled: hasResult,
+  });
+
   function updateList(
     setter: (value: string[]) => void,
     current: string[],
@@ -126,7 +136,11 @@ export function RentSplitCalculator() {
             description="This changes the currency used in the split table."
             columns="grid-cols-1"
           >
-            <CountrySelector country={country} onChange={setCountryCode} />
+            <CountrySelector
+              country={country}
+              onChange={setCountryCode}
+              calculatorName="Rent Split Calculator"
+            />
           </FormSection>
 
           <FormSection
@@ -173,8 +187,8 @@ export function RentSplitCalculator() {
       }
       result={
         <>
-          <ResultCard title={title} description={description} tone={tone} badgeLabel={rent > 0 && !negativeInput && !missingRequiredWeights ? "Estimated split" : "Add details"}>
-            {rent > 0 && !negativeInput && !missingRequiredWeights ? (
+          <ResultCard title={title} description={description} tone={tone} badgeLabel={hasResult ? "Estimated split" : "Add details"}>
+            {hasResult ? (
               <div className="overflow-x-auto rounded-2xl border border-[#dbe8e2] bg-white/82 shadow-[0_8px_18px_rgba(23,49,43,0.035)]">
                 <table className="w-full min-w-[420px] text-left text-sm">
                   <thead className="border-b border-[#dbe8e2] text-[#5f746f]">

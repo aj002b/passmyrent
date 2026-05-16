@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { SelectField } from "@/components/SelectField";
+import { trackRentReadyEvent } from "@/lib/analytics";
 import {
   countries,
   type CountryCode,
@@ -11,9 +12,14 @@ import {
 type CountrySelectorProps = {
   country: CountryConfig;
   onChange: (countryCode: CountryCode) => void;
+  calculatorName?: string;
 };
 
-export function CountrySelector({ country, onChange }: CountrySelectorProps) {
+export function CountrySelector({
+  country,
+  onChange,
+  calculatorName,
+}: CountrySelectorProps) {
   const reduceMotion = useReducedMotion();
 
   return (
@@ -22,7 +28,15 @@ export function CountrySelector({ country, onChange }: CountrySelectorProps) {
         id="country"
         label="Where are you renting?"
         value={country.code}
-        onChange={(value) => onChange(value as CountryCode)}
+        onChange={(value) => {
+          const nextCountry = value as CountryCode;
+
+          trackRentReadyEvent("country_selector_change", {
+            calculator_name: calculatorName,
+            selected_country: nextCountry,
+          });
+          onChange(nextCountry);
+        }}
         options={countries.map((option) => ({
           label: option.name,
           value: option.code,

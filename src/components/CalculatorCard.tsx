@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { trackRentReadyEvent } from "@/lib/analytics";
 
 type CalculatorCardProps = {
   title: string;
@@ -23,6 +26,11 @@ export function CalculatorCard({
   return (
     <Link
       href={href}
+      onClick={() => {
+        trackRentReadyEvent("calculator_card_click", {
+          calculator_name: title,
+        });
+      }}
       className="premium-card group relative flex h-full min-h-[14.25rem] overflow-hidden p-5 transition duration-200 hover:-translate-y-0.5 hover:border-[#8fc3b4] hover:shadow-[0_18px_40px_rgba(23,49,43,0.11)] focus:outline-none focus:ring-2 focus:ring-[#116a5b] focus:ring-offset-4 sm:p-6"
     >
       <span className="absolute right-4 top-4 h-12 w-12 rounded-full bg-[#e8f5ef]/70 blur-xl transition group-hover:bg-[#cce7dc]" />

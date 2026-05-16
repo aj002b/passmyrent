@@ -11,6 +11,7 @@ import { InputField } from "@/components/InputField";
 import { AnimatedStatCard } from "@/components/Motion";
 import { ResultCard } from "@/components/ResultCard";
 import { SelectField } from "@/components/SelectField";
+import { useCalculatorResultTracking } from "@/lib/analytics";
 import {
   calculateAnnualMultiplierRequirement,
   calculateDifference,
@@ -134,6 +135,19 @@ export function JointTenantCalculator() {
     };
   }
 
+  const hasResult =
+    monthlyRent > 0 &&
+    safeNumber(tenant1) > 0 &&
+    safeNumber(tenant2) > 0 &&
+    !negativeInput;
+
+  useCalculatorResultTracking({
+    calculatorName: "Joint Tenant Calculator",
+    selectedCountry: country.code,
+    resultSignal: result.title,
+    enabled: hasResult,
+  });
+
   return (
     <CalculatorLayout
       form={
@@ -144,7 +158,11 @@ export function JointTenantCalculator() {
             description="This changes the example method and currency shown in the estimate."
             columns="grid-cols-1"
           >
-            <CountrySelector country={country} onChange={handleCountryChange} />
+            <CountrySelector
+              country={country}
+              onChange={handleCountryChange}
+              calculatorName="Joint Tenant Calculator"
+            />
           </FormSection>
 
           <FormSection
@@ -174,7 +192,7 @@ export function JointTenantCalculator() {
       result={
         <>
           <ResultCard title={result.title} description={result.description} tone={result.tone} badgeLabel={result.title}>
-            {monthlyRent > 0 && combinedIncome > 0 && !negativeInput ? (
+            {hasResult ? (
               <div className="grid gap-3 sm:grid-cols-2">
                 <Metric label="Combined income" value={currency(combinedIncome)} />
                 <Metric label="Required income" value={currency(required)} />

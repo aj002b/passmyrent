@@ -11,6 +11,7 @@ import { InputField } from "@/components/InputField";
 import { AnimatedStatCard } from "@/components/Motion";
 import { ResultCard } from "@/components/ResultCard";
 import { SelectField } from "@/components/SelectField";
+import { useCalculatorResultTracking } from "@/lib/analytics";
 import {
   calculateAnnualMultiplierRequirement,
   calculateDifference,
@@ -134,6 +135,13 @@ export function RentReferencingCalculator() {
   const required3x = monthlyRent * 3 * 12;
   const currency = (value: number) => formatCurrencyByCountry(value, country.code);
 
+  useCalculatorResultTracking({
+    calculatorName: "Rent Affordability Calculator",
+    selectedCountry: country.code,
+    resultSignal: result.title,
+    enabled: showStats,
+  });
+
   return (
     <CalculatorLayout
       form={
@@ -144,7 +152,11 @@ export function RentReferencingCalculator() {
             description="This changes the example affordability method, currency, and support-person wording."
             columns="grid-cols-1"
           >
-            <CountrySelector country={country} onChange={setCountryCode} />
+            <CountrySelector
+              country={country}
+              onChange={setCountryCode}
+              calculatorName="Rent Affordability Calculator"
+            />
           </FormSection>
 
           <FormSection

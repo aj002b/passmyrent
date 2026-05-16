@@ -11,6 +11,7 @@ import { InputField } from "@/components/InputField";
 import { AnimatedStatCard } from "@/components/Motion";
 import { ResultCard } from "@/components/ResultCard";
 import { SelectField } from "@/components/SelectField";
+import { useCalculatorResultTracking } from "@/lib/analytics";
 import {
   formatCurrencyByCountry,
   hasNegativeValue,
@@ -100,6 +101,15 @@ export function MoveInCostCalculator() {
         ? "Rent and cost fields cannot be negative."
         : "Add the rent amount to estimate deposit and first upfront costs.";
 
+  const hasResult = monthlyRent > 0 && !negativeInput;
+
+  useCalculatorResultTracking({
+    calculatorName: "Move-In Cost Calculator",
+    selectedCountry: country.code,
+    resultSignal: hasResult ? "Estimated total" : title,
+    enabled: hasResult,
+  });
+
   return (
     <CalculatorLayout
       form={
@@ -110,7 +120,11 @@ export function MoveInCostCalculator() {
             description="This changes currency, rent-frequency options, and local fee wording."
             columns="grid-cols-1"
           >
-            <CountrySelector country={country} onChange={setCountryCode} />
+            <CountrySelector
+              country={country}
+              onChange={setCountryCode}
+              calculatorName="Move-In Cost Calculator"
+            />
           </FormSection>
 
           <FormSection
@@ -149,8 +163,8 @@ export function MoveInCostCalculator() {
       }
       result={
         <>
-          <ResultCard title={title} description={description} tone={negativeInput ? "warning" : "neutral"} badgeLabel={monthlyRent > 0 && !negativeInput ? "Estimated total" : "Add details"}>
-            {monthlyRent > 0 && !negativeInput ? (
+          <ResultCard title={title} description={description} tone={negativeInput ? "warning" : "neutral"} badgeLabel={hasResult ? "Estimated total" : "Add details"}>
+            {hasResult ? (
               <div className="grid gap-3 sm:grid-cols-2">
                 <Metric label="Monthly rent estimate" value={currency(monthlyRent)} />
                 <Metric label="Weekly rent estimate" value={currency(weeklyRent)} />

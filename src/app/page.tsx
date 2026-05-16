@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { AdPlaceholder } from "@/components/AdPlaceholder";
 import { CalculatorCard } from "@/components/CalculatorCard";
 import { DisclaimerBox } from "@/components/DisclaimerBox";
@@ -8,6 +7,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { HomepageAffordabilityPreview } from "@/components/HomepageAffordabilityPreview";
 import { HeroRentCheckPreview } from "@/components/HeroRentCheckPreview";
 import { FadeUp, Stagger, StaggerItem } from "@/components/Motion";
+import { TrackedLink } from "@/components/TrackedLink";
 import { countries } from "@/lib/countries";
 import { tools, type FAQItem } from "@/lib/site";
 
@@ -67,18 +67,20 @@ export default function Home() {
               co-signer support, move-in costs, and rent splits for your country.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link
+              <TrackedLink
                 href="/rent-referencing-calculator"
                 className="btn-primary"
+                eventName="homepage_hero_affordability_click"
               >
                 Check my rent affordability
-              </Link>
-              <Link
+              </TrackedLink>
+              <TrackedLink
                 href="/guarantor-income-calculator"
                 className="btn-secondary"
+                eventName="homepage_hero_guarantor_click"
               >
                 Estimate guarantor income
-              </Link>
+              </TrackedLink>
             </div>
             <div className="mt-5 flex flex-wrap gap-2">
               {["No sign-up", "Free estimate", "Choose your country"].map((pill) => (

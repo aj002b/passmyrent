@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { InputField } from "@/components/InputField";
 import { SelectField } from "@/components/SelectField";
+import { trackRentReadyEvent } from "@/lib/analytics";
 import {
   formatCurrencyByCountry,
   getCountryAffordabilityResult,
@@ -98,6 +99,10 @@ export function HomepageAffordabilityPreview() {
             value={country.code}
             onChange={(value) => {
               setUserChangedCountry(true);
+              trackRentReadyEvent("country_selector_change", {
+                calculator_name: "Homepage quick affordability estimate",
+                selected_country: value as CountryCode,
+              });
               setCountryCode(value as CountryCode);
             }}
             options={countries.map((option) => ({
@@ -145,7 +150,17 @@ export function HomepageAffordabilityPreview() {
         <p className="mt-3 text-xs leading-5 text-[#748882]">
           {estimateDisclaimer}
         </p>
-        <Link href={breakdownHref} className="btn-primary mt-5 w-full">
+        <Link
+          href={breakdownHref}
+          className="btn-primary mt-5 w-full"
+          onClick={() => {
+            trackRentReadyEvent("quick_calculator_full_breakdown_click", {
+              calculator_name: "Homepage quick affordability estimate",
+              selected_country: country.code,
+              result_signal: result.title,
+            });
+          }}
+        >
           See full breakdown
         </Link>
       </div>
