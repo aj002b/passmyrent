@@ -28,11 +28,11 @@ export default function JointTenantPage() {
       <FAQJsonLd items={faqs} />
       <div className="mx-auto max-w-6xl space-y-10 px-4 py-10 sm:px-6 lg:px-8">
         <section className="max-w-3xl">
-          <p className="text-sm font-bold text-[#d9654f]">Last updated: May 2026</p>
-          <h1 className="mt-3 text-4xl font-bold leading-tight text-[#17312b]">
+          <p className="text-sm font-bold text-[#0F766E]">Last updated: May 2026</p>
+          <h1 className="mt-3 text-4xl font-bold leading-tight text-[#0F2E2B]">
             Joint tenant affordability calculator
           </h1>
-          <p className="mt-4 text-lg leading-8 text-[#5f746f]">
+          <p className="mt-4 text-lg leading-8 text-[#5F726C]">
             Combine annual incomes for couples, friends, or flatmates and compare
             them with example rent affordability checks for your selected country.
           </p>

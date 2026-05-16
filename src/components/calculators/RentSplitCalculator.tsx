@@ -168,7 +168,7 @@ export function RentSplitCalculator() {
             columns="md:grid-cols-2"
           >
             {Array.from({ length: count }, (_, index) => (
-              <div key={index} className="rounded-2xl border border-[#d7e5df] bg-white p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]">
+              <div key={index} className="rounded-2xl border border-[#D6E7E1] bg-white p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]">
                 <InputField id={`tenant-name-${index}`} label={`Tenant ${index + 1} name`} value={names[index]} onChange={(value) => updateList(setNames, names, index, value)} placeholder={`Tenant ${index + 1}`} type="text" />
                 {splitMethod === "income" ? (
                   <div className="mt-4">
@@ -189,9 +189,9 @@ export function RentSplitCalculator() {
         <>
           <ResultCard title={title} description={description} tone={tone} badgeLabel={hasResult ? "Estimated split" : "Add details"}>
             {hasResult ? (
-              <div className="overflow-x-auto rounded-2xl border border-[#dbe8e2] bg-white/82 shadow-[0_8px_18px_rgba(23,49,43,0.035)]">
+              <div className="overflow-x-auto rounded-2xl border border-[#D6E7E1] bg-white/82 shadow-[0_8px_18px_rgba(15,46,43,0.035)]">
                 <table className="w-full min-w-[420px] text-left text-sm">
-                  <thead className="border-b border-[#dbe8e2] text-[#5f746f]">
+                  <thead className="border-b border-[#D6E7E1] text-[#5F726C]">
                     <tr>
                       <th className="px-4 py-3">Tenant</th>
                       <th className="px-4 py-3">Monthly share</th>
@@ -200,8 +200,8 @@ export function RentSplitCalculator() {
                   </thead>
                   <tbody>
                     {rows.map((row) => (
-                      <tr key={row.name} className="border-b border-[#edf4f1] last:border-0">
-                        <td className="px-4 py-3 font-bold text-[#17312b]">{row.name}</td>
+                      <tr key={row.name} className="border-b border-[#D6E7E1] last:border-0">
+                        <td className="px-4 py-3 font-bold text-[#0F2E2B]">{row.name}</td>
                         <td className="px-4 py-3">{currency(row.share)}</td>
                         <td className="px-4 py-3">{formatPercentage(row.percentage)}</td>
                       </tr>

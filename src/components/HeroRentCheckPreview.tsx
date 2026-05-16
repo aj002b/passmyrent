@@ -89,25 +89,25 @@ export function HeroRentCheckPreview() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: reduceMotion ? 0 : 0.32, ease: easeOut, delay: reduceMotion ? 0 : 0.08 }}
     >
-      <div className="rounded-[1.25rem] border border-[#d7e5df] bg-[#fbfdfc] p-5">
+      <div className="rounded-[1.25rem] border border-[#D6E7E1] bg-[#F7FAF8] p-5">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-sm font-extrabold text-[#17312b]">
+            <p className="text-sm font-extrabold text-[#0F2E2B]">
               Monthly rent readiness
             </p>
-            <p className="mt-1 text-sm text-[#5f746f]">
+            <p className="mt-1 text-sm text-[#5F726C]">
               A quick preview of a country-aware affordability signal.
             </p>
           </div>
-          <span className="rounded-full border border-[#c7ddd5] bg-[#e8f5ef] px-3 py-1 text-xs font-extrabold text-[#116a5b]">
+          <span className="rounded-full border border-[#D6E7E1] bg-[#DFF4EC] px-3 py-1 text-xs font-extrabold text-[#0F766E]">
             {example.badge}
           </span>
         </div>
 
-        <div className="mt-4 flex items-center gap-2 rounded-xl border border-[#dbe8e2] bg-white/78 px-3 py-2 text-xs font-bold text-[#5f746f]">
+        <div className="mt-4 flex items-center gap-2 rounded-xl border border-[#D6E7E1] bg-white/78 px-3 py-2 text-xs font-bold text-[#5F726C]">
           <motion.span
             aria-hidden="true"
-            className="h-2 w-2 rounded-full bg-[#116a5b]"
+            className="h-2 w-2 rounded-full bg-[#0F766E]"
             animate={
               reduceMotion
                 ? undefined
@@ -136,7 +136,7 @@ export function HeroRentCheckPreview() {
           {example.rows.map(([label, value], index) => (
             <motion.div
               key={label}
-              className="flex items-center justify-between rounded-xl border border-[#e3eee9] bg-white px-4 py-3 shadow-[0_8px_18px_rgba(23,49,43,0.035)]"
+              className="flex items-center justify-between rounded-xl border border-[#D6E7E1] bg-white px-4 py-3 shadow-[0_8px_18px_rgba(15,46,43,0.035)]"
               initial={reduceMotion ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -145,17 +145,17 @@ export function HeroRentCheckPreview() {
                 delay: reduceMotion ? 0 : 0.28 + index * 0.14,
               }}
             >
-              <span className="text-sm font-semibold text-[#5f746f]">
+              <span className="text-sm font-semibold text-[#5F726C]">
                 {label}
               </span>
-              <span className="text-sm font-bold text-[#17312b]">{value}</span>
+              <span className="text-sm font-bold text-[#0F2E2B]">{value}</span>
             </motion.div>
           ))}
         </div>
 
         <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-[#e4eee9]">
           <motion.div
-            className="h-full rounded-full bg-[linear-gradient(90deg,#116a5b,#9ccfbd)]"
+            className="h-full rounded-full bg-[linear-gradient(90deg,#0F766E,#DFF4EC)]"
             initial={reduceMotion ? false : { width: "0%" }}
             animate={{ width: "100%" }}
             transition={{
@@ -169,41 +169,41 @@ export function HeroRentCheckPreview() {
         <AnimatePresence>
           {showFinalState ? (
             <motion.div
-              className="mt-5 rounded-2xl border border-[#c7ddd5] bg-[linear-gradient(135deg,#effaf4_0%,#ffffff_100%)] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
+              className="mt-5 rounded-2xl border border-[#D6E7E1] bg-[linear-gradient(135deg,#DFF4EC_0%,#ffffff_100%)] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
               initial={reduceMotion ? false : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={reduceMotion ? undefined : { opacity: 0, y: -6 }}
               transition={{ duration: reduceMotion ? 0 : 0.24, ease: easeOut }}
             >
-              <span className="inline-flex rounded-full border border-[#b7d4ca] bg-white px-3 py-1 text-xs font-extrabold text-[#116a5b] shadow-sm">
+              <span className="inline-flex rounded-full border border-[#D6E7E1] bg-white px-3 py-1 text-xs font-extrabold text-[#0F766E] shadow-sm">
                 {example.result}
               </span>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-xl border border-[#dbe8e2] bg-white/80 p-3">
-                  <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#748882]">
+                <div className="rounded-xl border border-[#D6E7E1] bg-white/80 p-3">
+                  <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#5F726C]">
                     Method
                   </p>
-                  <p className="mt-1 text-sm font-extrabold text-[#17312b]">
+                  <p className="mt-1 text-sm font-extrabold text-[#0F2E2B]">
                     Country-aware
                   </p>
                 </div>
-                <div className="rounded-xl border border-[#dbe8e2] bg-white/80 p-3">
-                  <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#748882]">
+                <div className="rounded-xl border border-[#D6E7E1] bg-white/80 p-3">
+                  <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#5F726C]">
                     Privacy
                   </p>
-                  <p className="mt-1 text-sm font-extrabold text-[#17312b]">
+                  <p className="mt-1 text-sm font-extrabold text-[#0F2E2B]">
                     Browser only
                   </p>
                 </div>
               </div>
-              <p className="mt-4 text-sm leading-6 text-[#35534c]">
+              <p className="mt-4 text-sm leading-6 text-[#5F726C]">
                 Results are estimates only. Some landlords may ask for a
                 guarantor or co-signer.
               </p>
               <TrackedLink
                 href="/rent-referencing-calculator"
                 eventName="homepage_hero_affordability_click"
-                className="mt-4 inline-flex w-full items-center justify-center rounded-2xl border border-[#b7d4ca] bg-white px-4 py-3 text-sm font-extrabold text-[#0b4c43] transition hover:bg-[#eef8f3] focus:outline-none focus:ring-2 focus:ring-[#116a5b] focus:ring-offset-2"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-2xl border border-[#D6E7E1] bg-white px-4 py-3 text-sm font-extrabold text-[#0F2E2B] transition hover:bg-[#DFF4EC] hover:text-[#0B5E58] focus:outline-none focus:ring-2 focus:ring-[#0F766E] focus:ring-offset-2"
               >
                 See full breakdown
               </TrackedLink>

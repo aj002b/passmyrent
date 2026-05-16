@@ -14,13 +14,13 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="mx-auto max-w-6xl space-y-10 px-4 py-10 sm:px-6 lg:px-8">
       <section className="max-w-3xl">
-        <p className="text-sm font-bold text-[#d9654f]">
+        <p className="text-sm font-bold text-[#0F766E]">
           Last updated: {siteConfig.lastUpdated}
         </p>
-        <h1 className="mt-3 text-4xl font-bold leading-tight text-[#17312b]">
+        <h1 className="mt-3 text-4xl font-bold leading-tight text-[#0F2E2B]">
           Privacy Policy
         </h1>
-        <p className="mt-4 text-lg leading-8 text-[#5f746f]">
+        <p className="mt-4 text-lg leading-8 text-[#5F726C]">
           RentReadyCheck is an informational calculator website for renters.
           This page explains how the site is intended to handle calculator inputs
           and privacy-related questions.
