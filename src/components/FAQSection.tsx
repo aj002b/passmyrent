@@ -15,19 +15,19 @@ export function FAQSection({ items }: { items: FAQItem[] }) {
         {items.map((item) => (
           <details
             key={item.question}
-            className="group rounded-2xl border border-[#D6E7E1] bg-white shadow-[0_8px_24px_rgba(15,46,43,0.04)] transition hover:-translate-y-0.5 hover:border-[#0F766E]/35 hover:shadow-[0_14px_32px_rgba(15,46,43,0.08)] open:border-[#0F766E]/45 open:bg-[#F7FAF8]"
+            className="group rounded-2xl border border-[#D6E7E1] bg-white shadow-[0_8px_24px_rgba(15,46,43,0.035)] transition duration-200 hover:-translate-y-0.5 hover:border-[#0F766E]/35 hover:shadow-[0_14px_32px_rgba(15,46,43,0.07)] open:border-[#0F766E]/45 open:bg-[#F7FAF8]"
           >
-            <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-5 py-4 text-base font-extrabold text-[#0F2E2B] outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#0F766E] [&::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-base font-extrabold text-[#0F2E2B] outline-none transition hover:text-[#0B5E58] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#0F766E] sm:px-6 sm:py-5 [&::-webkit-details-marker]:hidden">
               <span className="leading-6">{item.question}</span>
               <span
                 aria-hidden="true"
-                className="relative mt-0.5 h-8 w-8 shrink-0 rounded-full border border-[#D6E7E1] bg-[#DFF4EC] text-[#0F766E] transition group-hover:border-[#0F766E] group-open:rotate-180 group-open:bg-[#0F766E] group-open:text-white"
+                className="relative h-8 w-8 shrink-0 rounded-full border border-[#D6E7E1] bg-[#DFF4EC] text-[#0F766E] transition duration-200 group-hover:border-[#0F766E] group-open:rotate-180 group-open:bg-[#0F766E] group-open:text-white"
               >
                 <span className="absolute left-1/2 top-1/2 h-0.5 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-current" />
                 <span className="absolute left-1/2 top-1/2 h-3 w-0.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-current transition group-open:opacity-0" />
               </span>
             </summary>
-            <div className="border-t border-[#D6E7E1] px-5 pb-5 pt-3">
+            <div className="border-t border-[#D6E7E1] px-5 pb-5 pt-3 motion-safe:animate-[faqReveal_180ms_ease-out] sm:px-6">
               <p className="max-w-3xl leading-7 text-[#5F726C]">{item.answer}</p>
             </div>
           </details>
