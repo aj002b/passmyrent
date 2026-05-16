@@ -14,6 +14,7 @@
   --ring: #9fd0c2;
   --shadow-card: 0 18px 45px rgba(23, 49, 43, 0.08);
   --shadow-soft: 0 10px 28px rgba(23, 49, 43, 0.06);
+  --shadow-premium: 0 24px 70px rgba(23, 49, 43, 0.1);
 }
 
 @theme inline {
@@ -67,13 +68,13 @@ button {
 
 @layer components {
   .site-container {
-    @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 
   .premium-card {
     border: 1px solid color-mix(in srgb, var(--border) 86%, white);
     background: linear-gradient(180deg, #ffffff 0%, #fbfdfc 100%);
-    border-radius: 1.25rem;
+    border-radius: 1.35rem;
     box-shadow: var(--shadow-soft);
   }
 
@@ -82,8 +83,8 @@ button {
     background:
       radial-gradient(circle at top left, rgba(232, 245, 239, 0.9), transparent 34rem),
       linear-gradient(180deg, #ffffff 0%, #fbfdfc 100%);
-    border-radius: 1.5rem;
-    box-shadow: var(--shadow-card);
+    border-radius: 1.6rem;
+    box-shadow: var(--shadow-premium);
   }
 
   .form-card {
@@ -123,9 +124,9 @@ button {
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-xl px-5 py-3 text-center font-bold text-white transition focus:outline-none focus:ring-2 focus:ring-offset-4;
-    background: linear-gradient(180deg, #147867 0%, #0f5f53 100%);
-    box-shadow: 0 14px 28px rgba(17, 106, 91, 0.22);
+    @apply inline-flex items-center justify-center rounded-2xl px-5 py-3 text-center font-extrabold text-white transition focus:outline-none focus:ring-2 focus:ring-offset-4;
+    background: linear-gradient(180deg, #157d6c 0%, #0b4c43 100%);
+    box-shadow: 0 16px 34px rgba(17, 106, 91, 0.24);
   }
 
   .btn-primary:hover {
@@ -134,7 +135,7 @@ button {
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-xl border px-5 py-3 text-center font-bold transition focus:outline-none focus:ring-2 focus:ring-offset-4;
+    @apply inline-flex items-center justify-center rounded-2xl border px-5 py-3 text-center font-extrabold transition focus:outline-none focus:ring-2 focus:ring-offset-4;
     border-color: #b7d4ca;
     background: rgba(255, 255, 255, 0.86);
     color: var(--primary);
@@ -148,10 +149,19 @@ button {
   }
 
   .trust-pill {
-    @apply inline-flex items-center rounded-full border px-3 py-1.5 text-sm font-bold;
+    @apply inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-bold;
     border-color: #c7ddd5;
     background: rgba(255, 255, 255, 0.78);
     color: #35534c;
     box-shadow: 0 8px 18px rgba(23, 49, 43, 0.04);
+  }
+
+  .trust-pill::before {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: var(--primary);
+    box-shadow: 0 0 0 3px rgba(17, 106, 91, 0.12);
   }
 }

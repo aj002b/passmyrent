@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { TrackedLink } from "@/components/TrackedLink";
 import { getDetectedCountry } from "@/lib/detectCountry";
 import type { CountryCode } from "@/lib/countries";
 
@@ -19,7 +20,6 @@ const examples: Record<
       ["Country", "United Kingdom"],
       ["Monthly rent", "£1,200"],
       ["Combined income", "£42,000"],
-      ["Check", "36x monthly rent"],
     ],
     result: "Possible signal",
   },
@@ -29,7 +29,6 @@ const examples: Record<
       ["Country", "United States"],
       ["Monthly rent", "$1,500"],
       ["Combined income", "$60,000"],
-      ["Check", "3x monthly rent"],
     ],
     result: "Strong signal",
   },
@@ -39,7 +38,6 @@ const examples: Record<
       ["Country", "Canada"],
       ["Monthly rent", "$1,800"],
       ["Combined income", "$72,000"],
-      ["Check", "30% rent-to-income"],
     ],
     result: "Possible signal",
   },
@@ -49,7 +47,6 @@ const examples: Record<
       ["Country", "Australia"],
       ["Weekly rent", "$550"],
       ["Combined income", "$95,000"],
-      ["Check", "30% rent-to-income"],
     ],
     result: "Possible signal",
   },
@@ -59,7 +56,6 @@ const examples: Record<
       ["Country", "Other / Rest of world"],
       ["Monthly rent", "$1,200"],
       ["Combined income", "$48,000"],
-      ["Check", "generic 30% rent-to-income"],
     ],
     result: "Possible signal",
   },
@@ -93,14 +89,14 @@ export function HeroRentCheckPreview() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: reduceMotion ? 0 : 0.32, ease: easeOut, delay: reduceMotion ? 0 : 0.08 }}
     >
-      <div className="rounded-[1.1rem] border border-[#d7e5df] bg-[#fbfdfc] p-5">
+      <div className="rounded-[1.25rem] border border-[#d7e5df] bg-[#fbfdfc] p-5">
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-sm font-extrabold text-[#17312b]">
-              Example rent check
+              Monthly rent readiness
             </p>
             <p className="mt-1 text-sm text-[#5f746f]">
-              Country-specific assumptions in a simple result card.
+              A quick preview of a country-aware affordability signal.
             </p>
           </div>
           <span className="rounded-full border border-[#c7ddd5] bg-[#e8f5ef] px-3 py-1 text-xs font-extrabold text-[#116a5b]">
@@ -136,7 +132,7 @@ export function HeroRentCheckPreview() {
           </AnimatePresence>
         </div>
 
-        <div className="mt-5 space-y-3">
+        <div className="mt-5 grid gap-3">
           {example.rows.map(([label, value], index) => (
             <motion.div
               key={label}
@@ -173,19 +169,44 @@ export function HeroRentCheckPreview() {
         <AnimatePresence>
           {showFinalState ? (
             <motion.div
-              className="mt-5 rounded-2xl border border-[#e9c4ad] bg-[linear-gradient(180deg,#fff7ee_0%,#ffffff_100%)] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
+              className="mt-5 rounded-2xl border border-[#c7ddd5] bg-[linear-gradient(135deg,#effaf4_0%,#ffffff_100%)] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
               initial={reduceMotion ? false : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={reduceMotion ? undefined : { opacity: 0, y: -6 }}
               transition={{ duration: reduceMotion ? 0 : 0.24, ease: easeOut }}
             >
-              <span className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-extrabold text-[#b6533f] shadow-sm">
+              <span className="inline-flex rounded-full border border-[#b7d4ca] bg-white px-3 py-1 text-xs font-extrabold text-[#116a5b] shadow-sm">
                 {example.result}
               </span>
-              <p className="mt-4 text-sm leading-6 text-[#6a5148]">
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-xl border border-[#dbe8e2] bg-white/80 p-3">
+                  <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#748882]">
+                    Method
+                  </p>
+                  <p className="mt-1 text-sm font-extrabold text-[#17312b]">
+                    Country-aware
+                  </p>
+                </div>
+                <div className="rounded-xl border border-[#dbe8e2] bg-white/80 p-3">
+                  <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#748882]">
+                    Privacy
+                  </p>
+                  <p className="mt-1 text-sm font-extrabold text-[#17312b]">
+                    Browser only
+                  </p>
+                </div>
+              </div>
+              <p className="mt-4 text-sm leading-6 text-[#35534c]">
                 Results are estimates only. Some landlords may ask for a
                 guarantor or co-signer.
               </p>
+              <TrackedLink
+                href="/rent-referencing-calculator"
+                eventName="homepage_hero_affordability_click"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-2xl border border-[#b7d4ca] bg-white px-4 py-3 text-sm font-extrabold text-[#0b4c43] transition hover:bg-[#eef8f3] focus:outline-none focus:ring-2 focus:ring-[#116a5b] focus:ring-offset-2"
+              >
+                See full breakdown
+              </TrackedLink>
             </motion.div>
           ) : null}
         </AnimatePresence>
