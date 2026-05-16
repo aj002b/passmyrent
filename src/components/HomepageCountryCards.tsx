@@ -2,7 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { countries, defaultCountryCode, type CountryCode } from "@/lib/countries";
+import {
+  countries,
+  defaultCountryCode,
+  type CountryCode,
+} from "@/lib/countries";
 import { getDetectedCountry } from "@/lib/detectCountry";
 
 const countryDescriptions: Record<CountryCode, string> = {
@@ -14,44 +18,39 @@ const countryDescriptions: Record<CountryCode, string> = {
 };
 
 export function HomepageCountryCards() {
-  const [selectedCountry, setSelectedCountry] =
+  const [activeCountry, setActiveCountry] =
     useState<CountryCode>(defaultCountryCode);
 
   useEffect(() => {
-    setSelectedCountry(getDetectedCountry());
+    setActiveCountry(getDetectedCountry());
   }, []);
 
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
       {countries.map((country) => {
-        const isActive = country.code === selectedCountry;
+        const isActive = country.code === activeCountry;
 
         return (
           <Link
             key={country.code}
             href={`/rent-referencing-calculator?country=${country.code.toLowerCase()}`}
-            className={`group rounded-2xl border bg-white p-4 shadow-[0_10px_24px_rgba(15,46,43,0.045)] transition duration-200 hover:-translate-y-1 hover:border-[#0F766E]/45 hover:shadow-[0_18px_40px_rgba(15,46,43,0.1)] focus:outline-none focus:ring-2 focus:ring-[#0F766E] focus:ring-offset-4 ${
+            className={`group flex min-h-[6.2rem] items-start gap-3 rounded-2xl border bg-white p-3.5 shadow-[0_10px_24px_rgba(11,47,53,0.045)] transition duration-200 hover:-translate-y-1 hover:border-[#0E5F67]/45 hover:shadow-[0_18px_40px_rgba(11,47,53,0.1)] focus:outline-none focus:ring-2 focus:ring-[#0E5F67] focus:ring-offset-4 sm:p-4 ${
               isActive
-                ? "border-[#0F766E]/55 ring-1 ring-[#0F766E]/20"
-                : "border-[#D6E7E1]"
+                ? "border-[#0E5F67]/65 shadow-[0_18px_44px_rgba(14,95,103,0.13)] ring-2 ring-[#0E5F67]/10"
+                : "border-[#D7E5EA]"
             }`}
           >
-            <div className="flex items-center justify-between gap-3">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-[#D6E7E1] bg-[#DFF4EC] text-xs font-extrabold text-[#0F766E] transition group-hover:border-[#0F766E]/40">
-                {country.code}
+            <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#D7E5EA] bg-[#E8F3F6] text-xs font-extrabold text-[#0E5F67] transition group-hover:border-[#0E5F67]/40 group-hover:bg-white">
+              {country.code}
+            </span>
+            <span className="min-w-0">
+              <span className="block text-sm font-extrabold leading-5 text-[#0B2F35]">
+                {country.name}
               </span>
-              {isActive ? (
-                <span className="rounded-full bg-[#DFF4EC] px-2.5 py-1 text-[0.68rem] font-extrabold uppercase tracking-[0.08em] text-[#0B5E58]">
-                  Selected
-                </span>
-              ) : null}
-            </div>
-            <h3 className="mt-3 text-sm font-extrabold text-[#0F2E2B]">
-              {country.name}
-            </h3>
-            <p className="mt-1 text-xs leading-5 text-[#5F726C]">
-              {countryDescriptions[country.code]}
-            </p>
+              <span className="mt-1 block text-sm leading-5 text-[#5D6D75]">
+                {countryDescriptions[country.code]}
+              </span>
+            </span>
           </Link>
         );
       })}

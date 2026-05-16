@@ -31,33 +31,33 @@ export function CalculatorCard({
           calculator_name: title,
         });
       }}
-      className="premium-card group relative flex h-full min-h-[14.25rem] overflow-hidden p-5 transition duration-200 hover:-translate-y-1 hover:border-[#0F766E]/35 hover:shadow-[0_18px_44px_rgba(15,46,43,0.12)] focus:outline-none focus:ring-2 focus:ring-[#0F766E] focus:ring-offset-4 sm:p-6"
+      className="premium-card group relative flex h-full min-h-[14.25rem] overflow-hidden p-5 transition duration-200 hover:-translate-y-1 hover:border-[#0E5F67]/35 hover:shadow-[0_18px_44px_rgba(11,47,53,0.12)] focus:outline-none focus:ring-2 focus:ring-[#0E5F67] focus:ring-offset-4 sm:p-6"
     >
-      <span className="absolute right-4 top-4 h-14 w-14 rounded-full bg-[#DFF4EC]/80 blur-2xl transition group-hover:bg-[#DFF4EC]" />
+      <span className="absolute right-4 top-4 h-14 w-14 rounded-full bg-[#E8F3F6]/80 blur-2xl transition group-hover:bg-[#E8F3F6]" />
       <div className="relative flex min-h-full w-full flex-col">
         <div className="flex items-start gap-4">
           {badge ? (
-            <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-[#D6E7E1] bg-[#DFF4EC] text-sm font-extrabold text-[#0F766E] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] transition group-hover:border-[#0F766E] group-hover:bg-[#DFF4EC]">
+            <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-[#D7E5EA] bg-[#E8F3F6] text-sm font-extrabold text-[#0E5F67] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] transition group-hover:border-[#0E5F67] group-hover:bg-[#E8F3F6]">
               {badge}
             </span>
           ) : null}
           <div className="min-w-0">
-            <h3 className="text-base font-extrabold leading-snug tracking-[-0.018em] text-[#0F2E2B] sm:text-[1.05rem]">
+            <h3 className="text-base font-extrabold leading-snug tracking-[-0.018em] text-[#0B2F35] sm:text-[1.05rem]">
               {title}
             </h3>
           </div>
         </div>
-        <p className="mt-4 min-h-[3rem] text-sm leading-6 text-[#5F726C]">
+        <p className="mt-4 min-h-[3rem] text-sm leading-6 text-[#5D6D75]">
           {description}
         </p>
         {bestFor ? (
-          <p className="mt-3 min-h-[3.25rem] rounded-xl border border-[#D6E7E1] bg-white/80 px-3 py-2 text-sm leading-5 text-[#5F726C]">
-            <span className="font-extrabold text-[#0F2E2B]">Best for:</span>{" "}
+          <p className="mt-3 min-h-[3.25rem] rounded-xl border border-[#D7E5EA] bg-white/80 px-3 py-2 text-sm leading-5 text-[#5D6D75]">
+            <span className="font-extrabold text-[#0B2F35]">Best for:</span>{" "}
             {bestFor}
           </p>
         ) : null}
         <div className="mt-auto pt-4">
-          <span className="inline-flex h-10 min-w-40 items-center justify-center rounded-full border border-[#D6E7E1] bg-[#DFF4EC] px-5 text-center text-sm font-extrabold text-[#0F2E2B] shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] transition group-hover:border-[#0F766E]/45 group-hover:bg-white group-hover:text-[#0B5E58] group-focus-visible:border-[#0F766E]">
+          <span className="inline-flex h-10 min-w-40 items-center justify-center rounded-full border border-[#D7E5EA] bg-[#E8F3F6] px-5 text-center text-sm font-extrabold text-[#0B2F35] shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] transition group-hover:border-[#0E5F67]/45 group-hover:bg-white group-hover:text-[#0A3F49] group-focus-visible:border-[#0E5F67]">
             {label}
           </span>
         </div>

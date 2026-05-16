@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7faf8;
-  --foreground: #0f2e2b;
-  --muted: #5f726c;
+  --background: #f6fafb;
+  --foreground: #0b2f35;
+  --muted: #5d6d75;
   --card: #ffffff;
-  --border: #d6e7e1;
-  --primary: #0f766e;
-  --primary-dark: #0b5e58;
-  --accent: #0f766e;
-  --soft-blue: #f0f7f5;
-  --soft-green: #dff4ec;
-  --ring: #a7d8ce;
-  --shadow-card: 0 18px 45px rgba(15, 46, 43, 0.08);
-  --shadow-soft: 0 10px 28px rgba(15, 46, 43, 0.06);
-  --shadow-premium: 0 24px 70px rgba(15, 46, 43, 0.1);
+  --border: #d7e5ea;
+  --primary: #0e5f67;
+  --primary-dark: #0a3f49;
+  --accent: #0e5f67;
+  --soft-blue: #e8f3f6;
+  --soft-green: #e6f4f1;
+  --ring: #9bcbd3;
+  --shadow-card: 0 18px 45px rgba(11, 47, 53, 0.08);
+  --shadow-soft: 0 10px 28px rgba(11, 47, 53, 0.06);
+  --shadow-premium: 0 24px 70px rgba(11, 47, 53, 0.1);
 }
 
 @theme inline {
@@ -63,8 +63,8 @@ button {
 }
 
 ::selection {
-  background: #dff4ec;
-  color: #0f2e2b;
+  background: #e8f3f6;
+  color: #0b2f35;
 }
 
 .prose h2 {
@@ -103,7 +103,7 @@ button {
   .premium-card-strong {
     border: 1px solid color-mix(in srgb, var(--border) 92%, white);
     background:
-      radial-gradient(circle at top left, rgba(223, 244, 236, 0.9), transparent 34rem),
+      radial-gradient(circle at top left, rgba(232, 243, 246, 0.94), transparent 34rem),
       linear-gradient(180deg, var(--card) 0%, var(--background) 100%);
     border-radius: 1.6rem;
     box-shadow: var(--shadow-premium);
@@ -134,21 +134,21 @@ button {
   }
 
   .field-control:hover {
-    border-color: #a7d8ce;
-    background: #f7faf8;
+    border-color: var(--ring);
+    background: #f6fafb;
   }
 
   .field-control:focus {
     border-color: var(--primary);
     box-shadow:
-      0 0 0 4px rgba(15, 118, 110, 0.16),
+      0 0 0 4px rgba(14, 95, 103, 0.16),
       inset 0 1px 0 rgba(255, 255, 255, 0.75);
   }
 
   .btn-primary {
     @apply inline-flex items-center justify-center rounded-2xl px-5 py-3 text-center font-extrabold text-white transition focus:outline-none focus:ring-2 focus:ring-offset-4;
     background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
-    box-shadow: 0 16px 34px rgba(15, 118, 110, 0.24);
+    box-shadow: 0 16px 34px rgba(14, 95, 103, 0.24);
   }
 
   .btn-primary:hover {
@@ -161,7 +161,7 @@ button {
     border-color: var(--border);
     background: rgba(255, 255, 255, 0.86);
     color: var(--primary);
-    box-shadow: 0 10px 24px rgba(15, 46, 43, 0.06);
+    box-shadow: 0 10px 24px rgba(11, 47, 53, 0.06);
   }
 
   .btn-secondary:hover {
@@ -175,7 +175,7 @@ button {
     border-color: var(--border);
     background: rgba(255, 255, 255, 0.78);
     color: var(--muted);
-    box-shadow: 0 8px 18px rgba(15, 46, 43, 0.04);
+    box-shadow: 0 8px 18px rgba(11, 47, 53, 0.04);
   }
 
   .trust-pill::before {
@@ -184,6 +184,6 @@ button {
     height: 0.45rem;
     border-radius: 999px;
     background: var(--primary);
-    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
+    box-shadow: 0 0 0 3px rgba(14, 95, 103, 0.12);
   }
 }

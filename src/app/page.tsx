@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { AdPlaceholder } from "@/components/AdPlaceholder";
 import { CalculatorCard } from "@/components/CalculatorCard";
 import { DisclaimerBox } from "@/components/DisclaimerBox";
 import { FAQJsonLd } from "@/components/FAQJsonLd";
@@ -78,18 +77,18 @@ export default function Home() {
   return (
     <>
       <FAQJsonLd items={faqs} />
-      <section className="relative overflow-hidden border-b border-[#D6E7E1] bg-[radial-gradient(circle_at_15%_8%,rgba(223,244,236,0.95),transparent_30rem),radial-gradient(circle_at_88%_12%,rgba(247,250,248,0.95),transparent_28rem),linear-gradient(135deg,#F7FAF8_0%,#DFF4EC_52%,#F7FAF8_100%)]">
-        <div className="pointer-events-none absolute right-[-10rem] top-[-10rem] h-96 w-96 rounded-full bg-[#DFF4EC]/55 blur-3xl" />
-        <div className="pointer-events-none absolute bottom-[-12rem] left-[38%] h-80 w-80 rounded-full bg-white/80 blur-3xl" />
-        <div className="site-container relative grid gap-8 py-7 sm:py-10 lg:grid-cols-[1.02fr_0.88fr] lg:items-center lg:py-16">
+      <section className="relative overflow-hidden border-b border-[#D7E5EA] bg-[radial-gradient(circle_at_16%_12%,rgba(232,243,246,0.95),transparent_30rem),radial-gradient(circle_at_82%_6%,rgba(214,232,239,0.9),transparent_26rem),linear-gradient(135deg,#F6FAFB_0%,#FFFFFF_48%,#E8F3F6_100%)]">
+        <div className="pointer-events-none absolute right-[-12rem] top-[-12rem] h-[30rem] w-[30rem] rounded-full bg-[#E8F3F6]/80 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-[-14rem] left-[32%] h-96 w-96 rounded-full bg-white/85 blur-3xl" />
+        <div className="site-container relative grid gap-8 py-7 sm:py-10 lg:grid-cols-[1.03fr_0.87fr] lg:items-center lg:py-16">
           <FadeUp>
-            <p className="inline-flex rounded-full border border-[#D6E7E1] bg-white/75 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.12em] text-[#0F766E] shadow-[0_10px_24px_rgba(15,46,43,0.05)]">
+            <p className="inline-flex rounded-full border border-[#D7E5EA] bg-white/75 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.12em] text-[#0E5F67] shadow-[0_10px_24px_rgba(11,47,53,0.05)]">
               Global rent affordability tools
             </p>
-            <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[1.02] tracking-[-0.06em] text-[#0F2E2B] sm:text-5xl lg:text-[4.15rem]">
+            <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[1.02] tracking-[-0.06em] text-[#0B2F35] sm:text-5xl lg:text-[4.15rem]">
               Know what rent you can afford before you apply
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-[#5F726C] sm:text-lg sm:leading-8">
+            <p className="mt-5 max-w-2xl text-base leading-7 text-[#5D6D75] sm:text-lg sm:leading-8">
               Estimate rent affordability, joint tenant income, guarantor or
               co-signer support, move-in costs, and rent splits with
               country-aware checks.
@@ -122,11 +121,11 @@ export default function Home() {
             </div>
             <div className="mt-7 grid max-w-xl grid-cols-3 gap-3">
               {trustStats.map((stat) => (
-                <div key={stat.label} className="rounded-2xl border border-[#D6E7E1] bg-white/68 p-3 shadow-[0_10px_24px_rgba(15,46,43,0.05)]">
-                  <p className="text-xl font-extrabold tracking-[-0.03em] text-[#0F2E2B]">
+                <div key={stat.label} className="rounded-2xl border border-[#D7E5EA] bg-white/68 p-3 shadow-[0_10px_24px_rgba(11,47,53,0.05)]">
+                  <p className="text-xl font-extrabold tracking-[-0.03em] text-[#0B2F35]">
                     {stat.value}
                   </p>
-                  <p className="mt-1 text-xs font-bold leading-4 text-[#5F726C]">
+                  <p className="mt-1 text-xs font-bold leading-4 text-[#5D6D75]">
                     {stat.label}
                   </p>
                 </div>
@@ -141,15 +140,15 @@ export default function Home() {
       <div className="site-container space-y-12 py-10 sm:space-y-14 sm:py-12">
         <HomepageAffordabilityPreview />
 
-        <section className="grid gap-5 md:grid-cols-[0.72fr_1fr] md:items-center">
-          <div>
-            <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#0F766E]">
+        <section className="space-y-5 rounded-[1.75rem] border border-[#D7E5EA] bg-white/80 p-4 shadow-[0_18px_50px_rgba(11,47,53,0.06)] backdrop-blur sm:p-6">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#0E5F67]">
               Trusted by renters globally
             </p>
-            <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-[#0F2E2B]">
+            <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-[#0B2F35]">
               Start with the country you rent in
             </h2>
-            <p className="mt-2 max-w-md text-sm leading-6 text-[#5F726C]">
+            <p className="mt-2 text-sm leading-6 text-[#5D6D75]">
               We use browser settings for a helpful default, and you can change
               the country anytime.
             </p>
@@ -157,12 +156,15 @@ export default function Home() {
           <HomepageCountryCards />
         </section>
 
-        <section className="space-y-4">
-          <div>
-            <h2 className="text-2xl font-bold text-[#0F2E2B]">
+        <section className="space-y-5">
+          <div className="max-w-2xl">
+            <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#0E5F67]">
+              Plan with confidence
+            </p>
+            <h2 className="mt-2 text-3xl font-extrabold tracking-[-0.03em] text-[#0B2F35]">
               What can you check?
             </h2>
-            <p className="mt-2 max-w-2xl leading-7 text-[#5F726C]">
+            <p className="mt-2 max-w-2xl leading-7 text-[#5D6D75]">
               Start with the question that matches your rental application.
             </p>
           </div>
@@ -189,14 +191,14 @@ export default function Home() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="premium-card flex gap-4 p-4"
+                className="premium-card flex h-full gap-4 p-5 transition duration-200 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(11,47,53,0.09)]"
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#D6E7E1] bg-[#DFF4EC] text-sm font-extrabold text-[#0F766E]">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#D7E5EA] bg-[#E8F3F6] text-sm font-extrabold text-[#0E5F67]">
                   {item.marker}
                 </span>
                 <div>
-                  <h3 className="font-bold text-[#0F2E2B]">{item.title}</h3>
-                  <p className="mt-1 text-sm leading-6 text-[#5F726C]">
+                  <h3 className="font-bold text-[#0B2F35]">{item.title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-[#5D6D75]">
                     {item.description}
                   </p>
                 </div>
@@ -205,17 +207,15 @@ export default function Home() {
           </div>
         </section>
 
-        <AdPlaceholder />
-
         <section className="space-y-5">
           <div className="text-center">
-            <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#0F766E]">
+            <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#0E5F67]">
               Popular calculators
             </p>
-            <h2 className="mt-2 text-3xl font-extrabold tracking-[-0.03em] text-[#0F2E2B]">
+            <h2 className="mt-2 text-3xl font-extrabold tracking-[-0.03em] text-[#0B2F35]">
               Choose a calculator
             </h2>
-            <p className="mx-auto mt-2 max-w-2xl leading-7 text-[#5F726C]">
+            <p className="mx-auto mt-2 max-w-2xl leading-7 text-[#5D6D75]">
               Everything you need to sense-check rent, support options, upfront
               costs, and fair rent shares.
             </p>
@@ -231,11 +231,16 @@ export default function Home() {
           </Stagger>
         </section>
 
-        <section className="rounded-2xl border border-[#D6E7E1] bg-[linear-gradient(180deg,#DFF4EC_0%,#F7FAF8_100%)] p-6 shadow-[0_14px_34px_rgba(15,46,43,0.06)]">
-          <h2 className="text-3xl font-extrabold tracking-[-0.025em] text-[#0F2E2B]">
-            Common checks renters worry about
-          </h2>
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
+        <section className="rounded-[1.75rem] border border-[#D7E5EA] bg-[linear-gradient(135deg,#FFFFFF_0%,#E8F3F6_100%)] p-5 shadow-[0_18px_50px_rgba(11,47,53,0.06)] sm:p-6">
+          <div className="max-w-2xl">
+            <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#0E5F67]">
+              Common renter questions
+            </p>
+            <h2 className="mt-2 text-3xl font-extrabold tracking-[-0.025em] text-[#0B2F35]">
+              Checks renters worry about
+            </h2>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-3">
             {[
               "Whether income is enough for the rent",
               "Whether joint tenants can combine earnings",
@@ -244,7 +249,7 @@ export default function Home() {
               "How to split rent fairly with housemates",
               "Whether savings or self-employment may change the conversation",
             ].map((item) => (
-              <p key={item} className="rounded-lg border border-[#D6E7E1] bg-white p-4 text-sm font-semibold text-[#5F726C]">
+              <p key={item} className="rounded-2xl border border-[#D7E5EA] bg-white/82 p-4 text-sm font-semibold leading-6 text-[#5D6D75] shadow-[0_8px_22px_rgba(11,47,53,0.04)]">
                 {item}
               </p>
             ))}
@@ -253,20 +258,20 @@ export default function Home() {
 
         <section className="space-y-5 text-center">
           <div>
-            <h2 className="text-3xl font-extrabold tracking-[-0.03em] text-[#0F2E2B]">
+            <h2 className="text-3xl font-extrabold tracking-[-0.03em] text-[#0B2F35]">
               Why RentReadyCheck?
             </h2>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
             {trustReasons.map((item) => (
               <article key={item.title} className="premium-card p-5 text-left">
-                <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#D6E7E1] bg-[#DFF4EC] text-sm font-extrabold text-[#0F766E]">
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#D7E5EA] bg-[#E8F3F6] text-sm font-extrabold text-[#0E5F67]">
                   {item.marker}
                 </span>
-                <h3 className="mt-4 font-extrabold text-[#0F2E2B]">
+                <h3 className="mt-4 font-extrabold text-[#0B2F35]">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-sm leading-6 text-[#5F726C]">
+                <p className="mt-2 text-sm leading-6 text-[#5D6D75]">
                   {item.description}
                 </p>
               </article>

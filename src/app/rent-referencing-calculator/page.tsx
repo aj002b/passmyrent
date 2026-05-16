@@ -30,11 +30,11 @@ export default function RentReferencingPage() {
       <FAQJsonLd items={faqs} />
       <div className="mx-auto max-w-6xl space-y-10 px-4 py-10 sm:px-6 lg:px-8">
         <section className="max-w-3xl">
-          <p className="text-sm font-bold text-[#0F766E]">Last updated: May 2026</p>
-          <h1 className="mt-3 text-4xl font-bold leading-tight text-[#0F2E2B]">
+          <p className="text-sm font-bold text-[#0E5F67]">Last updated: May 2026</p>
+          <h1 className="mt-3 text-4xl font-bold leading-tight text-[#0B2F35]">
             Rent Affordability Calculator
           </h1>
-          <p className="mt-4 text-lg leading-8 text-[#5F726C]">
+          <p className="mt-4 text-lg leading-8 text-[#5D6D75]">
             Estimate whether your income may meet example rent affordability
             checks in the United Kingdom, United States, Canada, or Australia,
             or use Other / Rest of world as a rough budgeting estimate if your

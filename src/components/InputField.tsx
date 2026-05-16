@@ -27,13 +27,13 @@ export function InputField({
 }: InputFieldProps) {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-bold text-[#0F2E2B]">
+      <label htmlFor={id} className="block text-sm font-bold text-[#0B2F35]">
         {label}
         {required ? <span className="text-[#b84735]"> *</span> : null}
       </label>
       <div className="relative mt-2">
         {prefix ? (
-          <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#5F726C]">
+          <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#5D6D75]">
             {prefix}
           </span>
         ) : null}
@@ -52,7 +52,7 @@ export function InputField({
         />
       </div>
       {helpText ? (
-        <p id={`${id}-help`} className="mt-1.5 text-xs leading-5 text-[#5F726C]">
+        <p id={`${id}-help`} className="mt-1.5 text-xs leading-5 text-[#5D6D75]">
           {helpText}
         </p>
       ) : null}

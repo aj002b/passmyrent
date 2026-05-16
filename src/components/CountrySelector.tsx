@@ -46,7 +46,7 @@ export function CountrySelector({
         <AnimatePresence mode="wait" initial={false}>
           <motion.p
             key={country.code}
-            className="rounded-lg border border-[#D6E7E1] bg-[#F7FAF8] px-3 py-2 text-sm leading-6 text-[#5F726C]"
+            className="rounded-lg border border-[#D7E5EA] bg-[#F6FAFB] px-3 py-2 text-sm leading-6 text-[#5D6D75]"
             initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -4 }}
@@ -54,7 +54,7 @@ export function CountrySelector({
           >
             {country.note}
             {country.code === "ROW" ? (
-              <span className="mt-2 block text-xs leading-5 text-[#5F726C]">
+              <span className="mt-2 block text-xs leading-5 text-[#5D6D75]">
                 {country.disclaimer}
               </span>
             ) : null}

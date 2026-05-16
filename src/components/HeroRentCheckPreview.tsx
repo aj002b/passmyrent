@@ -84,30 +84,30 @@ export function HeroRentCheckPreview() {
 
   return (
     <motion.div
-      className="premium-card-strong p-2.5 backdrop-blur"
+      className="rounded-[1.75rem] border border-[#D7E5EA] bg-white/78 p-2.5 shadow-[0_28px_80px_rgba(11,47,53,0.13)] backdrop-blur"
       initial={reduceMotion ? false : { opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: reduceMotion ? 0 : 0.32, ease: easeOut, delay: reduceMotion ? 0 : 0.08 }}
     >
-      <div className="rounded-[1.25rem] border border-[#D6E7E1] bg-[#F7FAF8] p-5 sm:p-6">
+      <div className="rounded-[1.35rem] border border-[#D7E5EA] bg-[linear-gradient(180deg,#FFFFFF_0%,#F6FAFB_100%)] p-5 sm:p-6">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-sm font-extrabold text-[#0F2E2B]">
+            <p className="text-sm font-extrabold text-[#0B2F35]">
               Estimated affordability
             </p>
-            <p className="mt-1 text-sm text-[#5F726C]">
+            <p className="mt-1 text-sm leading-6 text-[#5D6D75]">
               Example outcome using country-aware checks.
             </p>
           </div>
-          <span className="rounded-full border border-[#D6E7E1] bg-[#DFF4EC] px-3 py-1 text-xs font-extrabold text-[#0F766E]">
+          <span className="rounded-full border border-[#D7E5EA] bg-[#E8F3F6] px-3 py-1 text-xs font-extrabold text-[#0E5F67]">
             {example.badge}
           </span>
         </div>
 
-        <div className="mt-4 flex items-center gap-2 rounded-xl border border-[#D6E7E1] bg-white/78 px-3 py-2 text-xs font-bold text-[#5F726C]">
+        <div className="mt-5 flex items-center gap-2 rounded-full border border-[#D7E5EA] bg-white px-3 py-2 text-xs font-bold text-[#5D6D75] shadow-[0_8px_20px_rgba(11,47,53,0.04)]">
           <motion.span
             aria-hidden="true"
-            className="h-2 w-2 rounded-full bg-[#0F766E]"
+            className="h-2 w-2 rounded-full bg-[#0E5F67]"
             animate={
               reduceMotion
                 ? undefined
@@ -132,11 +132,11 @@ export function HeroRentCheckPreview() {
           </AnimatePresence>
         </div>
 
-        <div className="mt-5 grid gap-3">
+        <div className="mt-5 overflow-hidden rounded-2xl border border-[#D7E5EA] bg-white shadow-[0_10px_24px_rgba(11,47,53,0.045)]">
           {example.rows.map(([label, value], index) => (
             <motion.div
               key={label}
-              className="flex items-center justify-between rounded-xl border border-[#D6E7E1] bg-white px-4 py-3 shadow-[0_8px_18px_rgba(15,46,43,0.035)]"
+              className="flex items-center justify-between border-b border-[#D7E5EA] px-4 py-3 last:border-b-0"
               initial={reduceMotion ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -145,17 +145,17 @@ export function HeroRentCheckPreview() {
                 delay: reduceMotion ? 0 : 0.28 + index * 0.14,
               }}
             >
-              <span className="text-sm font-semibold text-[#5F726C]">
+              <span className="text-sm font-semibold text-[#5D6D75]">
                 {label}
               </span>
-              <span className="text-sm font-bold text-[#0F2E2B]">{value}</span>
+              <span className="text-sm font-bold text-[#0B2F35]">{value}</span>
             </motion.div>
           ))}
         </div>
 
-        <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-[#D6E7E1]">
+        <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-[#D7E5EA]">
           <motion.div
-            className="h-full rounded-full bg-[linear-gradient(90deg,#0F766E,#DFF4EC)]"
+            className="h-full rounded-full bg-[linear-gradient(90deg,#0E5F67,#E8F3F6)]"
             initial={reduceMotion ? false : { width: "0%" }}
             animate={{ width: "100%" }}
             transition={{
@@ -169,40 +169,40 @@ export function HeroRentCheckPreview() {
         <AnimatePresence>
           {showFinalState ? (
             <motion.div
-              className="mt-5 rounded-2xl border border-[#D6E7E1] bg-[linear-gradient(135deg,#DFF4EC_0%,#ffffff_100%)] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
+              className="mt-5 rounded-2xl border border-[#D7E5EA] bg-[linear-gradient(135deg,#E8F3F6_0%,#ffffff_100%)] p-4 shadow-[0_12px_30px_rgba(11,47,53,0.055)]"
               initial={reduceMotion ? false : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={reduceMotion ? undefined : { opacity: 0, y: -6 }}
               transition={{ duration: reduceMotion ? 0 : 0.24, ease: easeOut }}
             >
-              <span className="inline-flex rounded-full border border-[#D6E7E1] bg-white px-3 py-1 text-xs font-extrabold text-[#0F766E] shadow-sm">
+              <span className="inline-flex rounded-full border border-[#D7E5EA] bg-white px-3 py-1 text-xs font-extrabold text-[#0E5F67] shadow-sm">
                 {example.result}
               </span>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-xl border border-[#D6E7E1] bg-white/80 p-3">
-                  <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#5F726C]">
+                <div className="rounded-xl bg-white/75 p-3">
+                  <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#5D6D75]">
                     Estimate type
                   </p>
-                  <p className="mt-1 text-sm font-extrabold text-[#0F2E2B]">
+                  <p className="mt-1 text-sm font-extrabold text-[#0B2F35]">
                     Country-aware
                   </p>
                 </div>
-                <div className="rounded-xl border border-[#D6E7E1] bg-white/80 p-3">
-                  <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#5F726C]">
+                <div className="rounded-xl bg-white/75 p-3">
+                  <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#5D6D75]">
                     Example check
                   </p>
-                  <p className="mt-1 text-sm font-extrabold text-[#0F2E2B]">
+                  <p className="mt-1 text-sm font-extrabold text-[#0B2F35]">
                     Rent vs income
                   </p>
                 </div>
               </div>
-              <p className="mt-4 text-sm leading-6 text-[#5F726C]">
+              <p className="mt-4 text-sm leading-6 text-[#5D6D75]">
                 Results are estimates only and may vary by landlord or region.
               </p>
               <TrackedLink
                 href="/rent-referencing-calculator"
                 eventName="homepage_hero_affordability_click"
-                className="mt-4 inline-flex w-full items-center justify-center rounded-2xl border border-[#D6E7E1] bg-white px-4 py-3 text-sm font-extrabold text-[#0F2E2B] transition hover:bg-[#DFF4EC] hover:text-[#0B5E58] focus:outline-none focus:ring-2 focus:ring-[#0F766E] focus:ring-offset-2"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-2xl border border-[#D7E5EA] bg-white px-4 py-3 text-sm font-extrabold text-[#0B2F35] transition hover:bg-[#E8F3F6] hover:text-[#0A3F49] focus:outline-none focus:ring-2 focus:ring-[#0E5F67] focus:ring-offset-2"
               >
                 See full breakdown
               </TrackedLink>

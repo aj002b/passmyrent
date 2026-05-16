@@ -12,14 +12,14 @@ type ResultCardProps = {
 };
 
 const toneStyles = {
-  positive: "border-[#D6E7E1] bg-[linear-gradient(180deg,#F7FAF8_0%,#ffffff_100%)]",
+  positive: "border-[#D7E5EA] bg-[linear-gradient(180deg,#F6FAFB_0%,#ffffff_100%)]",
   warning: "border-[#e7b99e] bg-[linear-gradient(180deg,#fff7ef_0%,#ffffff_100%)]",
   neutral: "border-[#b7d5e3] bg-[linear-gradient(180deg,#f0f8fb_0%,#ffffff_100%)]",
 };
 
 const badgeStyles = {
-  positive: "border-[#D6E7E1] bg-[#DFF4EC] text-[#0F766E]",
-  warning: "border-[#e7b99e] bg-[#fff1e6] text-[#0F766E]",
+  positive: "border-[#D7E5EA] bg-[#E8F3F6] text-[#0E5F67]",
+  warning: "border-[#e7b99e] bg-[#fff1e6] text-[#0E5F67]",
   neutral: "border-[#b7d5e3] bg-[#eef6fa] text-[#2c6680]",
 };
 
@@ -27,7 +27,7 @@ function getSignalBadgeStyle(label: string, tone: "positive" | "warning" | "neut
   const normalized = label.toLowerCase();
 
   if (normalized.includes("strong")) {
-    return "border-[#D6E7E1] bg-[#DFF4EC] text-[#0F766E]";
+    return "border-[#D7E5EA] bg-[#E8F3F6] text-[#0E5F67]";
   }
 
   if (normalized.includes("possible")) {
@@ -63,7 +63,7 @@ export function ResultCard({
   return (
     <section
       aria-live="polite"
-      className={`rounded-2xl border p-5 shadow-[0_18px_45px_rgba(15,46,43,0.08)] sm:p-6 ${toneStyles[tone]}`}
+      className={`rounded-2xl border p-5 shadow-[0_18px_45px_rgba(11,47,53,0.08)] sm:p-6 ${toneStyles[tone]}`}
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
@@ -74,7 +74,7 @@ export function ResultCard({
           transition={{ duration, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="flex flex-wrap items-center gap-2">
-            <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#5F726C]">
+            <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#5D6D75]">
               Estimate result
             </p>
             <motion.span
@@ -87,10 +87,10 @@ export function ResultCard({
               {badgeLabel}
             </motion.span>
           </div>
-          <h2 className="mt-3 text-2xl font-extrabold tracking-[-0.02em] text-[#0F2E2B]">
+          <h2 className="mt-3 text-2xl font-extrabold tracking-[-0.02em] text-[#0B2F35]">
             {title}
           </h2>
-          <p className="mt-3 leading-7 text-[#5F726C]">{description}</p>
+          <p className="mt-3 leading-7 text-[#5D6D75]">{description}</p>
         </motion.div>
       </AnimatePresence>
       {children ? (
@@ -112,7 +112,7 @@ export function ResultCard({
           {children}
         </motion.div>
       ) : null}
-      <p className="mt-5 rounded-xl border border-[#D6E7E1] bg-white/60 p-4 text-xs leading-6 text-[#5F726C] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]">
+      <p className="mt-5 rounded-xl border border-[#D7E5EA] bg-white/60 p-4 text-xs leading-6 text-[#5D6D75] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]">
         {estimateDisclaimer}
       </p>
     </section>
