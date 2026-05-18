@@ -14,24 +14,24 @@ export default function ContactPage() {
   return (
     <div className="mx-auto max-w-6xl space-y-10 px-4 py-10 sm:px-6 lg:px-8">
       <section className="max-w-3xl">
-        <p className="text-sm font-bold text-[#0E5F67]">
+        <p className="text-sm font-bold text-[#0F766E]">
           Last updated: {siteConfig.lastUpdated}
         </p>
-        <h1 className="mt-3 text-4xl font-bold leading-tight text-[#0B2F35]">
+        <h1 className="mt-3 text-4xl font-bold leading-tight text-[#0F2E2B]">
           Contact
         </h1>
-        <p className="mt-4 text-lg leading-8 text-[#5D6D75]">
+        <p className="mt-4 text-lg leading-8 text-[#5F726C]">
           Have a question about RentReadyCheck or spotted something on the site
           that needs attention? You can use the placeholder contact email below.
         </p>
       </section>
 
-      <section className="rounded-xl border border-[#D7E5EA] bg-white p-6 shadow-[0_10px_28px_rgba(11,47,53,0.05)]">
-        <h2 className="text-2xl font-bold text-[#0B2F35]">Email</h2>
-        <p className="mt-3 text-lg font-semibold text-[#0E5F67]">
+      <section className="rounded-xl border border-[#D6E7E1] bg-white p-6 shadow-[0_10px_28px_rgba(15,46,43,0.05)]">
+        <h2 className="text-2xl font-bold text-[#0F2E2B]">Email</h2>
+        <p className="mt-3 text-lg font-semibold text-[#0F766E]">
           <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
         </p>
-        <p className="mt-4 max-w-3xl leading-7 text-[#5D6D75]">
+        <p className="mt-4 max-w-3xl leading-7 text-[#5F726C]">
           RentReadyCheck cannot provide individual financial, legal, tax,
           housing, or referencing advice. For questions about a specific rental
           application, please speak directly with the landlord, agent, property

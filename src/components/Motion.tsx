@@ -104,10 +104,10 @@ export function AnimatedStatCard({
           transition: { duration: reduceMotion ? 0 : 0.22, ease: easeOut },
         },
       }}
-      className="rounded-xl border border-[#D7E5EA] bg-white/82 p-4 shadow-[0_8px_18px_rgba(11,47,53,0.035)]"
+      className="rounded-xl border border-[#D6E7E1] bg-white/82 p-4 shadow-[0_8px_18px_rgba(15,46,43,0.035)]"
     >
-      <p className="text-sm text-[#5D6D75]">{label}</p>
-      <p className="mt-1 text-lg font-extrabold tracking-[-0.015em] text-[#0B2F35]">
+      <p className="text-sm text-[#5F726C]">{label}</p>
+      <p className="mt-1 text-lg font-extrabold tracking-[-0.015em] text-[#0F2E2B]">
         {value}
       </p>
     </motion.div>
