@@ -12,8 +12,8 @@ const navLinks = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-30 border-b border-[#d8e5df]/90 bg-white/95 backdrop-blur-xl">
-      <div className="site-container flex flex-col gap-2 py-2.5 md:flex-row md:items-center md:justify-between">
+    <header className="relative z-30 border-b border-[#d8e5df]/90 bg-white/90 backdrop-blur-xl md:sticky md:top-0">
+      <div className="site-container flex flex-col gap-3 py-3 md:flex-row md:items-center md:justify-between">
         <Link
           href="/"
           className="shrink-0 text-[1.05rem] font-extrabold tracking-[-0.025em] text-[#10352f] focus:outline-none focus:ring-2 focus:ring-[#116a5b] focus:ring-offset-4"

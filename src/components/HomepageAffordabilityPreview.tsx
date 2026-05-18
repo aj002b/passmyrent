@@ -80,9 +80,8 @@ export function HomepageAffordabilityPreview() {
   }, [annualIncome, country.code, rentAmount]);
 
   return (
-    <section className="overflow-hidden rounded-[1.7rem] border border-[#d7e5df] bg-[linear-gradient(135deg,#ffffff_0%,#f5faf7_100%)] shadow-[0_22px_60px_rgba(23,49,43,0.08)]">
-      <div className="grid gap-0 lg:grid-cols-[0.78fr_1.22fr]">
-      <div className="border-b border-[#d7e5df] bg-[#fbfdfc] p-5 sm:p-6 lg:border-b-0 lg:border-r">
+    <section className="premium-card-strong grid gap-5 p-5 md:grid-cols-[1fr_0.82fr] md:items-center md:p-6">
+      <div>
         <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#b6533f]">
           Quick affordability check
         </p>
@@ -93,22 +92,7 @@ export function HomepageAffordabilityPreview() {
           Enter the basics here, then open the full calculator for the detailed
           country-aware breakdown.
         </p>
-        <div className="mt-5 grid gap-3 text-sm font-bold text-[#35534c]">
-          {["No personal data required", "Private browser calculation", "Works across supported countries"].map((item) => (
-            <p key={item} className="flex items-center gap-3">
-              <span className="h-2 w-2 rounded-full bg-[#116a5b] shadow-[0_0_0_4px_rgba(17,106,91,0.12)]" />
-              {item}
-            </p>
-          ))}
-        </div>
-        <p className="mt-5 text-xs leading-5 text-[#748882]">
-          Default country is estimated from your browser settings. You can change
-          it anytime.
-        </p>
-      </div>
-
-      <div className="p-5 sm:p-6">
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="mt-5 grid gap-4 md:grid-cols-3">
           <SelectField
             id="home-country"
             label="Country"
@@ -143,61 +127,42 @@ export function HomepageAffordabilityPreview() {
             placeholder="42000"
           />
         </div>
-
-        <div className="mt-5 rounded-2xl border border-[#d7e5df] bg-white p-4 shadow-[0_12px_28px_rgba(23,49,43,0.055)]">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#5f746f]">
-                Affordability signal
-              </p>
-              <span
-                className={`mt-3 inline-flex rounded-full border px-3 py-1 text-sm font-extrabold ${getSignalStyle(result.title)}`}
-              >
-                {result.title}
-              </span>
-            </div>
-            <Link
-              href={breakdownHref}
-              className="btn-primary w-full sm:w-auto"
-              onClick={() => {
-                trackRentReadyEvent("quick_calculator_full_breakdown_click", {
-                  calculator_name: "Homepage quick affordability estimate",
-                  selected_country: country.code,
-                  result_signal: result.title,
-                });
-              }}
-            >
-              See full breakdown
-            </Link>
-          </div>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            <div className="rounded-xl border border-[#e1ece7] bg-[#fbfdfc] p-3">
-              <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#748882]">
-                Rent
-              </p>
-              <p className="mt-1 text-lg font-extrabold text-[#17312b]">
-                {hasEnoughInput ? formatCurrencyByCountry(monthlyRent, country.code) : "Add rent"}
-              </p>
-            </div>
-            <div className="rounded-xl border border-[#e1ece7] bg-[#fbfdfc] p-3">
-              <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#748882]">
-                Income
-              </p>
-              <p className="mt-1 text-lg font-extrabold text-[#17312b]">
-                {hasEnoughInput ? formatCurrencyByCountry(income, country.code) : "Add income"}
-              </p>
-            </div>
-          </div>
-          <p className="mt-4 text-sm leading-6 text-[#35534c]">
-            {hasEnoughInput
-              ? `${formatCurrencyByCountry(monthlyRent, country.code)} monthly rent compared with ${formatCurrencyByCountry(income, country.code)} annual income.`
-              : result.description}
-          </p>
-          <p className="mt-3 text-xs leading-5 text-[#748882]">
-            {estimateDisclaimer}
-          </p>
-        </div>
+        <p className="mt-3 text-xs leading-5 text-[#748882]">
+          Default country is estimated from your browser settings. You can change
+          it anytime.
+        </p>
       </div>
+
+      <div className="rounded-2xl border border-[#d7e5df] bg-white/82 p-5 shadow-[0_12px_28px_rgba(23,49,43,0.06)]">
+        <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#5f746f]">
+          Affordability signal
+        </p>
+        <span
+          className={`mt-3 inline-flex rounded-full border px-3 py-1 text-sm font-extrabold ${getSignalStyle(result.title)}`}
+        >
+          {result.title}
+        </span>
+        <p className="mt-3 text-sm leading-6 text-[#35534c]">
+          {hasEnoughInput
+            ? `${formatCurrencyByCountry(monthlyRent, country.code)} monthly rent compared with ${formatCurrencyByCountry(income, country.code)} annual income.`
+            : result.description}
+        </p>
+        <p className="mt-3 text-xs leading-5 text-[#748882]">
+          {estimateDisclaimer}
+        </p>
+        <Link
+          href={breakdownHref}
+          className="btn-primary mt-5 w-full"
+          onClick={() => {
+            trackRentReadyEvent("quick_calculator_full_breakdown_click", {
+              calculator_name: "Homepage quick affordability estimate",
+              selected_country: country.code,
+              result_signal: result.title,
+            });
+          }}
+        >
+          See full breakdown
+        </Link>
       </div>
     </section>
   );
