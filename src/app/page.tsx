@@ -4,11 +4,11 @@ import { CalculatorCard } from "@/components/CalculatorCard";
 import { DisclaimerBox } from "@/components/DisclaimerBox";
 import { FAQJsonLd } from "@/components/FAQJsonLd";
 import { FAQSection } from "@/components/FAQSection";
-import { HomepageCountryCards } from "@/components/HomepageCountryCards";
 import { HomepageAffordabilityPreview } from "@/components/HomepageAffordabilityPreview";
 import { HeroRentCheckPreview } from "@/components/HeroRentCheckPreview";
 import { FadeUp, Stagger, StaggerItem } from "@/components/Motion";
 import { TrackedLink } from "@/components/TrackedLink";
+import { countries } from "@/lib/countries";
 import { tools, type FAQItem } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -63,15 +63,15 @@ export default function Home() {
     },
     {
       marker: "P",
-      title: "Private browser calculations",
+      title: "Private by design",
       description:
-        "Your inputs are processed on the page without accounts or forms.",
+        "Calculator inputs run in your browser and are not intentionally stored.",
     },
     {
       marker: "F",
       title: "Free renter tools",
       description:
-        "Sense-check affordability, support, move-in costs, and rent splits.",
+        "Use affordability, guarantor, move-in cost, and rent split calculators.",
     },
   ];
 
@@ -81,12 +81,12 @@ export default function Home() {
       <section className="relative overflow-hidden border-b border-[#D6E7E1] bg-[radial-gradient(circle_at_15%_8%,rgba(223,244,236,0.95),transparent_30rem),radial-gradient(circle_at_88%_12%,rgba(247,250,248,0.95),transparent_28rem),linear-gradient(135deg,#F7FAF8_0%,#DFF4EC_52%,#F7FAF8_100%)]">
         <div className="pointer-events-none absolute right-[-10rem] top-[-10rem] h-96 w-96 rounded-full bg-[#DFF4EC]/55 blur-3xl" />
         <div className="pointer-events-none absolute bottom-[-12rem] left-[38%] h-80 w-80 rounded-full bg-white/80 blur-3xl" />
-        <div className="site-container relative grid gap-8 py-7 sm:py-10 lg:grid-cols-[1.02fr_0.88fr] lg:items-center lg:py-16">
+        <div className="site-container relative grid gap-8 py-8 sm:py-10 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:py-14">
           <FadeUp>
             <p className="inline-flex rounded-full border border-[#D6E7E1] bg-white/75 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.12em] text-[#0F766E] shadow-[0_10px_24px_rgba(15,46,43,0.05)]">
               Global rent affordability tools
             </p>
-            <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[1.02] tracking-[-0.06em] text-[#0F2E2B] sm:text-5xl lg:text-[4.15rem]">
+            <h1 className="mt-5 max-w-3xl text-4xl font-extrabold leading-[1.04] tracking-[-0.055em] text-[#0F2E2B] sm:text-5xl lg:text-[4rem]">
               Know what rent you can afford before you apply
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-[#5F726C] sm:text-lg sm:leading-8">
@@ -97,21 +97,21 @@ export default function Home() {
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <TrackedLink
                 href="/rent-referencing-calculator"
-                className="btn-primary min-h-12 w-full sm:w-auto"
+                className="btn-primary min-h-12"
                 eventName="homepage_hero_affordability_click"
               >
                 Check affordability now
               </TrackedLink>
               <TrackedLink
                 href="/guarantor-income-calculator"
-                className="btn-secondary min-h-12 w-full sm:w-auto"
+                className="btn-secondary min-h-12"
                 eventName="homepage_hero_guarantor_click"
               >
                 Estimate guarantor income
               </TrackedLink>
             </div>
             <div className="mt-5 flex flex-wrap gap-2">
-              {["No sign-up", "Free estimate", "Country-aware checks", "Private calculation"].map((pill) => (
+              {["No sign-up", "Free estimate", "Country-aware checks", "Private & secure"].map((pill) => (
                 <span
                   key={pill}
                   className="trust-pill"
@@ -120,6 +120,9 @@ export default function Home() {
                 </span>
               ))}
             </div>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-[#5F726C]">
+              Uses country-specific example checks. Results are estimates only.
+            </p>
             <div className="mt-7 grid max-w-xl grid-cols-3 gap-3">
               {trustStats.map((stat) => (
                 <div key={stat.label} className="rounded-2xl border border-[#D6E7E1] bg-white/68 p-3 shadow-[0_10px_24px_rgba(15,46,43,0.05)]">
@@ -138,10 +141,8 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="site-container space-y-12 py-10 sm:space-y-14 sm:py-12">
-        <HomepageAffordabilityPreview />
-
-        <section className="grid gap-5 md:grid-cols-[0.72fr_1fr] md:items-center">
+      <div className="site-container space-y-12 py-10">
+        <section className="grid gap-4 md:grid-cols-[0.7fr_1fr] md:items-center">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#0F766E]">
               Trusted by renters globally
@@ -149,13 +150,25 @@ export default function Home() {
             <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-[#0F2E2B]">
               Start with the country you rent in
             </h2>
-            <p className="mt-2 max-w-md text-sm leading-6 text-[#5F726C]">
-              We use browser settings for a helpful default, and you can change
-              the country anytime.
-            </p>
           </div>
-          <HomepageCountryCards />
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {countries.map((country) => (
+              <div key={country.code} className="rounded-2xl border border-[#D6E7E1] bg-white p-4 shadow-[0_10px_24px_rgba(15,46,43,0.045)]">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-[#D6E7E1] bg-[#DFF4EC] text-xs font-extrabold text-[#0F766E]">
+                  {country.code}
+                </span>
+                <h3 className="mt-3 text-sm font-extrabold text-[#0F2E2B]">
+                  {country.name}
+                </h3>
+                <p className="mt-1 text-xs leading-5 text-[#5F726C]">
+                  {country.affordabilityMethod}
+                </p>
+              </div>
+            ))}
+          </div>
         </section>
+
+        <HomepageAffordabilityPreview />
 
         <section className="space-y-4">
           <div>
@@ -220,10 +233,11 @@ export default function Home() {
               costs, and fair rent shares.
             </p>
           </div>
-          <Stagger className="grid gap-4 md:grid-cols-2 lg:grid-cols-3" delayChildren={0.04}>
+          <Stagger className="grid gap-4 md:grid-cols-2 xl:grid-cols-3" delayChildren={0.04}>
             {tools.map((tool, index) => (
               <StaggerItem
                 key={tool.href}
+                className={index === tools.length - 1 ? "xl:col-span-3 xl:mx-auto xl:w-[calc(33.333%-0.75rem)]" : undefined}
               >
                 <CalculatorCard badge={`${index + 1}`} {...tool} />
               </StaggerItem>
@@ -256,6 +270,10 @@ export default function Home() {
             <h2 className="text-3xl font-extrabold tracking-[-0.03em] text-[#0F2E2B]">
               Why RentReadyCheck?
             </h2>
+            <p className="mx-auto mt-2 max-w-2xl leading-7 text-[#5F726C]">
+              Built to help renters understand the numbers without making
+              promises or collecting personal application details.
+            </p>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
             {trustReasons.map((item) => (

@@ -17,46 +17,21 @@ import {
   type CountryCode,
 } from "@/lib/countries";
 import { getDetectedCountry } from "@/lib/detectCountry";
+import { estimateDisclaimer } from "@/lib/site";
 import { useEffect, useMemo, useState } from "react";
 
-function getDisplayOutcome(title: string) {
-  const normalized = title.toLowerCase();
+function getSignalStyle(signal: string) {
+  const normalized = signal.toLowerCase();
 
   if (normalized.includes("strong")) {
-    return "Likely affordable";
-  }
-
-  if (normalized.includes("guarantor") || normalized.includes("co-signer")) {
-    return "May need guarantor";
-  }
-
-  if (normalized.includes("support")) {
-    return "High rent-to-income ratio";
-  }
-
-  if (normalized.includes("borderline") || normalized.includes("possible")) {
-    return "Borderline";
-  }
-
-  return title;
-}
-
-function getSignalStyle(title: string) {
-  const normalized = getDisplayOutcome(title).toLowerCase();
-
-  if (normalized.includes("enter")) {
-    return "border-[#D6E7E1] bg-white text-[#5F726C]";
-  }
-
-  if (normalized.includes("likely")) {
     return "border-[#D6E7E1] bg-[#DFF4EC] text-[#0F766E]";
   }
 
-  if (normalized.includes("borderline")) {
+  if (normalized.includes("possible")) {
     return "border-[#efd58a] bg-[#fff8df] text-[#80611a]";
   }
 
-  if (normalized.includes("guarantor")) {
+  if (normalized.includes("borderline")) {
     return "border-[#e9c4ad] bg-[#fff1e6] text-[#a84d37]";
   }
 
@@ -86,9 +61,8 @@ export function HomepageAffordabilityPreview() {
     : {
         title: "Enter your details",
         description:
-          "Enter a rent amount and annual income to see a quick affordability estimate.",
+          "Enter a rent amount and annual income to see a quick affordability signal.",
       };
-  const displayOutcome = getDisplayOutcome(result.title);
 
   const breakdownHref = useMemo(() => {
     const params = new URLSearchParams();
@@ -106,72 +80,80 @@ export function HomepageAffordabilityPreview() {
   }, [annualIncome, country.code, rentAmount]);
 
   return (
-    <section className="overflow-hidden rounded-[1.8rem] border border-[#D6E7E1] bg-white shadow-[0_24px_70px_rgba(15,46,43,0.08)]">
-      <div className="grid gap-0 lg:grid-cols-[0.74fr_1.26fr]">
-        <div className="bg-[linear-gradient(180deg,#F7FAF8_0%,#FFFFFF_100%)] p-5 sm:p-7 lg:border-r lg:border-[#D6E7E1]">
-          <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#0F766E]">
-            Quick affordability check
-          </p>
-          <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-[#0F2E2B]">
-            Get a quick rent affordability estimate
-          </h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-[#5F726C]">
-            Enter the basics here, then open the full calculator for a detailed
-            country-aware breakdown.
-          </p>
-          <p className="mt-5 rounded-2xl border border-[#D6E7E1] bg-white px-4 py-3 text-xs leading-5 text-[#5F726C]">
-            Default country is estimated from your browser settings. You can
-            change it anytime.
-          </p>
+    <section className="overflow-hidden rounded-[1.7rem] border border-[#D6E7E1] bg-[linear-gradient(135deg,#FFFFFF_0%,#F7FAF8_100%)] shadow-[0_22px_60px_rgba(15,46,43,0.08)]">
+      <div className="grid gap-0 lg:grid-cols-[0.78fr_1.22fr]">
+      <div className="border-b border-[#D6E7E1] bg-[#F7FAF8] p-5 sm:p-6 lg:border-b-0 lg:border-r">
+        <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#0F766E]">
+          Quick affordability check
+        </p>
+        <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-[#0F2E2B]">
+          Get a quick rent affordability estimate
+        </h2>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-[#5F726C]">
+          Enter the basics here, then open the full calculator for the detailed
+          country-aware breakdown.
+        </p>
+        <div className="mt-5 grid gap-3 text-sm font-bold text-[#5F726C]">
+          {["No personal data required", "Private browser calculation", "Works across supported countries"].map((item) => (
+            <p key={item} className="flex items-center gap-3">
+              <span className="h-2 w-2 rounded-full bg-[#0F766E] shadow-[0_0_0_4px_rgba(15,118,110,0.12)]" />
+              {item}
+            </p>
+          ))}
+        </div>
+        <p className="mt-5 text-xs leading-5 text-[#5F726C]">
+          Default country is estimated from your browser settings. You can change
+          it anytime.
+        </p>
+      </div>
+
+      <div className="p-5 sm:p-6">
+        <div className="grid gap-4 md:grid-cols-3">
+          <SelectField
+            id="home-country"
+            label="Country"
+            value={country.code}
+            onChange={(value) => {
+              setUserChangedCountry(true);
+              trackRentReadyEvent("country_selector_change", {
+                calculator_name: "Homepage quick affordability estimate",
+                selected_country: value as CountryCode,
+              });
+              setCountryCode(value as CountryCode);
+            }}
+            options={countries.map((option) => ({
+              label: option.name,
+              value: option.code,
+            }))}
+          />
+          <InputField
+            id="home-rent"
+            label="Monthly rent"
+            value={rentAmount}
+            onChange={setRentAmount}
+            prefix={country.currencySymbol}
+            placeholder="1200"
+          />
+          <InputField
+            id="home-income"
+            label="Annual income"
+            value={annualIncome}
+            onChange={setAnnualIncome}
+            prefix={country.currencySymbol}
+            placeholder="42000"
+          />
         </div>
 
-        <div className="p-5 sm:p-7">
-          <div className="grid gap-4 md:grid-cols-3">
-            <SelectField
-              id="home-country"
-              label="Country"
-              value={country.code}
-              onChange={(value) => {
-                setUserChangedCountry(true);
-                trackRentReadyEvent("country_selector_change", {
-                  calculator_name: "Homepage quick affordability estimate",
-                  selected_country: value as CountryCode,
-                });
-                setCountryCode(value as CountryCode);
-              }}
-              options={countries.map((option) => ({
-                label: option.name,
-                value: option.code,
-              }))}
-            />
-            <InputField
-              id="home-rent"
-              label="Monthly rent"
-              value={rentAmount}
-              onChange={setRentAmount}
-              prefix={country.currencySymbol}
-              placeholder="1200"
-            />
-            <InputField
-              id="home-income"
-              label="Annual income"
-              value={annualIncome}
-              onChange={setAnnualIncome}
-              prefix={country.currencySymbol}
-              placeholder="42000"
-            />
-          </div>
-
-        <div className="mt-5 rounded-3xl border border-[#D6E7E1] bg-[linear-gradient(135deg,#F7FAF8_0%,#FFFFFF_100%)] p-4 shadow-[0_12px_28px_rgba(15,46,43,0.055)] sm:p-5">
+        <div className="mt-5 rounded-2xl border border-[#D6E7E1] bg-white p-4 shadow-[0_12px_28px_rgba(15,46,43,0.055)]">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#5F726C]">
-                Estimated affordability
+                Affordability signal
               </p>
               <span
                 className={`mt-3 inline-flex rounded-full border px-3 py-1 text-sm font-extrabold ${getSignalStyle(result.title)}`}
               >
-                {displayOutcome}
+                {result.title}
               </span>
             </div>
             <Link
@@ -181,7 +163,7 @@ export function HomepageAffordabilityPreview() {
                 trackRentReadyEvent("quick_calculator_full_breakdown_click", {
                   calculator_name: "Homepage quick affordability estimate",
                   selected_country: country.code,
-                  result_signal: displayOutcome,
+                  result_signal: result.title,
                 });
               }}
             >
@@ -212,10 +194,10 @@ export function HomepageAffordabilityPreview() {
               : result.description}
           </p>
           <p className="mt-3 text-xs leading-5 text-[#5F726C]">
-            Results are estimates only and may vary by landlord or region.
+            {estimateDisclaimer}
           </p>
         </div>
-        </div>
+      </div>
       </div>
     </section>
   );

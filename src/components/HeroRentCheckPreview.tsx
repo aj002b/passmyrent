@@ -21,7 +21,7 @@ const examples: Record<
       ["Monthly rent", "£1,200"],
       ["Combined income", "£42,000"],
     ],
-    result: "Borderline",
+    result: "Possible signal",
   },
   US: {
     badge: "US",
@@ -30,7 +30,7 @@ const examples: Record<
       ["Monthly rent", "$1,500"],
       ["Combined income", "$60,000"],
     ],
-    result: "Likely affordable",
+    result: "Strong signal",
   },
   CA: {
     badge: "CA",
@@ -39,7 +39,7 @@ const examples: Record<
       ["Monthly rent", "$1,800"],
       ["Combined income", "$72,000"],
     ],
-    result: "Borderline",
+    result: "Possible signal",
   },
   AU: {
     badge: "AU",
@@ -48,7 +48,7 @@ const examples: Record<
       ["Weekly rent", "$550"],
       ["Combined income", "$95,000"],
     ],
-    result: "Borderline",
+    result: "Possible signal",
   },
   ROW: {
     badge: "Other",
@@ -57,7 +57,7 @@ const examples: Record<
       ["Monthly rent", "$1,200"],
       ["Combined income", "$48,000"],
     ],
-    result: "Borderline",
+    result: "Possible signal",
   },
 };
 
@@ -84,19 +84,19 @@ export function HeroRentCheckPreview() {
 
   return (
     <motion.div
-      className="premium-card-strong p-2.5 backdrop-blur"
+      className="premium-card-strong p-3 backdrop-blur"
       initial={reduceMotion ? false : { opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: reduceMotion ? 0 : 0.32, ease: easeOut, delay: reduceMotion ? 0 : 0.08 }}
     >
-      <div className="rounded-[1.25rem] border border-[#D6E7E1] bg-[#F7FAF8] p-5 sm:p-6">
+      <div className="rounded-[1.25rem] border border-[#D6E7E1] bg-[#F7FAF8] p-5">
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-sm font-extrabold text-[#0F2E2B]">
-              Estimated affordability
+              Monthly rent readiness
             </p>
             <p className="mt-1 text-sm text-[#5F726C]">
-              Example outcome using country-aware checks.
+              A quick preview of a country-aware affordability signal.
             </p>
           </div>
           <span className="rounded-full border border-[#D6E7E1] bg-[#DFF4EC] px-3 py-1 text-xs font-extrabold text-[#0F766E]">
@@ -127,7 +127,7 @@ export function HeroRentCheckPreview() {
               exit={reduceMotion ? undefined : { opacity: 0, y: -4 }}
               transition={{ duration: reduceMotion ? 0 : 0.18, ease: easeOut }}
             >
-              {showFinalState ? "Example outcome ready" : "Checking country-aware estimate..."}
+              {showFinalState ? "Estimate ready" : "Checking affordability signal..."}
             </motion.span>
           </AnimatePresence>
         </div>
@@ -153,7 +153,7 @@ export function HeroRentCheckPreview() {
           ))}
         </div>
 
-        <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-[#D6E7E1]">
+        <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-[#e4eee9]">
           <motion.div
             className="h-full rounded-full bg-[linear-gradient(90deg,#0F766E,#DFF4EC)]"
             initial={reduceMotion ? false : { width: "0%" }}
@@ -181,7 +181,7 @@ export function HeroRentCheckPreview() {
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-xl border border-[#D6E7E1] bg-white/80 p-3">
                   <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#5F726C]">
-                    Estimate type
+                    Method
                   </p>
                   <p className="mt-1 text-sm font-extrabold text-[#0F2E2B]">
                     Country-aware
@@ -189,15 +189,16 @@ export function HeroRentCheckPreview() {
                 </div>
                 <div className="rounded-xl border border-[#D6E7E1] bg-white/80 p-3">
                   <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#5F726C]">
-                    Example check
+                    Privacy
                   </p>
                   <p className="mt-1 text-sm font-extrabold text-[#0F2E2B]">
-                    Rent vs income
+                    Browser only
                   </p>
                 </div>
               </div>
               <p className="mt-4 text-sm leading-6 text-[#5F726C]">
-                Results are estimates only and may vary by landlord or region.
+                Results are estimates only. Some landlords may ask for a
+                guarantor or co-signer.
               </p>
               <TrackedLink
                 href="/rent-referencing-calculator"
