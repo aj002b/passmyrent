@@ -59,7 +59,7 @@ export function FormSection({
 
   return (
     <motion.section
-      className="rounded-2xl border border-[#D6E7E1] bg-[#F7FAF8] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] sm:p-5"
+      className="rounded-2xl border border-[#dbe8e2] bg-[#f8fbf9] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] sm:p-5"
       initial={reduceMotion ? false : { opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
@@ -69,15 +69,15 @@ export function FormSection({
       }}
     >
       <div className="mb-4 flex items-start gap-3">
-        <span className="inline-flex h-8 shrink-0 items-center rounded-full border border-[#D6E7E1] bg-white px-3 text-xs font-extrabold uppercase tracking-[0.08em] text-[#0F766E]">
+        <span className="inline-flex h-8 shrink-0 items-center rounded-full border border-[#c7ddd5] bg-white px-3 text-xs font-extrabold uppercase tracking-[0.08em] text-[#116a5b]">
           {step}
         </span>
         <div>
-          <h3 className="font-extrabold tracking-[-0.015em] text-[#0F2E2B]">
+          <h3 className="font-extrabold tracking-[-0.015em] text-[#17312b]">
             {title}
           </h3>
           {description ? (
-            <p className="mt-1 text-sm leading-6 text-[#5F726C]">{description}</p>
+            <p className="mt-1 text-sm leading-6 text-[#6b817b]">{description}</p>
           ) : null}
         </div>
       </div>
@@ -91,15 +91,15 @@ export function HowEstimateWorks({ children }: { children: ReactNode }) {
 
   return (
     <motion.aside
-      className="rounded-2xl border border-[#D6E7E1] bg-white/86 p-5 shadow-[0_12px_28px_rgba(15,46,43,0.055)]"
+      className="rounded-2xl border border-[#d7e5df] bg-white/86 p-5 shadow-[0_12px_28px_rgba(23,49,43,0.055)]"
       initial={reduceMotion ? false : { opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: reduceMotion ? 0 : 0.24, ease: easeOut, delay: reduceMotion ? 0 : 0.08 }}
     >
-      <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#0F766E]">
+      <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#b6533f]">
         How this estimate works
       </p>
-      <p className="mt-3 text-sm leading-6 text-[#5F726C]">{children}</p>
+      <p className="mt-3 text-sm leading-6 text-[#5f746f]">{children}</p>
     </motion.aside>
   );
 }

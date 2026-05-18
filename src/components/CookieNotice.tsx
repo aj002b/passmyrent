@@ -26,12 +26,12 @@ export function CookieNotice() {
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-[#D6E7E1] bg-white/95 shadow-[0_-12px_32px_rgba(15,46,43,0.12)] backdrop-blur">
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-[#d7e5df] bg-white/95 shadow-[0_-12px_32px_rgba(23,49,43,0.12)] backdrop-blur">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
-        <p className="max-w-3xl text-sm leading-6 text-[#5F726C]">
+        <p className="max-w-3xl text-sm leading-6 text-[#35534c]">
           RentReadyCheck does not intentionally store calculator inputs. We may
           add analytics or advertising cookies in the future; read the{" "}
-          <Link href="/privacy-policy" className="font-semibold text-[#0F766E] underline underline-offset-2">
+          <Link href="/privacy-policy" className="font-semibold text-[#116a5b] underline underline-offset-2">
             Privacy Policy
           </Link>{" "}
           for details.
@@ -39,7 +39,7 @@ export function CookieNotice() {
         <button
           type="button"
           onClick={dismissNotice}
-          className="rounded-md bg-[#0F766E] px-4 py-2 text-sm font-semibold text-white hover:bg-[#0B5E58] focus:outline-none focus:ring-2 focus:ring-[#0F766E] focus:ring-offset-2"
+          className="rounded-md bg-[#116a5b] px-4 py-2 text-sm font-semibold text-white hover:bg-[#0b4c43] focus:outline-none focus:ring-2 focus:ring-[#116a5b] focus:ring-offset-2"
         >
           Got it
         </button>

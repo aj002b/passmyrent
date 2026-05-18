@@ -73,14 +73,14 @@ const guideSections = [
 export default function GuidesPage() {
   return (
     <div className="site-container space-y-10 py-10">
-      <section className="rounded-3xl border border-[#D6E7E1] bg-[linear-gradient(135deg,#F7FAF8_0%,#DFF4EC_100%)] p-6 shadow-[0_20px_60px_rgba(15,46,43,0.08)] md:p-8">
-        <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#0F766E]">
+      <section className="rounded-3xl border border-[#d8e5df] bg-[linear-gradient(135deg,#f8fbf9_0%,#edf6f1_100%)] p-6 shadow-[0_20px_60px_rgba(23,49,43,0.08)] md:p-8">
+        <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#b6533f]">
           Guide library
         </p>
-        <h1 className="mt-3 text-4xl font-extrabold leading-tight tracking-[-0.035em] text-[#0F2E2B] md:text-5xl">
+        <h1 className="mt-3 text-4xl font-extrabold leading-tight tracking-[-0.035em] text-[#17312b] md:text-5xl">
           Renting Guides & Calculators
         </h1>
-        <p className="mt-4 max-w-3xl text-lg leading-8 text-[#5F726C]">
+        <p className="mt-4 max-w-3xl text-lg leading-8 text-[#35534c]">
           Helpful guides and calculators for estimating rent affordability,
           move-in costs, guarantor or co-signer support, and rent splits.
         </p>
@@ -89,16 +89,16 @@ export default function GuidesPage() {
       <section className="grid gap-5 md:grid-cols-2">
         {guideSections.map((section) => (
           <article key={section.title} className="premium-card flex h-full flex-col p-5 md:p-6">
-            <h2 className="text-2xl font-extrabold tracking-[-0.02em] text-[#0F2E2B]">
+            <h2 className="text-2xl font-extrabold tracking-[-0.02em] text-[#17312b]">
               {section.title}
             </h2>
-            <p className="mt-2 leading-7 text-[#5F726C]">{section.description}</p>
+            <p className="mt-2 leading-7 text-[#5f746f]">{section.description}</p>
             <div className="mt-5 grid gap-2">
               {section.links.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="rounded-2xl border border-[#D6E7E1] bg-[#F7FAF8] px-4 py-3 text-sm font-bold text-[#0F766E] transition hover:border-[#0F766E] hover:bg-[#DFF4EC] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F766E]"
+                  className="rounded-2xl border border-[#d7e5df] bg-[#fbfdfc] px-4 py-3 text-sm font-bold text-[#116a5b] transition hover:border-[#116a5b] hover:bg-[#e8f5ef] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#116a5b]"
                 >
                   {link.label}
                 </Link>

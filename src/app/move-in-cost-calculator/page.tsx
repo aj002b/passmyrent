@@ -28,11 +28,11 @@ export default function MoveInCostPage() {
       <FAQJsonLd items={faqs} />
       <div className="mx-auto max-w-6xl space-y-10 px-4 py-10 sm:px-6 lg:px-8">
         <section className="max-w-3xl">
-          <p className="text-sm font-bold text-[#0F766E]">Last updated: May 2026</p>
-          <h1 className="mt-3 text-4xl font-bold leading-tight text-[#0F2E2B]">
+          <p className="text-sm font-bold text-[#d9654f]">Last updated: May 2026</p>
+          <h1 className="mt-3 text-4xl font-bold leading-tight text-[#17312b]">
             Move-In Cost Calculator
           </h1>
-          <p className="mt-4 text-lg leading-8 text-[#5F726C]">
+          <p className="mt-4 text-lg leading-8 text-[#5f746f]">
             Estimate the deposit, first month&apos;s rent, and other upfront costs you
             may need before moving into a rental property.
           </p>

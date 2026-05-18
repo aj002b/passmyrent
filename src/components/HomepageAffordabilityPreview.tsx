@@ -24,7 +24,7 @@ function getSignalStyle(signal: string) {
   const normalized = signal.toLowerCase();
 
   if (normalized.includes("strong")) {
-    return "border-[#D6E7E1] bg-[#DFF4EC] text-[#0F766E]";
+    return "border-[#9ccfbd] bg-[#e8f5ef] text-[#116a5b]";
   }
 
   if (normalized.includes("possible")) {
@@ -80,28 +80,28 @@ export function HomepageAffordabilityPreview() {
   }, [annualIncome, country.code, rentAmount]);
 
   return (
-    <section className="overflow-hidden rounded-[1.7rem] border border-[#D6E7E1] bg-[linear-gradient(135deg,#FFFFFF_0%,#F7FAF8_100%)] shadow-[0_22px_60px_rgba(15,46,43,0.08)]">
+    <section className="overflow-hidden rounded-[1.7rem] border border-[#d7e5df] bg-[linear-gradient(135deg,#ffffff_0%,#f5faf7_100%)] shadow-[0_22px_60px_rgba(23,49,43,0.08)]">
       <div className="grid gap-0 lg:grid-cols-[0.78fr_1.22fr]">
-      <div className="border-b border-[#D6E7E1] bg-[#F7FAF8] p-5 sm:p-6 lg:border-b-0 lg:border-r">
-        <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#0F766E]">
+      <div className="border-b border-[#d7e5df] bg-[#fbfdfc] p-5 sm:p-6 lg:border-b-0 lg:border-r">
+        <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#b6533f]">
           Quick affordability check
         </p>
-        <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-[#0F2E2B]">
+        <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-[#17312b]">
           Get a quick rent affordability estimate
         </h2>
-        <p className="mt-2 max-w-2xl text-sm leading-6 text-[#5F726C]">
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-[#5f746f]">
           Enter the basics here, then open the full calculator for the detailed
           country-aware breakdown.
         </p>
-        <div className="mt-5 grid gap-3 text-sm font-bold text-[#5F726C]">
+        <div className="mt-5 grid gap-3 text-sm font-bold text-[#35534c]">
           {["No personal data required", "Private browser calculation", "Works across supported countries"].map((item) => (
             <p key={item} className="flex items-center gap-3">
-              <span className="h-2 w-2 rounded-full bg-[#0F766E] shadow-[0_0_0_4px_rgba(15,118,110,0.12)]" />
+              <span className="h-2 w-2 rounded-full bg-[#116a5b] shadow-[0_0_0_4px_rgba(17,106,91,0.12)]" />
               {item}
             </p>
           ))}
         </div>
-        <p className="mt-5 text-xs leading-5 text-[#5F726C]">
+        <p className="mt-5 text-xs leading-5 text-[#748882]">
           Default country is estimated from your browser settings. You can change
           it anytime.
         </p>
@@ -144,10 +144,10 @@ export function HomepageAffordabilityPreview() {
           />
         </div>
 
-        <div className="mt-5 rounded-2xl border border-[#D6E7E1] bg-white p-4 shadow-[0_12px_28px_rgba(15,46,43,0.055)]">
+        <div className="mt-5 rounded-2xl border border-[#d7e5df] bg-white p-4 shadow-[0_12px_28px_rgba(23,49,43,0.055)]">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#5F726C]">
+              <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#5f746f]">
                 Affordability signal
               </p>
               <span
@@ -171,29 +171,29 @@ export function HomepageAffordabilityPreview() {
             </Link>
           </div>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            <div className="rounded-xl border border-[#D6E7E1] bg-[#F7FAF8] p-3">
-              <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#5F726C]">
+            <div className="rounded-xl border border-[#e1ece7] bg-[#fbfdfc] p-3">
+              <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#748882]">
                 Rent
               </p>
-              <p className="mt-1 text-lg font-extrabold text-[#0F2E2B]">
+              <p className="mt-1 text-lg font-extrabold text-[#17312b]">
                 {hasEnoughInput ? formatCurrencyByCountry(monthlyRent, country.code) : "Add rent"}
               </p>
             </div>
-            <div className="rounded-xl border border-[#D6E7E1] bg-[#F7FAF8] p-3">
-              <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#5F726C]">
+            <div className="rounded-xl border border-[#e1ece7] bg-[#fbfdfc] p-3">
+              <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#748882]">
                 Income
               </p>
-              <p className="mt-1 text-lg font-extrabold text-[#0F2E2B]">
+              <p className="mt-1 text-lg font-extrabold text-[#17312b]">
                 {hasEnoughInput ? formatCurrencyByCountry(income, country.code) : "Add income"}
               </p>
             </div>
           </div>
-          <p className="mt-4 text-sm leading-6 text-[#5F726C]">
+          <p className="mt-4 text-sm leading-6 text-[#35534c]">
             {hasEnoughInput
               ? `${formatCurrencyByCountry(monthlyRent, country.code)} monthly rent compared with ${formatCurrencyByCountry(income, country.code)} annual income.`
               : result.description}
           </p>
-          <p className="mt-3 text-xs leading-5 text-[#5F726C]">
+          <p className="mt-3 text-xs leading-5 text-[#748882]">
             {estimateDisclaimer}
           </p>
         </div>
